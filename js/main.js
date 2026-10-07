@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPricingToggle();
   initUnboxing3DCard();
   initPatronCards3D();
+  initPatronReviewsAutoScroll();
   initAboutStory3DCard();
   initAboutMetrics3D();
   initValueCards3D();
@@ -1123,6 +1124,174 @@ function initUnboxing3DCard() {
 
 function initPatronCards3D() {
   attachSmoothTilt('.patron-review-card', 5, 1.01);
+}
+
+/**
+ * Auto-scrolling Review Carousel Engine for Membership Reviews
+ */
+function initPatronReviewsAutoScroll() {
+  const container = document.getElementById('patronCarouselContainer');
+  const viewport = document.getElementById('patronViewport');
+  const track = document.getElementById('patronTrack');
+  const prevBtn = document.getElementById('patronPrevBtn');
+  const nextBtn = document.getElementById('patronNextBtn');
+  const dotsContainer = document.getElementById('patronDots');
+
+  if (!viewport || !track) return;
+
+  const cards = track.querySelectorAll('.patron-review-card');
+  if (!cards.length) return;
+
+  let autoScrollTimer = null;
+  let isHovered = false;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  // Build pagination dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    cards.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = `patron-dot ${idx === 0 ? 'is-active' : ''}`;
+      dot.setAttribute('aria-label', `Go to review ${idx + 1}`);
+      dot.addEventListener('click', () => {
+        scrollToIndex(idx);
+        restartAutoScroll();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const dots = dotsContainer ? dotsContainer.querySelectorAll('.patron-dot') : [];
+
+  function updateActiveDot() {
+    if (!dots.length) return;
+    const cardWidth = cards[0].offsetWidth + 32;
+    const currentIdx = Math.round(viewport.scrollLeft / cardWidth);
+    dots.forEach((d, i) => {
+      d.classList.toggle('is-active', i === Math.min(cards.length - 1, Math.max(0, currentIdx)));
+    });
+  }
+
+  function scrollToIndex(idx) {
+    const cardWidth = cards[0].offsetWidth + 32;
+    viewport.scrollTo({
+      left: idx * cardWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  function getStepWidth() {
+    return cards[0].offsetWidth + 32;
+  }
+
+  function scrollNext() {
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    const step = getStepWidth();
+    if (viewport.scrollLeft >= maxScroll - 15) {
+      viewport.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      viewport.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  }
+
+  function scrollPrev() {
+    const step = getStepWidth();
+    if (viewport.scrollLeft <= 15) {
+      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+      viewport.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+      viewport.scrollBy({ left: -step, behavior: 'smooth' });
+    }
+  }
+
+  function startAutoScroll() {
+    stopAutoScroll();
+    autoScrollTimer = setInterval(() => {
+      if (!isHovered && !isDragging) {
+        scrollNext();
+      }
+    }, 3800);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  }
+
+  function restartAutoScroll() {
+    startAutoScroll();
+  }
+
+  // Button Listeners
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      scrollNext();
+      restartAutoScroll();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      scrollPrev();
+      restartAutoScroll();
+    });
+  }
+
+  // Hover Pause on desktop
+  if (container) {
+    container.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+    container.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+  }
+
+  // Scroll listener for active dot
+  viewport.addEventListener('scroll', () => {
+    updateActiveDot();
+  }, { passive: true });
+
+  // Mouse Drag for Desktop
+  viewport.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    viewport.classList.add('is-dragging');
+    startX = e.pageX - viewport.offsetLeft;
+    scrollLeft = viewport.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      viewport.classList.remove('is-dragging');
+      restartAutoScroll();
+    }
+  });
+
+  viewport.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - viewport.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    viewport.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch Swipe on mobile
+  viewport.addEventListener('touchstart', () => {
+    isHovered = true;
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', () => {
+    isHovered = false;
+    restartAutoScroll();
+  }, { passive: true });
+
+  // Start auto scroll
+  startAutoScroll();
 }
 
 function initAboutStory3DCard() {

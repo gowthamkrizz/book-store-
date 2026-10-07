@@ -725,123 +725,270 @@
         </p>
       </div>
 
-      <div class="patron-reviews-grid">
-        <!-- Review Card 1 -->
-        <div class="patron-review-card">
-          <span class="material-symbols-outlined quote-watermark">format_quote</span>
-          
-          <div class="patron-card-header">
-            <div class="patron-star-rating">
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="star-rating-val">5.0</span>
-            </div>
-            <div class="patron-verified-badge">
-              <span class="material-symbols-outlined">verified</span>
-              <span>Verified Patron</span>
-            </div>
-          </div>
+      <!-- Patron Auto-Scroll Carousel Container -->
+      <div class="patron-carousel-container" id="patronCarouselContainer">
+        <!-- Prev / Next Navigation Controls -->
+        <button class="patron-nav-btn patron-prev-btn" id="patronPrevBtn" aria-label="Previous Reviews">
+          <span class="material-symbols-outlined">navigate_before</span>
+        </button>
 
-          <p class="patron-quote-body">
-            “The Bibliophile tier has introduced me to genres I never thought I’d love. The signed copies are genuine treasures on my mantle, and the wax seal wrap is unforgettable.”
-          </p>
-
-          <div class="patron-card-footer">
-            <div class="patron-avatar-wrap">
-              <img src="images/user-2.webp" alt="Marcus Bennett" class="patron-avatar-img">
-              <span class="patron-online-dot"></span>
-            </div>
-            <div class="patron-meta-wrap">
-              <strong class="patron-name">Marcus Bennett</strong>
-              <div class="patron-tier-meta">
-                <span class="tier-pill elite">Bibliophile Elite</span>
-                <span class="patron-location">• London, UK</span>
+        <div class="patron-carousel-viewport" id="patronViewport">
+          <div class="patron-carousel-track" id="patronTrack">
+            <!-- Review Card 1 -->
+            <div class="patron-review-card">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Verified Patron</span>
+                </div>
               </div>
+
+              <p class="patron-quote-body">
+                “The Bibliophile tier has introduced me to genres I never thought I’d love. The signed copies are genuine treasures on my mantle, and the wax seal wrap is unforgettable.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/user-2.webp" alt="Marcus Bennett" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Marcus Bennett</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill elite">Bibliophile Elite</span>
+                    <span class="patron-location">• London, UK</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
+            </div>
+
+            <!-- Review Card 2 (Featured) -->
+            <div class="patron-review-card featured">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge gold">
+                  <span class="material-symbols-outlined">workspace_premium</span>
+                  <span>Top Contributor</span>
+                </div>
+              </div>
+
+              <p class="patron-quote-body">
+                “The free cafe pass in New York alone pays for the membership! Working from the Stackly bookstore reading room with an artisan pour-over is my favorite weekly ritual.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/user-3.webp" alt="Sophia Loren" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Sophia Loren</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill bookworm">Bookworm Member</span>
+                    <span class="patron-location">• New York, NY</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
+            </div>
+
+            <!-- Review Card 3 -->
+            <div class="patron-review-card">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Verified Patron</span>
+                </div>
+              </div>
+
+              <p class="patron-quote-body">
+                “Unboxing day is the best day of the month for our whole family. The curation quality and archival bookmark feel noticeably superior to any other book club subscription.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/user-4.webp" alt="Oliver Hayes" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Oliver Hayes</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill elite">Elite Member</span>
+                    <span class="patron-location">• Edinburgh, UK</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
+            </div>
+
+            <!-- Review Card 4 -->
+            <div class="patron-review-card">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Verified Patron</span>
+                </div>
+              </div>
+
+              <p class="patron-quote-body">
+                “The author discussions and private salon invitations are purely magical. Stackly has transformed my reading habit into an enriching and vibrant global community.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/user-1.webp" alt="Elena Rostova" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Elena Rostova</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill elite">Bibliophile Elite</span>
+                    <span class="patron-location">• Paris, France</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
+            </div>
+
+            <!-- Review Card 5 (Featured) -->
+            <div class="patron-review-card featured">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge gold">
+                  <span class="material-symbols-outlined">workspace_premium</span>
+                  <span>Top Contributor</span>
+                </div>
+              </div>
+
+              <p class="patron-quote-body">
+                “Every first edition delivery is handled with absolute reverence. The bespoke embossed slipcases and curator notes make each box feel like opening an archival treasure vault.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/team-2.webp" alt="Julian Thorne" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Julian Thorne</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill elite">Literary Collector</span>
+                    <span class="patron-location">• Oxford, UK</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
+            </div>
+
+            <!-- Review Card 6 -->
+            <div class="patron-review-card">
+              <div class="patron-top-accent"></div>
+              <div class="patron-card-glow"></div>
+              <span class="material-symbols-outlined quote-watermark">format_quote</span>
+              
+              <div class="patron-card-header">
+                <div class="patron-star-rating">
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 1;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 2;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 3;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 4;">star</span>
+                  <span class="material-symbols-outlined star-icon" style="--star-i: 5;">star</span>
+                  <span class="star-rating-val">5.0</span>
+                </div>
+                <div class="patron-verified-badge">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Verified Patron</span>
+                </div>
+              </div>
+
+              <p class="patron-quote-body">
+                “Receiving the seasonal poetry anthology felt like a breath of fresh air. The handpicked recommendations never miss, opening up worlds I would never have found alone.”
+              </p>
+
+              <div class="patron-card-footer">
+                <div class="patron-avatar-wrap">
+                  <img src="images/team-1.webp" alt="Clara Moreau" class="patron-avatar-img">
+                  <span class="patron-online-dot"></span>
+                </div>
+                <div class="patron-meta-wrap">
+                  <strong class="patron-name">Clara Moreau</strong>
+                  <div class="patron-tier-meta">
+                    <span class="tier-pill bookworm">Bookworm Member</span>
+                    <span class="patron-location">• Montreal, Canada</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patron-card-sheen"></div>
             </div>
           </div>
-          <div class="patron-card-sheen"></div>
         </div>
 
-        <!-- Review Card 2 (Featured) -->
-        <div class="patron-review-card featured">
-          <span class="material-symbols-outlined quote-watermark">format_quote</span>
-          
-          <div class="patron-card-header">
-            <div class="patron-star-rating">
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="star-rating-val">5.0</span>
-            </div>
-            <div class="patron-verified-badge gold">
-              <span class="material-symbols-outlined">workspace_premium</span>
-              <span>Top Contributor</span>
-            </div>
-          </div>
+        <!-- Next Navigation Control -->
+        <button class="patron-nav-btn patron-next-btn" id="patronNextBtn" aria-label="Next Reviews">
+          <span class="material-symbols-outlined">navigate_next</span>
+        </button>
 
-          <p class="patron-quote-body">
-            “The free cafe pass in New York alone pays for the membership! Working from the Stackly bookstore reading room with an artisan pour-over is my favorite weekly ritual.”
-          </p>
-
-          <div class="patron-card-footer">
-            <div class="patron-avatar-wrap">
-              <img src="images/user-3.webp" alt="Sophia Loren" class="patron-avatar-img">
-              <span class="patron-online-dot"></span>
-            </div>
-            <div class="patron-meta-wrap">
-              <strong class="patron-name">Sophia Loren</strong>
-              <div class="patron-tier-meta">
-                <span class="tier-pill bookworm">Bookworm Member</span>
-                <span class="patron-location">• New York, NY</span>
-              </div>
-            </div>
-          </div>
-          <div class="patron-card-sheen"></div>
-        </div>
-
-        <!-- Review Card 3 -->
-        <div class="patron-review-card">
-          <span class="material-symbols-outlined quote-watermark">format_quote</span>
-          
-          <div class="patron-card-header">
-            <div class="patron-star-rating">
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="material-symbols-outlined star-icon">star</span>
-              <span class="star-rating-val">5.0</span>
-            </div>
-            <div class="patron-verified-badge">
-              <span class="material-symbols-outlined">verified</span>
-              <span>Verified Patron</span>
-            </div>
-          </div>
-
-          <p class="patron-quote-body">
-            “Unboxing day is the best day of the month for our whole family. The curation quality and archival bookmark feel noticeably superior to any other book club subscription.”
-          </p>
-
-          <div class="patron-card-footer">
-            <div class="patron-avatar-wrap">
-              <img src="images/user-4.webp" alt="Oliver Hayes" class="patron-avatar-img">
-              <span class="patron-online-dot"></span>
-            </div>
-            <div class="patron-meta-wrap">
-              <strong class="patron-name">Oliver Hayes</strong>
-              <div class="patron-tier-meta">
-                <span class="tier-pill elite">Elite Member</span>
-                <span class="patron-location">• Edinburgh, UK</span>
-              </div>
-            </div>
-          </div>
-          <div class="patron-card-sheen"></div>
-        </div>
+        <!-- Pagination Dots -->
+        <div class="patron-carousel-dots" id="patronDots"></div>
       </div>
     </div>
   </section>
@@ -1065,10 +1212,10 @@
           <h4 class="footer-col-title">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="membership.html">Membership Circle</a></li>
-            <li><a href="about.html">About Our Story</a></li>
-            <li><a href="shop.html">Browse Catalogue</a></li>
-            <li><a href="contact.html">Contact & Directions</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
 

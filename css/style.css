@@ -3214,6 +3214,17 @@ html {
   transform: scale(1.12);
 }
 
+.team-social-link svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.team-social-link:hover svg {
+  transform: scale(1.1);
+}
+
 /* --------------------------------------------------------------------------
    NEWSLETTER BANNER (Section 8 - Ultra Luxury Editorial Split Banner)
    -------------------------------------------------------------------------- */
@@ -5741,42 +5752,152 @@ td.matrix-featured-column {
   animation: floatGlow 17s ease-in-out infinite alternate-reverse;
 }
 
-.patron-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.25rem;
+.patron-reviews-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.patron-glow-1 {
+  top: 15%;
+  left: -8%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(145, 206, 108, 0.15) 0%, transparent 70%);
+}
+
+.patron-glow-2 {
+  bottom: 10%;
+  right: -8%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 163, 89, 0.15) 0%, transparent 70%);
+}
+
+.patron-carousel-container {
+  position: relative;
   margin-top: 3.5rem;
+  padding: 0 3.25rem;
+}
+
+.patron-carousel-viewport {
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 1.8rem 0.5rem 2.2rem 0.5rem;
+  margin: -1.8rem -0.5rem -2.2rem -0.5rem;
+  cursor: grab;
+  perspective: 1200px;
+}
+
+.patron-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.patron-carousel-viewport.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.patron-carousel-track {
+  display: flex;
+  gap: 2rem;
   align-items: stretch;
+  width: max-content;
+}
+
+.patron-carousel-track .patron-review-card {
+  width: 375px;
+  flex-shrink: 0;
 }
 
 .patron-review-card {
   position: relative;
   background: #FFFFFF;
-  border-radius: 26px;
-  padding: 2.5rem 2.2rem;
-  border: 1px solid rgba(30, 77, 43, 0.1);
-  box-shadow: 0 12px 35px -8px rgba(30, 77, 43, 0.07);
+  border-radius: 28px;
+  padding: 2.75rem 2.25rem 2.25rem 2.25rem;
+  border: 1px solid rgba(30, 77, 43, 0.12);
+  box-shadow: 0 14px 40px -10px rgba(30, 77, 43, 0.08), 0 2px 8px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.4s ease;
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Shimmering Top Accent Line */
+.patron-top-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1E4D2B, #91CE6C, #D4A359, #1E4D2B);
+  background-size: 300% 100%;
+  opacity: 0.85;
+  transition: height 0.35s ease, opacity 0.35s ease;
+  animation: patronGradientShift 8s ease infinite;
+}
+
+@keyframes patronGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ambient Card Backlight */
+.patron-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(145, 206, 108, 0.12) 0%, transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 0;
 }
 
 .patron-review-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 26px 55px -10px rgba(30, 77, 43, 0.15);
-  border-color: rgba(145, 206, 108, 0.5);
+  transform: translateY(-12px) scale(1.015);
+  box-shadow: 0 30px 65px -12px rgba(30, 77, 43, 0.18), 0 10px 25px rgba(145, 206, 108, 0.15);
+  border-color: rgba(145, 206, 108, 0.6);
 }
 
+.patron-review-card:hover .patron-card-glow {
+  opacity: 1;
+}
+
+.patron-review-card:hover .patron-top-accent {
+  height: 5px;
+  opacity: 1;
+}
+
+/* Featured / Top Contributor Card */
 .patron-review-card.featured {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F0 100%);
+  background: linear-gradient(175deg, #FFFFFF 0%, #FDFBF7 60%, #F8F3EA 100%);
   border: 1.5px solid rgba(212, 163, 89, 0.45);
-  box-shadow: 0 16px 45px -8px rgba(212, 163, 89, 0.18);
+  box-shadow: 0 20px 50px -10px rgba(212, 163, 89, 0.22), 0 4px 14px rgba(212, 163, 89, 0.08);
+  transform: translateY(-6px);
+}
+
+.patron-review-card.featured .patron-top-accent {
+  background: linear-gradient(90deg, #D4A359, #FFC74F, #E7BE7A, #D4A359);
+  background-size: 300% 100%;
+  height: 5px;
 }
 
 .patron-review-card.featured:hover {
-  border-color: rgba(212, 163, 89, 0.7);
-  box-shadow: 0 28px 60px -10px rgba(212, 163, 89, 0.25);
+  transform: translateY(-16px) scale(1.02);
+  border-color: rgba(212, 163, 89, 0.85);
+  box-shadow: 0 35px 75px -12px rgba(212, 163, 89, 0.32), 0 12px 30px rgba(212, 163, 89, 0.2);
+}
+
+.patron-review-card.featured .patron-card-glow {
+  background: radial-gradient(circle at center, rgba(255, 199, 79, 0.18) 0%, transparent 60%);
 }
 
 /* Watermarked Quotation Glyph */
@@ -5784,17 +5905,27 @@ td.matrix-featured-column {
   position: absolute;
   top: 1.25rem;
   right: 1.5rem;
-  font-size: 76px;
-  color: rgba(30, 77, 43, 0.05);
+  font-size: 78px;
+  color: rgba(30, 77, 43, 0.06);
   pointer-events: none;
   line-height: 1;
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   font-variation-settings: 'FILL' 1;
+  z-index: 1;
 }
 
 .patron-review-card:hover .quote-watermark {
-  color: rgba(30, 77, 43, 0.12);
-  transform: scale(1.1) rotate(-8deg);
+  color: rgba(145, 206, 108, 0.22);
+  transform: scale(1.15) rotate(-10deg) translate(-4px, 4px);
+}
+
+.patron-review-card.featured .quote-watermark {
+  color: rgba(212, 163, 89, 0.1);
+}
+
+.patron-review-card.featured:hover .quote-watermark {
+  color: rgba(212, 163, 89, 0.28);
+  transform: scale(1.18) rotate(-10deg) translate(-4px, 4px);
 }
 
 .patron-card-header {
@@ -5808,7 +5939,7 @@ td.matrix-featured-column {
   text-align: left;
 }
 
-/* Star Rating Solid Gold Fill */
+/* Star Rating Solid Gold Fill with Stagger Pop */
 .patron-star-rating {
   display: inline-flex;
   align-items: center;
@@ -5819,21 +5950,30 @@ td.matrix-featured-column {
 .patron-star-rating .star-icon {
   font-variation-settings: 'FILL' 1;
   color: #FFC74F;
-  font-size: 19px;
-  text-shadow: 0 1px 4px rgba(255, 199, 79, 0.4);
-  transition: transform 0.2s ease;
+  font-size: 20px;
+  filter: drop-shadow(0 2px 4px rgba(255, 199, 79, 0.45));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
 }
 
 .patron-review-card:hover .patron-star-rating .star-icon {
-  transform: scale(1.1);
+  animation: starBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--star-i, 1) * 0.06s);
+}
+
+@keyframes starBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.28) translateY(-3px) rotate(8deg); }
+  100% { transform: scale(1.1) translateY(0) rotate(0deg); }
 }
 
 .star-rating-val {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 800;
   color: #111A13;
-  margin-left: 0.35rem;
+  margin-left: 0.45rem;
+  letter-spacing: -0.2px;
 }
 
 /* Verified Patron Tag */
@@ -5841,41 +5981,59 @@ td.matrix-featured-column {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.8rem;
-  background: rgba(43, 144, 12, 0.09);
+  padding: 0.32rem 0.85rem;
+  background: rgba(43, 144, 12, 0.08);
   color: #185E07;
   border-radius: 999px;
   font-family: var(--font-body);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   white-space: nowrap;
   flex-shrink: 0;
+  border: 1px solid rgba(43, 144, 12, 0.18);
+  box-shadow: 0 2px 6px rgba(43, 144, 12, 0.06);
+  transition: all 0.3s ease;
+}
+
+.patron-review-card:hover .patron-verified-badge {
+  transform: translateY(-2px);
+  background: rgba(43, 144, 12, 0.13);
+  box-shadow: 0 4px 10px rgba(43, 144, 12, 0.12);
 }
 
 .patron-verified-badge .material-symbols-outlined {
   font-size: 15px;
   color: #2B900C;
+  font-variation-settings: 'FILL' 1;
 }
 
 .patron-verified-badge.gold {
-  background: linear-gradient(135deg, rgba(255, 199, 79, 0.22) 0%, rgba(212, 163, 89, 0.18) 100%);
+  background: linear-gradient(135deg, rgba(255, 199, 79, 0.24) 0%, rgba(212, 163, 89, 0.2) 100%);
   color: #8C6212;
-  border: 1px solid rgba(212, 163, 89, 0.35);
+  border: 1px solid rgba(212, 163, 89, 0.45);
+  box-shadow: 0 2px 8px rgba(212, 163, 89, 0.15);
+}
+
+.patron-review-card.featured:hover .patron-verified-badge.gold {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(255, 199, 79, 0.32) 0%, rgba(212, 163, 89, 0.28) 100%);
+  box-shadow: 0 4px 14px rgba(212, 163, 89, 0.25);
 }
 
 .patron-verified-badge.gold .material-symbols-outlined {
   color: #D4A359;
+  font-variation-settings: 'FILL' 1;
 }
 
 /* Quote Typography with Equalized Baselines */
 .patron-quote-body {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.18rem;
-  line-height: 1.65;
-  color: #111A13;
-  margin: 1.5rem 0 1.8rem 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #1a291e;
+  margin: 1.6rem 0 1.9rem 0;
   flex: 1;
   min-height: 130px;
   display: flex;
@@ -5883,15 +6041,20 @@ td.matrix-featured-column {
   text-align: left;
   position: relative;
   z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.patron-review-card:hover .patron-quote-body {
+  color: #0c170f;
 }
 
 /* Patron Profile Footer */
 .patron-card-footer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.05rem;
   border-top: 1px solid rgba(30, 77, 43, 0.08);
-  padding-top: 1.25rem;
+  padding-top: 1.35rem;
   margin-top: auto;
   position: relative;
   z-index: 2;
@@ -5901,8 +6064,8 @@ td.matrix-featured-column {
 
 .patron-avatar-wrap {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   flex-shrink: 0;
 }
 
@@ -5913,23 +6076,58 @@ td.matrix-featured-column {
   object-fit: cover;
   border: 2.5px solid #91CE6C;
   box-shadow: 0 4px 14px rgba(30, 77, 43, 0.18);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .patron-review-card:hover .patron-avatar-img {
-  transform: scale(1.06);
+  transform: scale(1.1) rotate(-3deg);
+  border-color: #2B900C;
+  box-shadow: 0 6px 18px rgba(43, 144, 12, 0.3);
 }
 
+.patron-review-card.featured .patron-avatar-img {
+  border-color: #D4A359;
+}
+
+.patron-review-card.featured:hover .patron-avatar-img {
+  border-color: #FFC74F;
+  box-shadow: 0 6px 20px rgba(212, 163, 89, 0.4);
+}
+
+/* Live Radar Beacon Pulse */
 .patron-online-dot {
   position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 11px;
-  height: 11px;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #2B900C;
   border: 2px solid #FFFFFF;
-  box-shadow: 0 0 6px rgba(43, 144, 12, 0.6);
+  box-shadow: 0 0 8px rgba(43, 144, 12, 0.7);
+}
+
+.patron-online-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #2B900C;
+  animation: radarPulse 2s ease-out infinite;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
 .patron-meta-wrap {
@@ -5937,7 +6135,7 @@ td.matrix-featured-column {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
   text-align: left;
   flex: 1;
   min-width: 0;
@@ -5946,12 +6144,21 @@ td.matrix-featured-column {
 .patron-name {
   display: block;
   font-family: var(--font-heading);
-  font-size: 1.06rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #111A13;
   line-height: 1.2;
   text-align: left;
   white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.patron-review-card:hover .patron-name {
+  color: #1E4D2B;
+}
+
+.patron-review-card.featured:hover .patron-name {
+  color: #8C6212;
 }
 
 .patron-tier-meta {
@@ -5964,7 +6171,7 @@ td.matrix-featured-column {
 }
 
 .tier-pill {
-  padding: 0.2rem 0.55rem;
+  padding: 0.22rem 0.6rem;
   border-radius: 999px;
   font-family: var(--font-body);
   font-size: 0.68rem;
@@ -5973,18 +6180,23 @@ td.matrix-featured-column {
   letter-spacing: 0.5px;
   white-space: nowrap;
   flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.patron-review-card:hover .tier-pill {
+  transform: scale(1.05);
 }
 
 .tier-pill.elite {
-  background: linear-gradient(135deg, rgba(255, 199, 79, 0.22) 0%, rgba(212, 163, 89, 0.18) 100%);
+  background: linear-gradient(135deg, rgba(255, 199, 79, 0.25) 0%, rgba(212, 163, 89, 0.2) 100%);
   color: #8C6212;
-  border: 1px solid rgba(212, 163, 89, 0.35);
+  border: 1px solid rgba(212, 163, 89, 0.4);
 }
 
 .tier-pill.bookworm {
   background: rgba(43, 144, 12, 0.12);
   color: #196006;
-  border: 1px solid rgba(43, 144, 12, 0.25);
+  border: 1px solid rgba(43, 144, 12, 0.28);
 }
 
 .patron-location {
@@ -5995,27 +6207,109 @@ td.matrix-featured-column {
   flex-shrink: 0;
 }
 
-/* Card Light Sheen */
+/* Card Light Sweep Sheen */
 .patron-card-sheen {
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
+  left: -120%;
+  width: 80%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
   pointer-events: none;
-  transition: left 0.7s ease;
+  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
 }
 
 .patron-review-card:hover .patron-card-sheen {
-  left: 100%;
+  left: 140%;
+}
+
+/* Navigation Buttons */
+.patron-nav-btn {
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(30, 77, 43, 0.15);
+  box-shadow: 0 6px 20px rgba(30, 77, 43, 0.1);
+  color: #1E4D2B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.patron-nav-btn:hover {
+  background: #91CE6C;
+  border-color: #91CE6C;
+  color: #0E1A11;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 10px 25px rgba(145, 206, 108, 0.4);
+}
+
+.patron-prev-btn {
+  left: -4px;
+}
+
+.patron-next-btn {
+  right: -4px;
+}
+
+/* Pagination Dots */
+.patron-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.patron-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(30, 77, 43, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+}
+
+.patron-dot.is-active {
+  width: 28px;
+  background: linear-gradient(90deg, #1E4D2B, #91CE6C);
+  box-shadow: 0 2px 8px rgba(145, 206, 108, 0.4);
 }
 
 /* Responsive Patron Reviews */
-@media (max-width: 991px) {
-  .patron-reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
+@media (max-width: 1200px) {
+  .patron-carousel-track .patron-review-card {
+    width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .patron-carousel-container {
+    padding: 0 0.5rem;
+  }
+  .patron-nav-btn {
+    display: none;
+  }
+  .patron-carousel-track .patron-review-card {
+    width: 290px;
+    padding: 2.2rem 1.6rem;
+  }
+  .patron-review-card.featured {
+    transform: none;
+  }
+  .patron-review-card.featured:hover {
+    transform: translateY(-8px);
   }
 }
 
