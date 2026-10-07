@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly Books – Bookstore & Literary Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+</head>
+<body class="bg-cream">
+
+  <!-- =========================================================================
+       HEADER & NAVIGATION
+       ========================================================================= -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <img src="images/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link active">Home</a>
+        </div>
+        <div class="nav-item">
+          <a href="membership.html" class="nav-link">Membership</a>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">About Us</a>
+        </div>
+        <div class="nav-item">
+          <a href="shop.html" class="nav-link">Shop</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html" class="nav-link">Contact Us</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-header-login" title="Account Login">
+          <span class="material-symbols-outlined">person</span>
+          <span>Login</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Off-Canvas Drawer (Fullscreen Luxury Menu) -->
+  <div class="drawer-overlay"></div>
+  <div class="mobile-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="header-logo">
+        <img src="images/logo.webp" alt="Stackly Logo">
+      </a>
+      <button class="drawer-close-btn" aria-label="Close Drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html"><span>Home</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="shop.html"><span>Shop Books</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="membership.html"><span>Membership Circle</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="about.html"><span>About Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="contact.html"><span>Contact Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="mobile-drawer-login-btn">
+          <span class="material-symbols-outlined">person</span>
+          <span>Sign In / Member Portal</span>
+        </a>
+        <div class="mobile-drawer-info">
+          <span>✦ Rare & Bestselling Books • Free Delivery $35+ ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fly-in Cart Drawer -->
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 style="font-size: 1.5rem; font-weight: 600;">Your Reading Bag</h3>
+      <button class="cart-close-btn" aria-label="Close cart">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span class="cart-subtotal-val">$19.00</span>
+      </div>
+      <a href="shop.html" class="btn btn-forest" style="width: 100%; margin-bottom: 0.75rem;">Proceed to Checkout</a>
+      <a href="shop.html" class="btn btn-outline-dark" style="width: 100%;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay quick-view-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" aria-label="Close details">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="modal-content-slot" style="display: contents;"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 1: HERO REVOLUTION SLIDER (Bookstore 2 Exact Match)
+       ========================================================================= -->
+  <!-- =========================================================================
+       SECTION 1: HERO REVOLUTION SLIDER (Realistic 3D Animation & Interactive)
+       ========================================================================= -->
+  <section class="hero-slider-section">
+    <div class="hero-card-container" id="heroCardContainer">
+      
+      <!-- Slide 1: Lavender Dusk (Active) -->
+      <div class="hero-slide active" data-slide="0" data-theme="lavender">
+        <!-- Ambient Glowing Blobs & Lighting -->
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+
+        <!-- 4-Point Animated Sparkles (✦) -->
+        <div class="hero-sparkle hero-sparkle-1" data-depth="0.15">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-2" data-depth="0.25">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-3" data-depth="0.2">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-4" data-depth="0.3">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-5" data-depth="0.18">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+
+        <!-- Ambient Floating Dots -->
+        <div class="hero-dot hero-dot-1"></div>
+        <div class="hero-dot hero-dot-2"></div>
+
+        <div class="hero-slide-grid">
+          <!-- Left Content Column -->
+          <div class="hero-content">
+            <div class="hero-tag-badge">
+              <span class="hero-tag-pulse"></span>
+              <span class="hero-tag-text">✦ Bestselling Release 2026</span>
+            </div>
+            
+            <h1 class="hero-title">
+              <span class="title-line">Books That</span>
+              <span class="title-line">Inspire, Stories</span>
+              <span class="title-line">That Stay</span>
+            </h1>
+
+            <p class="hero-desc">
+              Immerse yourself in award-winning literature, handpicked fiction, and life-changing narratives crafted by the world's most evocative storytellers.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="404.html" class="btn-hero-primary">
+                <span>Shop Books</span>
+                <svg viewBox="0 0 24 24" class="btn-arrow-icon"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </a>
+              <a href="about.html" class="btn-hero-outline">
+                <span>Explore Story</span>
+              </a>
+            </div>
+
+            <!-- Social Proof Readers Badge -->
+            <div class="hero-social-proof">
+              <div class="hero-avatars">
+                <img src="images/user-1.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-2.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-3.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-4.webp" alt="Reader" class="hero-avatar">
+              </div>
+              <div class="hero-proof-text">
+                <div class="hero-stars">★★★★★</div>
+                <span class="hero-proof-sub"><strong>4.9/5</strong> from 14,800+ Book Lovers</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: 3D Realistic Interactive Open Book Stage -->
+          <div class="hero-visual">
+            <div class="hero-book-stage">
+              <!-- Floating Sunburst Badge -->
+              <div class="hero-badge-sunburst" data-depth="0.45">
+                <img src="images/hero-badge.webp" alt="NEW! Release Badge" class="sunburst-img">
+                <div class="badge-sheen-sweep"></div>
+              </div>
+
+              <!-- Floating Feature Chip -->
+              <div class="hero-floating-chip chip-right" data-depth="0.35">
+                <span class="chip-icon material-symbols-outlined">bolt</span>
+                <span class="chip-text">NYT #1 Bestseller</span>
+              </div>
+
+              <!-- 3D Interactive Open Book Container -->
+              <div class="hero-book-3d" title="Hover to open book and read excerpt">
+                <!-- Book Back Cover & Spine Base -->
+                <div class="book-back-cover"></div>
+
+                <!-- Inner Open Pages Spread -->
+                <div class="book-inside-spread">
+                  <!-- Left Page -->
+                  <div class="book-page book-page-left">
+                    <div class="page-inner-content">
+                      <span class="page-chapter-label">Chapter I</span>
+                      <h4 class="page-book-title">The Catalyst</h4>
+                      <p class="page-text-line drop-cap">It started with an equation I didn't want to solve. The friction between who we are and who we pretend to be...</p>
+                      <p class="page-text-line">"You're overthinking it," Eli murmured, leaning forward as starlight cut through the lab window.</p>
+                      <div class="page-footer-num">14</div>
+                    </div>
+                    <div class="page-gutter-shadow left"></div>
+                  </div>
+
+                  <!-- Right Page with Auto-Scrolling Story Text -->
+                  <div class="book-page book-page-right">
+                    <div class="page-scroll-viewport">
+                      <div class="page-scroll-track">
+                        <p class="page-text-line">"Chemistry isn't just formulas," she said softly. "It's the raw spark that refuses to be contained."</p>
+                        <p class="page-text-line">The ambient hum of the room faded until only the cadence of breath remained.</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <p class="page-text-line">Every barrier constructed to keep distance shattered in a singular pulse of clarity.</p>
+                        <p class="page-text-line">"Stay," he whispered. And for the first time, logic gave way to desire.</p>
+                        <div class="page-quote-tag">★ NYT Bestseller Excerpt</div>
+                        <!-- Loop duplicate for seamless continuous scroll -->
+                        <p class="page-text-line">"Chemistry isn't just formulas," she said softly. "It's the raw spark that refuses to be contained."</p>
+                        <p class="page-text-line">The ambient hum of the room faded until only the cadence of breath remained.</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <p class="page-text-line">Every barrier constructed to keep distance shattered in a singular pulse of clarity.</p>
+                        <p class="page-text-line">"Stay," he whispered. And for the first time, logic gave way to desire.</p>
+                        <div class="page-quote-tag">★ NYT Bestseller Excerpt</div>
+                      </div>
+                    </div>
+                    <div class="page-gutter-shadow right"></div>
+                    <div class="page-footer-num">15</div>
+
+                    <!-- 3D Page Flutter Layers -->
+                    <div class="flipping-page-leaf leaf-1"></div>
+                    <div class="flipping-page-leaf leaf-2"></div>
+                  </div>
+                </div>
+
+                <!-- 3D Front Cover (Hinges Open on Hover) -->
+                <div class="book-cover-front">
+                  <div class="hero-book-cover-wrap">
+                    <img src="images/book-5.webp" alt="Not In Love by Ali Hazelwood" class="hero-book-img">
+                    <div class="hero-book-spine-edge"></div>
+                    <div class="hero-book-sheen"></div>
+                    <div class="hero-book-pages-edge"></div>
+                  </div>
+                  <div class="book-cover-inside">
+                    <div class="ex-libris-label">
+                      <span class="ex-libris-symbol">✦</span>
+                      <span class="ex-libris-title">STACKLY HAVEN</span>
+                      <span class="ex-libris-sub">First Edition • 2026</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Soft Floor Shadow -->
+              <div class="hero-book-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Emerald Sage -->
+      <div class="hero-slide" data-slide="1" data-theme="emerald">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+
+        <div class="hero-sparkle hero-sparkle-1" data-depth="0.15">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-3" data-depth="0.22">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-4" data-depth="0.3">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+
+        <div class="hero-dot hero-dot-1"></div>
+        <div class="hero-dot hero-dot-2"></div>
+
+        <div class="hero-slide-grid">
+          <div class="hero-content">
+            <div class="hero-tag-badge">
+              <span class="hero-tag-pulse"></span>
+              <span class="hero-tag-text">✦ Staff Curated Fiction</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="title-line">Turning Pages,</span>
+              <span class="title-line">Sparking</span>
+              <span class="title-line">Imaginations</span>
+            </h1>
+
+            <p class="hero-desc">
+              Discover breathtaking mysteries, poetic memoirs, and unforgettable journeys specially selected by our master literary curators.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="404.html" class="btn-hero-primary">
+                <span>Explore Releases</span>
+                <svg viewBox="0 0 24 24" class="btn-arrow-icon"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </a>
+              <a href="membership.html" class="btn-hero-outline">
+                <span>Join Membership</span>
+              </a>
+            </div>
+
+            <div class="hero-social-proof">
+              <div class="hero-avatars">
+                <img src="images/user-2.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-3.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-4.webp" alt="Reader" class="hero-avatar">
+              </div>
+              <div class="hero-proof-text">
+                <div class="hero-stars">★★★★★</div>
+                <span class="hero-proof-sub"><strong>9,500+</strong> Copies Delivered This Month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-book-stage">
+              <div class="hero-floating-badge badge-emerald" data-depth="0.45">
+                <span>★ STAFF PICK</span>
+                <div class="badge-sheen-sweep"></div>
+              </div>
+
+              <div class="hero-floating-chip chip-right" data-depth="0.35">
+                <span class="chip-icon material-symbols-outlined">menu_book</span>
+                <span class="chip-text">Hardcover Special</span>
+              </div>
+
+              <div class="hero-book-3d" title="Hover to open book and read excerpt">
+                <div class="book-back-cover"></div>
+                <div class="book-inside-spread">
+                  <div class="book-page book-page-left">
+                    <div class="page-inner-content">
+                      <span class="page-chapter-label">Chapter III</span>
+                      <h4 class="page-book-title">Spellcraft & Tea</h4>
+                      <p class="page-text-line drop-cap">Never summon a demon on an empty stomach. That was Rule Number One in the Grimoire of Practical Sorcery...</p>
+                      <p class="page-text-line">The lavender candle flared lilac before plunging the kitchen into sudden moonlit shadows.</p>
+                      <div class="page-footer-num">32</div>
+                    </div>
+                    <div class="page-gutter-shadow left"></div>
+                  </div>
+
+                  <div class="book-page book-page-right">
+                    <div class="page-scroll-viewport">
+                      <div class="page-scroll-track">
+                        <p class="page-text-line">"You called?" Grem smirked, leaning against the counter like he owned the entire mortal realm.</p>
+                        <p class="page-text-line">Mari grabbed her wooden spoon like a dagger. "You're supposed to be in the underworld!"</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <p class="page-text-line">"Traffic was light," he said with an infuriating wink. "And your chamomile tea smelled irresistible."</p>
+                        <!-- Loop duplicate for seamless continuous scroll -->
+                        <p class="page-text-line">"You called?" Grem smirked, leaning against the counter like he owned the entire mortal realm.</p>
+                        <p class="page-text-line">Mari grabbed her wooden spoon like a dagger. "You're supposed to be in the underworld!"</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <p class="page-text-line">"Traffic was light," he said with an infuriating wink. "And your chamomile tea smelled irresistible."</p>
+                        <div class="page-quote-tag">★ Staff Favorite Comedy Pick</div>
+                      </div>
+                    </div>
+                    <div class="page-gutter-shadow right"></div>
+                    <div class="page-footer-num">33</div>
+                    <div class="flipping-page-leaf leaf-1"></div>
+                    <div class="flipping-page-leaf leaf-2"></div>
+                  </div>
+                </div>
+
+                <div class="book-cover-front">
+                  <div class="hero-book-cover-wrap">
+                    <img src="images/book-6.webp" alt="A Witch's Guide to Fake Dating a Demon by Sarah Hawley" class="hero-book-img">
+                    <div class="hero-book-spine-edge"></div>
+                    <div class="hero-book-sheen"></div>
+                    <div class="hero-book-pages-edge"></div>
+                  </div>
+                  <div class="book-cover-inside">
+                    <div class="ex-libris-label">
+                      <span class="ex-libris-symbol material-symbols-outlined">eco</span>
+                      <span class="ex-libris-title">STACKLY HAVEN</span>
+                      <span class="ex-libris-sub">Curator Choice • 2026</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-book-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Warm Amber Rose -->
+      <div class="hero-slide" data-slide="2" data-theme="amber">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+
+        <div class="hero-sparkle hero-sparkle-2" data-depth="0.2">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-4" data-depth="0.3">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+        <div class="hero-sparkle hero-sparkle-5" data-depth="0.18">
+          <svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="currentColor"/></svg>
+        </div>
+
+        <div class="hero-dot hero-dot-1"></div>
+        <div class="hero-dot hero-dot-2"></div>
+
+        <div class="hero-slide-grid">
+          <div class="hero-content">
+            <div class="hero-tag-badge">
+              <span class="hero-tag-pulse"></span>
+              <span class="hero-tag-text">✦ Limited Collector Box</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="title-line">Immerse In Words,</span>
+              <span class="title-line">Uncover New</span>
+              <span class="title-line">Worlds</span>
+            </h1>
+
+            <p class="hero-desc">
+              Delve into exclusive signed first-editions, foil-stamped hardcovers, and seasonal collector gift sets crafted for avid bibliophiles.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="404.html" class="btn-hero-primary">
+                <span>View Collection</span>
+                <svg viewBox="0 0 24 24" class="btn-arrow-icon"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </a>
+              <a href="shop.html" class="btn-hero-outline">
+                <span>Special Offers</span>
+              </a>
+            </div>
+
+            <div class="hero-social-proof">
+              <div class="hero-avatars">
+                <img src="images/user-1.webp" alt="Reader" class="hero-avatar">
+                <img src="images/user-4.webp" alt="Reader" class="hero-avatar">
+              </div>
+              <div class="hero-proof-text">
+                <div class="hero-stars">★★★★★</div>
+                <span class="hero-proof-sub"><strong>Free Express Shipping</strong> & Gift Box Included</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-book-stage">
+              <div class="hero-floating-badge badge-amber" data-depth="0.45">
+                <span class="material-symbols-outlined" style="font-size: 1.15rem; vertical-align: middle; margin-right: 4px;">local_fire_department</span>
+                <span>LIMITED RUN</span>
+                <div class="badge-sheen-sweep"></div>
+              </div>
+
+              <div class="hero-floating-chip chip-right" data-depth="0.35">
+                <span class="chip-icon material-symbols-outlined">redeem</span>
+                <span class="chip-text">Silk Ribbon Included</span>
+              </div>
+
+              <div class="hero-book-3d" title="Hover to open book and read excerpt">
+                <div class="book-back-cover"></div>
+                <div class="book-inside-spread">
+                  <div class="book-page book-page-left">
+                    <div class="page-inner-content">
+                      <span class="page-chapter-label">Chapter I</span>
+                      <h4 class="page-book-title">The Woven Crown</h4>
+                      <p class="page-text-line drop-cap">They told us the kingdom was built of gold and stone, but in truth, it was held together only by thread and prayer...</p>
+                      <p class="page-text-line">The night the palace bells rang, the stars themselves seemed to dim over the royal spires.</p>
+                      <div class="page-footer-num">01</div>
+                    </div>
+                    <div class="page-gutter-shadow left"></div>
+                  </div>
+
+                  <div class="book-page book-page-right">
+                    <div class="page-scroll-viewport">
+                      <div class="page-scroll-track">
+                        <p class="page-text-line">"To touch the infinite," the elder whispered, "one must first embrace the darkness between the stitches."</p>
+                        <p class="page-text-line">She held the ceremonial dagger close, its jeweled hilt pulsing like an ancient heartbeat.</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <!-- Loop duplicate for seamless continuous scroll -->
+                        <p class="page-text-line">"To touch the infinite," the elder whispered, "one must first embrace the darkness between the stitches."</p>
+                        <p class="page-text-line">She held the ceremonial dagger close, its jeweled hilt pulsing like an ancient heartbeat.</p>
+                        <div class="page-ornament">✦ ✦ ✦</div>
+                        <p class="page-text-line">Fate was not a tapestry preordained, but a garment to be unravelled and rewoven by hand.</p>
+                        <div class="page-quote-tag">★ Collector Edition Masterpiece</div>
+                      </div>
+                    </div>
+                    <div class="page-gutter-shadow right"></div>
+                    <div class="page-footer-num">02</div>
+                    <div class="flipping-page-leaf leaf-1"></div>
+                    <div class="flipping-page-leaf leaf-2"></div>
+                  </div>
+                </div>
+
+                <div class="book-cover-front">
+                  <div class="hero-book-cover-wrap">
+                    <img src="images/book-9.webp" alt="These Infinite Threads - Collector Edition" class="hero-book-img">
+                    <div class="hero-book-spine-edge"></div>
+                    <div class="hero-book-sheen"></div>
+                    <div class="hero-book-pages-edge"></div>
+                  </div>
+                  <div class="book-cover-inside">
+                    <div class="ex-libris-label">
+                      <span class="ex-libris-symbol material-symbols-outlined">workspace_premium</span>
+                      <span class="ex-libris-title">STACKLY HAVEN</span>
+                      <span class="ex-libris-sub">Deluxe First Edition • 2026</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-book-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left & Right Glassmorphic Slider Chevrons -->
+      <button class="hero-nav-arrow prev-slide-btn" aria-label="Previous Slide" title="Previous Slide">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/></svg>
+      </button>
+      <button class="hero-nav-arrow next-slide-btn" aria-label="Next Slide" title="Next Slide">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/></svg>
+      </button>
+
+      <!-- Slider Progress Indicator (01 - 02 - 03) with Live Progress Bar -->
+      <div class="hero-slider-indicator">
+        <span class="slide-indicator-num active" data-slide-target="0">01</span>
+        <div class="slide-progress-track" title="Slide Progress">
+          <div class="slide-progress-bar"></div>
+        </div>
+        <span class="slide-indicator-num" data-slide-target="1">02</span>
+        <div class="slide-progress-track" title="Slide Progress">
+          <div class="slide-progress-bar"></div>
+        </div>
+        <span class="slide-indicator-num" data-slide-target="2">03</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: RELEASES / NEW BOOKS GRID
+       ========================================================================= -->
+  <section class="section-padding bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Releases</span>
+        <h2 class="section-title">New Books</h2>
+        <p style="color: var(--color-text-muted);">Freshly printed masterpieces and newly acclaimed bestsellers ready for your collection.</p>
+      </div>
+
+      <div class="product-grid-5">
+        <!-- Book 1 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <img src="images/book-1.webp" alt="Little Disasters">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b1" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b1" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b1" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Mystery</span>
+            <h3 class="product-title"><a href="shop.html">Little Disasters</a></h3>
+            <div class="product-author">By <a href="shop.html">Randall Klein</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$19.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b1">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <span class="product-badge">-8%</span>
+            <img src="images/book-2.webp" alt="The Pisces">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn active" data-id="b2" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b2" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b2" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Sale</span>
+            <h3 class="product-title"><a href="shop.html">The Pisces</a></h3>
+            <div class="product-author">By <a href="shop.html">Melissa Broder</a></div>
+            <div class="product-price-row">
+              <span class="product-price"><span class="old-price">$49.00</span>$45.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b2">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <img src="images/book-3.webp" alt="Gulliver’s Travels">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b3" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b3" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b3" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Classic Romance</span>
+            <h3 class="product-title"><a href="shop.html">Gulliver’s Travels</a></h3>
+            <div class="product-author">By <a href="shop.html">Jonathan Swift</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$23.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b3">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 4 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <img src="images/book-4.webp" alt="The Blood Between Us">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b4" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b4" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b4" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Detective</span>
+            <h3 class="product-title"><a href="shop.html">The Blood Between Us</a></h3>
+            <div class="product-author">By <a href="shop.html">Zac Brewer</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$26.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b4">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 5 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <span class="product-badge badge-new">NEW</span>
+            <img src="images/book-5.webp" alt="Not In Love">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn active" data-id="b5" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b5" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b5" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Romance</span>
+            <h3 class="product-title"><a href="shop.html">Not In Love</a></h3>
+            <div class="product-author">By <a href="shop.html">Ali Hazelwood</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$28.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b5">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 6 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <span class="product-badge badge-new">HOT</span>
+            <img src="images/book-6.webp" alt="A Witch's Guide to Fake Dating">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b6" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b6" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b6" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Fantasy</span>
+            <h3 class="product-title"><a href="shop.html">A Witch's Guide</a></h3>
+            <div class="product-author">By <a href="shop.html">Aaron Blabey</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$36.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b6">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 7 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <span class="product-badge">-15%</span>
+            <img src="images/book-7.webp" alt="Broken Prince">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn active" data-id="b7" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b7" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b7" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Mystery</span>
+            <h3 class="product-title"><a href="shop.html">Broken Prince</a></h3>
+            <div class="product-author">By <a href="shop.html">Rachel Van Dyken</a></div>
+            <div class="product-price-row">
+              <span class="product-price"><span class="old-price">$34.00</span>$29.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b7">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 8 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <img src="images/book-8.webp" alt="The Many Dates of Indigo">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b8" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b8" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b8" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Romance</span>
+            <h3 class="product-title"><a href="shop.html">The Many Dates of Indigo</a></h3>
+            <div class="product-author">By <a href="shop.html">Francesca May</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$21.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b8">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 9 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <span class="product-badge badge-new">LIMITED</span>
+            <img src="images/book-9.webp" alt="These Infinite Threads">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn" data-id="b9" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b9" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b9" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Fantasy</span>
+            <h3 class="product-title"><a href="shop.html">These Infinite Threads</a></h3>
+            <div class="product-author">By <a href="shop.html">Tahereh Mafi</a></div>
+            <div class="product-price-row">
+              <span class="product-price"><span class="old-price">$38.00</span>$32.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b9">Buy now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book 10 -->
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <img src="images/book-10.webp" alt="All the Acorns in the Forest">
+            <div class="product-actions-tray">
+              <a href="404.html" class="product-action-btn wishlist-btn active" data-id="b10" title="Wishlist">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn quick-view-btn" data-id="b10" title="Quick View">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </a>
+              <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b10" title="Add to Bag">
+                <svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">Fable & Myth</span>
+            <h3 class="product-title"><a href="shop.html">All the Acorns</a></h3>
+            <div class="product-author">By <a href="shop.html">Jonathan Swift</a></div>
+            <div class="product-price-row">
+              <span class="product-price">$19.00</span>
+              <a href="404.html" class="btn-buy-now" data-id="b10">Buy now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3.5rem;">
+        <a href="404.html" class="btn btn-forest btn-lg" style="display: inline-flex; align-items: center; gap: 0.5rem;"><span>View All Books</span><span class="material-symbols-outlined" style="font-size: 1.25rem;">menu_book</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: WHAT WE OFFER / CURATED BANNER
+       ========================================================================= -->
+  <section class="curated-banner">
+    <div class="container">
+      <span class="section-subtitle light">What We Offer</span>
+      <h2 class="curated-banner-title">
+        For you our dear <span class="highlight-shimmer">book gourmets</span>, we offer a wide range of books of various <span class="highlight-gold">genres</span>
+      </h2>
+      <div class="curated-genre-pills">
+        <span class="curated-genre-pill"><span class="material-symbols-outlined" style="font-size: 1.15rem; color: #FFC74F;">auto_awesome</span> Handpicked Fiction</span>
+        <span class="curated-genre-pill"><span class="material-symbols-outlined" style="font-size: 1.15rem; color: #91CE6C;">menu_book</span> Signed First Editions</span>
+        <span class="curated-genre-pill"><span class="material-symbols-outlined" style="font-size: 1.15rem; color: #A8E885;">spa</span> Timeless Classics</span>
+        <span class="curated-genre-pill"><span class="material-symbols-outlined" style="font-size: 1.15rem; color: #FFD66B;">local_cafe</span> Coffee Table Art Books</span>
+        <span class="curated-genre-pill"><span class="material-symbols-outlined" style="font-size: 1.15rem; color: #FF9E7D;">redeem</span> Collector Box Sets</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: INFINITE MARQUEE TICKER
+       ========================================================================= -->
+  <section class="marquee-wrapper">
+    <div class="marquee-content">
+      <div class="marquee-item">Over 300,000 books in 71 languages <span class="marquee-dot"></span></div>
+      <div class="marquee-item">We partner with over 500 publishers <span class="marquee-dot"></span></div>
+      <div class="marquee-item">Fast Worldwide Express Shipping <span class="marquee-dot"></span></div>
+      <div class="marquee-item">Curated Hand-Signed Editions <span class="marquee-dot"></span></div>
+      <div class="marquee-item">Over 300,000 books in 71 languages <span class="marquee-dot"></span></div>
+      <div class="marquee-item">We partner with over 500 publishers <span class="marquee-dot"></span></div>
+      <div class="marquee-item">Fast Worldwide Express Shipping <span class="marquee-dot"></span></div>
+      <div class="marquee-item">Curated Hand-Signed Editions <span class="marquee-dot"></span></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: WELCOME & ARTISTIC FEATURES (Luxury Interactive Workshops)
+       ========================================================================= -->
+  <section class="section-padding bg-beige services-luxury-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="services-ambient-glow services-glow-1"></div>
+    <div class="services-ambient-glow services-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="services-section-grid">
+        <!-- Left Editorial Intro -->
+        <div class="services-intro">
+          <div class="services-pill-badge">
+            <span class="badge-dot-pulse"></span>
+            <span class="material-symbols-outlined badge-star-icon">auto_awesome</span>
+            <span>Artisan Sanctuary</span>
+          </div>
+
+          <h2 class="services-main-title">
+            Join Stackly and explore <span class="services-accent-italic">artistic features</span>
+          </h2>
+
+          <p class="services-main-desc">
+            We appreciate your trust. Our readers choose us and our curated literary products because they know our passion for quality, storytelling, and craftsmanship.
+          </p>
+
+          <div class="services-metrics-row">
+            <div class="service-metric-item">
+              <span class="material-symbols-outlined metric-icon">workspace_premium</span>
+              <div>
+                <span class="metric-val">100%</span>
+                <span class="metric-lbl">Masterclass Certified</span>
+              </div>
+            </div>
+            <div class="service-metric-item">
+              <span class="material-symbols-outlined metric-icon" style="color: #FFB800;">grade</span>
+              <div>
+                <span class="metric-val">4.9 ★</span>
+                <span class="metric-lbl">Curator Score (1.8k)</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="about.html" class="btn-services-luxury">
+            <span>Discover Our Story</span>
+            <span class="btn-services-arrow">
+              <span class="material-symbols-outlined">auto_stories</span>
+            </span>
+            <div class="btn-sheen-sweep"></div>
+          </a>
+        </div>
+
+        <!-- Middle Column: Cards 1 & 2 -->
+        <div class="services-cards-col">
+          <div class="service-icon-box" data-service="writing">
+            <span class="service-card-num">01</span>
+            <div class="service-icon-wrap">
+              <div class="service-icon">
+                <span class="material-symbols-outlined">edit_note</span>
+              </div>
+            </div>
+            <h4 class="service-title">Creative writing</h4>
+            <p class="service-desc">Join masterclasses led by prize-winning authors, novelists, and poetic editors.</p>
+            <div class="service-card-footer">
+              <a href="404.html" class="service-link">
+                <span>Explore Workshop</span>
+                <span class="service-link-arrow material-symbols-outlined">edit_note</span>
+              </a>
+            </div>
+            <div class="service-card-sheen"></div>
+          </div>
+
+          <div class="service-icon-box" data-service="craft">
+            <span class="service-card-num">02</span>
+            <div class="service-icon-wrap">
+              <div class="service-icon">
+                <span class="material-symbols-outlined">brush</span>
+              </div>
+            </div>
+            <h4 class="service-title">Arts & craft</h4>
+            <p class="service-desc">Traditional bookbinding, artisanal typography, and bespoke cover printmaking.</p>
+            <div class="service-card-footer">
+              <a href="404.html" class="service-link">
+                <span>Explore Workshop</span>
+                <span class="service-link-arrow material-symbols-outlined">edit_note</span>
+              </a>
+            </div>
+            <div class="service-card-sheen"></div>
+          </div>
+        </div>
+
+        <!-- Right Column: Cards 3 & 4 -->
+        <div class="services-cards-col">
+          <div class="service-icon-box" data-service="reading">
+            <span class="service-card-num">03</span>
+            <div class="service-icon-wrap">
+              <div class="service-icon">
+                <span class="material-symbols-outlined">auto_stories</span>
+              </div>
+            </div>
+            <h4 class="service-title">Group reading</h4>
+            <p class="service-desc">Weekly philosophical and contemporary book club circles with lively debates.</p>
+            <div class="service-card-footer">
+              <a href="404.html" class="service-link">
+                <span>Explore Workshop</span>
+                <span class="service-link-arrow material-symbols-outlined">edit_note</span>
+              </a>
+            </div>
+            <div class="service-card-sheen"></div>
+          </div>
+
+          <div class="service-icon-box" data-service="poetry">
+            <span class="service-card-num">04</span>
+            <div class="service-icon-wrap">
+              <div class="service-icon">
+                <span class="material-symbols-outlined">history_edu</span>
+              </div>
+            </div>
+            <h4 class="service-title">Poetry classes</h4>
+            <p class="service-desc">Explore classical meter, lyrical rhythms, and modern freestyle poetry techniques.</p>
+            <div class="service-card-footer">
+              <a href="404.html" class="service-link">
+                <span>Explore Workshop</span>
+                <span class="service-link-arrow material-symbols-outlined">edit_note</span>
+              </a>
+            </div>
+            <div class="service-card-sheen"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 7: EXPERT CURATORS & TEAM
+       ========================================================================= -->
+  <section class="section-padding bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Curators</span>
+        <h2 class="section-title">Our Literary Experts</h2>
+        <p style="color: var(--color-text-muted);">Meet the passionate writers, editors, and historians curating our shelves.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Curator 1 -->
+        <div class="team-card">
+          <img src="images/team-1.webp" alt="Stella Moore">
+          <div class="team-card-overlay">
+            <h3 class="team-name">Stella Moore</h3>
+            <span class="team-role">Head of Fiction & Writer</span>
+            <div class="team-socials">
+              <a href="404.html" class="team-social-link">fb</a>
+              <a href="404.html" class="team-social-link">tw</a>
+              <a href="404.html" class="team-social-link">in</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curator 2 -->
+        <div class="team-card">
+          <img src="images/team-2.webp" alt="David Miller">
+          <div class="team-card-overlay">
+            <h3 class="team-name">David Miller</h3>
+            <span class="team-role">Classic Literature Editor</span>
+            <div class="team-socials">
+              <a href="404.html" class="team-social-link">fb</a>
+              <a href="404.html" class="team-social-link">tw</a>
+              <a href="404.html" class="team-social-link">in</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curator 3 -->
+        <div class="team-card">
+          <img src="images/team-3.webp" alt="Emma Watson">
+          <div class="team-card-overlay">
+            <h3 class="team-name">Emma Watson</h3>
+            <span class="team-role">Poetry & Essay Curator</span>
+            <div class="team-socials">
+              <a href="404.html" class="team-social-link">fb</a>
+              <a href="404.html" class="team-social-link">tw</a>
+              <a href="404.html" class="team-social-link">in</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curator 4 -->
+        <div class="team-card">
+          <img src="images/team-4.webp" alt="Lucas Vance">
+          <div class="team-card-overlay">
+            <h3 class="team-name">Lucas Vance</h3>
+            <span class="team-role">Rare Books & Manuscripts</span>
+            <div class="team-socials">
+              <a href="404.html" class="team-social-link">fb</a>
+              <a href="404.html" class="team-social-link">tw</a>
+              <a href="404.html" class="team-social-link">in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 8: NEWSLETTER SPLIT BANNER (VIP Literary Dispatch)
+       ========================================================================= -->
+  <section class="newsletter-banner">
+    <div class="newsletter-grid">
+      <!-- Left Visual Container with Floating Badges -->
+      <div class="newsletter-visual-wrap">
+        <div class="newsletter-bg-visual" style="background-image: url('images/newsletter-bg.webp');"></div>
+        <div class="newsletter-visual-overlay"></div>
+        
+        <!-- Floating Interactive Badges -->
+        <div class="newsletter-float-badge badge-top">
+          <span class="material-symbols-outlined badge-icon">auto_stories</span>
+          <span>Weekly Literary Dispatch</span>
+        </div>
+        <div class="newsletter-float-badge badge-bottom">
+          <div class="badge-stars-row">★★★★★</div>
+          <span class="badge-sub-text">10,000+ Readers Joined</span>
+        </div>
+      </div>
+
+      <!-- Right Editorial Form & Perks -->
+      <div class="newsletter-content-wrap">
+        <div class="newsletter-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">mark_email_read</span>
+          <span>VIP Literary Dispatch</span>
+        </div>
+
+        <h2 class="newsletter-main-title">
+          Get the best literary stories <span class="newsletter-highlight">into your inbox!</span>
+        </h2>
+
+        <p class="newsletter-desc">
+          Subscribe to our weekly curated dispatch of newly unearthed authors, literary essays, and private invitations to bookstore events.
+        </p>
+
+        <!-- Perks List with Google Material Symbols -->
+        <div class="newsletter-perks-list">
+          <div class="newsletter-perk-item">
+            <span class="material-symbols-outlined perk-icon">auto_awesome</span>
+            <span>Curated first-look essays & author interviews</span>
+          </div>
+          <div class="newsletter-perk-item">
+            <span class="material-symbols-outlined perk-icon">redeem</span>
+            <span>Monthly collector box giveaways for subscribers</span>
+          </div>
+          <div class="newsletter-perk-item">
+            <span class="material-symbols-outlined perk-icon">verified_user</span>
+            <span>Zero spam • Unsubscribe anytime with 1 click</span>
+          </div>
+        </div>
+
+        <!-- Glassmorphic Subscription Form with Custom JS Validation -->
+        <form class="newsletter-form-modern" id="newsletterForm" novalidate onsubmit="return handleNewsletterSubscribe(event);">
+          <div class="newsletter-input-group-modern">
+            <div class="newsletter-input-field-wrap">
+              <span class="material-symbols-outlined newsletter-mail-icon">mail</span>
+              <input type="text" id="newsletterEmail" class="newsletter-input-modern" placeholder="Enter Your Email Address..." oninput="clearNewsletterError()">
+            </div>
+            <button type="submit" class="btn-newsletter-subscribe">
+              <span>Subscribe Free</span>
+              <span class="material-symbols-outlined">mark_email_read</span>
+              <div class="btn-sheen-sweep"></div>
+            </button>
+          </div>
+          <div id="newsletterError" style="display: none; color: #E63946; font-size: 0.88rem; margin-top: 0.6rem; text-align: left; font-weight: 600; align-items: center; gap: 0.35rem;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">error</span>
+            <span id="newsletterErrorText">Please enter a valid email address.</span>
+          </div>
+          <label class="newsletter-checkbox-label" style="margin-top: 0.75rem;">
+            <input type="checkbox" id="newsletterTerms" checked onchange="clearNewsletterError()">
+            <span>I agree to the <a href="404.html" style="text-decoration: underline; color: var(--color-primary);">Privacy Policy</a> and receiving literary dispatches.</span>
+          </label>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 9: TESTIMONIALS & CLIENT VOICES (Interactive Slider & Dark Sanctuary)
+       ========================================================================= -->
+  <section class="section-padding bg-dark testimonials-luxury-section">
+    <!-- Ambient Background Lighting -->
+    <div class="testimonial-ambient-glow"></div>
+
+    <div class="container relative-container">
+      <div class="testimonials-section-grid">
+        <!-- Left Column: Header & Trust Stats -->
+        <div class="testimonials-intro">
+          <div class="testimonial-pill-tag">
+            <span class="pulse-dot"></span>
+            <span class="material-symbols-outlined" style="font-size: 15px; color: #91CE6C;">reviews</span>
+            <span>READER VOICES</span>
+          </div>
+
+          <h2 class="section-title light">What our <span class="text-accent-lime">clients say</span></h2>
+          <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.05rem; line-height: 1.7; margin-top: 1rem;">
+            Discover how Stackly Books has transformed the reading journey of book clubs, authors, and bibliophiles around the world.
+          </p>
+
+          <!-- Metrics Row -->
+          <div class="testimonials-metrics-row">
+            <div class="testimonial-metric-item">
+              <span class="metric-big-num">4.9<small>/5</small></span>
+              <span class="metric-sub-lbl">Overall Satisfaction</span>
+            </div>
+            <div class="testimonial-metric-divider"></div>
+            <div class="testimonial-metric-item">
+              <span class="metric-big-num">50K<small>+</small></span>
+              <span class="metric-sub-lbl">Global Bibliophiles</span>
+            </div>
+            <div class="testimonial-metric-divider"></div>
+            <div class="testimonial-metric-item">
+              <span class="metric-big-num">99<small>%</small></span>
+              <span class="metric-sub-lbl">Recommendation</span>
+            </div>
+          </div>
+
+          <!-- Slider Navigation Chevrons -->
+          <div class="testimonial-nav-controls">
+            <button class="testimonial-arrow-btn prev-testimonial-btn" aria-label="Previous Review" title="Previous Review">
+              <span class="material-symbols-outlined">navigate_before</span>
+            </button>
+            <span class="testimonial-counter"><strong id="current-testimonial-num">01</strong> / 03</span>
+            <button class="testimonial-arrow-btn next-testimonial-btn" aria-label="Next Review" title="Next Review">
+              <span class="material-symbols-outlined">navigate_next</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Testimonial Cards Carousel -->
+        <div class="testimonial-carousel-wrap">
+          <div class="testimonial-cards-viewport">
+            <!-- Review 1 -->
+            <div class="testimonial-quote-box is-active" data-review="0">
+              <div class="testimonial-top-row">
+                <div class="testimonial-stars-rating">★★★★★</div>
+                <span class="material-symbols-outlined quote-glyph">format_quote</span>
+              </div>
+              <p class="testimonial-text">
+                “Stackly is far more than a store — it's an intellectual sanctuary. The curated editions, attentive staff, and warm aroma of coffee make every visit an unforgettable ritual.”
+              </p>
+              <div class="testimonial-author">
+                <img src="images/user-1.webp" alt="Jenna Sanders" class="testimonial-avatar">
+                <div>
+                  <h4 class="testimonial-author-name">Jenna Sanders</h4>
+                  <div class="testimonial-author-location">West Virginia • Stackly Elite Member</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="testimonial-quote-box" data-review="1">
+              <div class="testimonial-top-row">
+                <div class="testimonial-stars-rating">★★★★★</div>
+                <span class="material-symbols-outlined quote-glyph">format_quote</span>
+              </div>
+              <p class="testimonial-text">
+                “The speed of express shipping and the meticulous, acid-free packaging blew me away. Finding rare signed first editions in such pristine condition is a true treasure for collectors.”
+              </p>
+              <div class="testimonial-author">
+                <img src="images/user-4.webp" alt="Arthur Pendelton" class="testimonial-avatar">
+                <div>
+                  <h4 class="testimonial-author-name">Arthur Pendelton</h4>
+                  <div class="testimonial-author-location">London, UK • Rare Edition Collector</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="testimonial-quote-box" data-review="2">
+              <div class="testimonial-top-row">
+                <div class="testimonial-stars-rating">★★★★★</div>
+                <span class="material-symbols-outlined quote-glyph">format_quote</span>
+              </div>
+              <p class="testimonial-text">
+                “Our reading circle relies exclusively on Stackly's monthly curated selections. The discussion guides and author annotations bring our weekly gatherings to life.”
+              </p>
+              <div class="testimonial-author">
+                <img src="images/team-3.webp" alt="Clara Zhang" class="testimonial-avatar">
+                <div>
+                  <h4 class="testimonial-author-name">Clara Zhang</h4>
+                  <div class="testimonial-author-location">San Francisco • Book Club Host</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Dots -->
+          <div class="testimonial-dots">
+            <span class="testimonial-dot is-active" data-index="0"></span>
+            <span class="testimonial-dot" data-index="1"></span>
+            <span class="testimonial-dot" data-index="2"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 10: LATEST NEWS (BLOG) + TRUST BADGES
+       ========================================================================= -->
+  <section class="section-padding bg-cream blog-luxury-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">edit_document</span>
+          <span>EDITORIAL DESK</span>
+        </div>
+        <h2 class="section-title">Stories from our <span class="blog-heading-accent">editorial desk</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 600px; margin: 0.5rem auto 0 auto;">
+          Curated perspectives on bespoke cover design, typography craft, author journeys, and bookstore culture.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        <!-- Post 1 -->
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="images/blog-1.webp" alt="Creating stylish cover designs with the best team">
+            <div class="blog-thumb-overlay"></div>
+            <span class="blog-badge-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">brush</span>
+              <span>Covers</span>
+            </span>
+            <span class="blog-read-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">schedule</span>
+              <span>4 min read</span>
+            </span>
+            <div class="blog-thumb-sheen"></div>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-date">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span>Feb 19, 2026</span>
+              </span>
+              <span class="blog-meta-dot">•</span>
+              <span class="blog-author-tag">
+                <img src="images/team-1.webp" alt="Stella Moore" class="blog-author-avatar">
+                <span>Stella Moore</span>
+              </span>
+            </div>
+            <h3 class="blog-title"><a href="404.html">Creating stylish cover designs with the best editorial team</a></h3>
+            <p class="blog-excerpt">
+              Behind the scenes with our artisanal typography masterminds crafting bespoke foil-stamped jackets for 2026 releases.
+            </p>
+            <div class="blog-card-footer">
+              <a href="404.html" class="blog-read-link">
+                <span>Read Full Story</span>
+                <span class="blog-arrow-icon material-symbols-outlined">menu_book</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="images/blog-2.webp" alt="Tired of same boring novel book covers? We will change everything">
+            <div class="blog-thumb-overlay"></div>
+            <span class="blog-badge-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">auto_stories</span>
+              <span>Publishing</span>
+            </span>
+            <span class="blog-read-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">schedule</span>
+              <span>5 min read</span>
+            </span>
+            <div class="blog-thumb-sheen"></div>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-date">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span>Feb 18, 2026</span>
+              </span>
+              <span class="blog-meta-dot">•</span>
+              <span class="blog-author-tag">
+                <img src="images/team-2.webp" alt="David Miller" class="blog-author-avatar">
+                <span>David Miller</span>
+              </span>
+            </div>
+            <h3 class="blog-title"><a href="404.html">Tired of same boring novel book covers? We will change everything</a></h3>
+            <p class="blog-excerpt">
+              Why tactile cover textures, custom illustrations, and embossed linen spine bindings are redefining the modern novel.
+            </p>
+            <div class="blog-card-footer">
+              <a href="404.html" class="blog-read-link">
+                <span>Read Full Story</span>
+                <span class="blog-arrow-icon material-symbols-outlined">menu_book</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="images/blog-3.webp" alt="Fresh ideas to find the perfect style for your upcoming books">
+            <div class="blog-thumb-overlay"></div>
+            <span class="blog-badge-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">history_edu</span>
+              <span>Essays</span>
+            </span>
+            <span class="blog-read-pill">
+              <span class="material-symbols-outlined" style="font-size: 13px;">schedule</span>
+              <span>6 min read</span>
+            </span>
+            <div class="blog-thumb-sheen"></div>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-date">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span>Feb 17, 2026</span>
+              </span>
+              <span class="blog-meta-dot">•</span>
+              <span class="blog-author-tag">
+                <img src="images/team-3.webp" alt="Emma Watson" class="blog-author-avatar">
+                <span>Emma Watson</span>
+              </span>
+            </div>
+            <h3 class="blog-title"><a href="404.html">Fresh ideas to find the perfect style for your upcoming books</a></h3>
+            <p class="blog-excerpt">
+              How harmonious typography pairings, deckle page edges, and balanced margins elevate the emotional intimacy of reading.
+            </p>
+            <div class="blog-card-footer">
+              <a href="404.html" class="blog-read-link">
+                <span>Read Full Story</span>
+                <span class="blog-arrow-icon material-symbols-outlined">menu_book</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Trust Badges Row -->
+      <div class="trust-badges-row">
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <span class="material-symbols-outlined">local_shipping</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Fast Shipping</h4>
+            <div class="trust-badge-desc">Prompt worldwide express delivery</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <span class="material-symbols-outlined">sell</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Best Prices</h4>
+            <div class="trust-badge-desc">Direct publisher relationships</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <span class="material-symbols-outlined">inventory_2</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Secure Packing</h4>
+            <div class="trust-badge-desc">Acid-free protective wrapping</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">
+            <span class="material-symbols-outlined">support_agent</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Customer Support</h4>
+            <div class="trust-badge-desc">Dedicated literary advisors 24/7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo" aria-label="Stackly Home">
+            <img src="images/logo.webp" alt="Stackly Logo">
+          </a>
+          <p class="footer-text">
+            A premier boutique bookstore and community sanctuary for readers, writers, and curious thinkers. Established in 2012.
+          </p>
+          <div class="footer-social-links">
+            <a href="404.html" class="footer-social-link" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Twitter" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.65 1.66 1.66 0 0 0 1.65-1.65A1.66 1.66 0 0 0 7.83 6.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="membership.html">Membership Circle</a></li>
+            <li><a href="about.html">About Our Story</a></li>
+            <li><a href="shop.html">Browse Catalogue</a></li>
+            <li><a href="contact.html">Contact & Directions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="404.html">My Account</a></li>
+            <li><a href="404.html">Track My Order</a></li>
+            <li><a href="404.html">Member Perks</a></li>
+            <li><a href="404.html">Returns & Refunds</a></li>
+            <li><a href="404.html">Store Policies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4 class="footer-col-title">Bookstore Flagship</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">location_on</span>
+              <div class="footer-contact-desc">
+                <strong>MMR COMPLEX, CHINNA THIRUPATHI,</strong><br>
+                <span>NEAR CHINNA MUNIYAPPAN KOVIL,</span><br>
+                <span>SALEM - 636 003</span>
+              </div>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">phone_in_talk</span>
+              <a href="404.html" class="footer-contact-action">+91 90909 09090</a>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">mail</span>
+              <a href="404.html" class="footer-contact-action">info@stackly.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-big-brand">STACKLY BOOKS</div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Bookstore. All rights reserved. Crafted with passion.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

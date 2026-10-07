@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Books – Stackly Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+</head>
+<body class="bg-cream">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <img src="images/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="membership.html" class="nav-link">Membership</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+        <div class="nav-item"><a href="shop.html" class="nav-link active">Shop</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-header-login" title="Account Login">
+          <span class="material-symbols-outlined">person</span>
+          <span>Login</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer (Fullscreen Luxury Menu) -->
+  <div class="drawer-overlay"></div>
+  <div class="mobile-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="header-logo"><img src="images/logo.webp" alt="Stackly Logo"></a>
+      <button class="drawer-close-btn" aria-label="Close menu">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html"><span>Home</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="shop.html"><span>Shop Books</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="membership.html"><span>Membership Circle</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="about.html"><span>About Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="contact.html"><span>Contact Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="mobile-drawer-login-btn">
+          <span class="material-symbols-outlined">person</span>
+          <span>Sign In / Member Portal</span>
+        </a>
+        <div class="mobile-drawer-info">
+          <span>✦ Rare & Bestselling Books • Free Delivery $35+ ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 style="font-size: 1.5rem; font-weight: 600;">Your Reading Bag</h3>
+      <button class="cart-close-btn" aria-label="Close cart">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span class="cart-subtotal-val">$19.00</span>
+      </div>
+      <a href="shop.html" class="btn btn-forest" style="width: 100%; margin-bottom: 0.75rem;">Proceed to Checkout</a>
+      <a href="shop.html" class="btn btn-outline-dark" style="width: 100%;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay quick-view-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" aria-label="Close details">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="modal-content-slot" style="display: contents;"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 1: SHOP BANNER & CATEGORY PILLS
+       ========================================================================= -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-nav">
+        <a href="index.html">Home</a> <span>/</span> <span class="current">Shop</span>
+      </div>
+      <span class="section-subtitle">Literary Catalogue</span>
+      <h1 class="page-hero-title">Curated Book Collection</h1>
+      <p style="max-width: 650px; margin: 1rem auto 0 auto; color: var(--color-text-body); font-size: 1.1rem;">
+        Discover exceptional stories, signed author copies, and collector editions. Filter by genre, author, and price.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: FEATURED BOOK OF THE MONTH SPOTLIGHT (Luxury 3D Showcase)
+       ========================================================================= -->
+  <section class="shop-spotlight-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="spotlight-ambient-glow spotlight-glow-1"></div>
+    <div class="spotlight-ambient-glow spotlight-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="shop-spotlight-grid">
+        <!-- Editorial Content Column (Left) -->
+        <div class="shop-spotlight-content">
+          <div class="shop-spotlight-badge">
+            <span class="badge-pulse-beacon gold"></span>
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <span>CURATOR'S EDITION • OCTOBER 2026</span>
+          </div>
+
+          <h2 class="shop-spotlight-title">Book of the Month: <span class="shop-spotlight-accent">Little Disasters</span></h2>
+
+          <!-- Meta Author & Rating Row -->
+          <div class="shop-spotlight-meta">
+            <span class="spotlight-author">
+              <span class="material-symbols-outlined">edit_note</span>
+              <span>By Randall Klein</span>
+            </span>
+            <span class="spotlight-genre-tag">Psychological Fiction</span>
+            <div class="spotlight-stars">
+              <span class="material-symbols-outlined star-fill">star</span>
+              <span class="material-symbols-outlined star-fill">star</span>
+              <span class="material-symbols-outlined star-fill">star</span>
+              <span class="material-symbols-outlined star-fill">star</span>
+              <span class="material-symbols-outlined star-fill">star</span>
+              <span class="spotlight-score">4.9 (1,420 Reviews)</span>
+            </div>
+          </div>
+
+          <!-- Watermarked Editorial Review Quote -->
+          <div class="shop-spotlight-quote-box">
+            <span class="material-symbols-outlined quote-watermark">format_quote</span>
+            <p class="spotlight-quote-text">
+              "Klein weaves a masterclass in modern tension. Every chapter peels back layers of suburban illusion until the shocking final revelation."
+            </p>
+            <div class="spotlight-quote-author">
+              <strong>— The Paris Literary Review</strong>
+              <span>Curator Selection of the Year</span>
+            </div>
+          </div>
+
+          <!-- Key Edition Specs -->
+          <div class="shop-spotlight-specs-row">
+            <div class="spotlight-spec-item">
+              <span class="spec-label">Format</span>
+              <strong class="spec-val">Hardcover Foil</strong>
+            </div>
+            <div class="spotlight-spec-item">
+              <span class="spec-label">Pages</span>
+              <strong class="spec-val">384 Acid-Free</strong>
+            </div>
+            <div class="spotlight-spec-item">
+              <span class="spec-label">ISBN</span>
+              <strong class="spec-val">978-0-14-3127</strong>
+            </div>
+          </div>
+
+          <!-- Pricing & Action Buttons -->
+          <div class="shop-spotlight-actions-row">
+            <div class="spotlight-price-box">
+              <span class="spotlight-price-val">$19.00</span>
+              <span class="spotlight-price-old">$28.00</span>
+              <span class="spotlight-discount-badge">Save 32%</span>
+            </div>
+
+            <div class="spotlight-btn-group">
+              <a href="404.html" class="btn-spotlight-cart" style="text-decoration: none;">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Add to Bag</span>
+              </a>
+              <a href="404.html" class="btn-spotlight-quick" style="text-decoration: none;">
+                <span class="material-symbols-outlined">visibility</span>
+                <span>Quick View Details</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Book Showcase Stage (Right) -->
+        <div class="shop-spotlight-visual">
+          <div class="spotlight-stage-frame" id="shop-spotlight-card">
+            <!-- 3D Book Container -->
+            <div class="spotlight-book-stage">
+              <img src="images/book-1.webp" alt="Little Disasters by Randall Klein" class="spotlight-book-cover">
+              <div class="spotlight-book-sheen"></div>
+            </div>
+
+            <!-- Top Floating Recognition Badge -->
+            <div class="spotlight-float-tag tag-top">
+              <span class="badge-pulse-beacon gold"></span>
+              <span class="material-symbols-outlined">workspace_premium</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">#1 Bestseller</span>
+                <span class="tag-sub">New York Times Notable</span>
+              </div>
+            </div>
+
+            <!-- Bottom Floating Archival Badge -->
+            <div class="spotlight-float-tag tag-bottom">
+              <span class="material-symbols-outlined tag-icon-green">verified</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">Archival Foil Binding</span>
+                <span class="tag-sub">Hand-Inspected Copy</span>
+              </div>
+            </div>
+
+            <!-- Signed Edition Seal -->
+            <div class="spotlight-signed-seal">
+              <span class="material-symbols-outlined">history_edu</span>
+              <span>FIRST EDITION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: MAIN CATALOGUE & STICKY FILTER SIDEBAR
+       ========================================================================= -->
+  <section class="section-padding bg-cream" id="catalogue-section">
+    <div class="container">
+      <!-- Top Category Filter Pills -->
+      <div class="category-pills">
+        <button class="category-pill active" data-category="all">
+          <span class="material-symbols-outlined">auto_stories</span>
+          <span>All Categories (12)</span>
+        </button>
+        <button class="category-pill" data-category="mystery">
+          <span class="material-symbols-outlined">search</span>
+          <span>Mystery</span>
+        </button>
+        <button class="category-pill" data-category="romance">
+          <span class="material-symbols-outlined">favorite</span>
+          <span>Romance</span>
+        </button>
+        <button class="category-pill" data-category="fantasy">
+          <span class="material-symbols-outlined">magic_button</span>
+          <span>Fantasy</span>
+        </button>
+        <button class="category-pill" data-category="drama">
+          <span class="material-symbols-outlined">theater_comedy</span>
+          <span>Drama</span>
+        </button>
+        <button class="category-pill" data-category="sale">
+          <span class="material-symbols-outlined">local_offer</span>
+          <span>Sale Editions</span>
+        </button>
+      </div>
+
+      <div class="shop-layout">
+        <!-- Sticky Sidebar (Fixed on Scroll) -->
+        <aside class="shop-sidebar">
+          <div class="filter-widget">
+            <h4 class="filter-title">
+              <span>Search Books</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #D4A359;">search</span>
+            </h4>
+            <div class="filter-search-wrap">
+              <input type="text" id="shop-search-input" class="form-control" placeholder="Search by title, author..." style="font-size: 0.9rem;">
+            </div>
+          </div>
+
+          <div class="filter-widget">
+            <h4 class="filter-title">
+              <span>Format</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #D4A359;">book</span>
+            </h4>
+            <div class="filter-list">
+              <label class="filter-item"><input type="checkbox" class="filter-format-chk" value="Hardcover" checked> Hardcover (8)</label>
+              <label class="filter-item"><input type="checkbox" class="filter-format-chk" value="Paperback" checked> Paperback (4)</label>
+              <label class="filter-item"><input type="checkbox" class="filter-format-chk" value="Collector Edition"> Collector Edition (3)</label>
+              <label class="filter-item"><input type="checkbox" class="filter-format-chk" value="Signed First Edition"> Signed First Edition (2)</label>
+            </div>
+          </div>
+
+          <div class="filter-widget">
+            <h4 class="filter-title">
+              <span>Price Range</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #D4A359;">payments</span>
+            </h4>
+            <div class="filter-list">
+              <label class="filter-item"><input type="radio" name="price-filter" value="all" checked> All Prices</label>
+              <label class="filter-item"><input type="radio" name="price-filter" value="under-20"> Under $20</label>
+              <label class="filter-item"><input type="radio" name="price-filter" value="20-35"> $20 to $35</label>
+              <label class="filter-item"><input type="radio" name="price-filter" value="above-35"> $35 & Above</label>
+            </div>
+          </div>
+
+          <div class="filter-widget">
+            <h4 class="filter-title">
+              <span>Featured Authors</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; color: #D4A359;">ink_pen</span>
+            </h4>
+            <div class="filter-list">
+              <label class="filter-item"><input type="checkbox" class="filter-author-chk" value="Randall Klein"> Randall Klein</label>
+              <label class="filter-item"><input type="checkbox" class="filter-author-chk" value="Melissa Broder"> Melissa Broder</label>
+              <label class="filter-item"><input type="checkbox" class="filter-author-chk" value="Ali Hazelwood"> Ali Hazelwood</label>
+              <label class="filter-item"><input type="checkbox" class="filter-author-chk" value="Jonathan Swift"> Jonathan Swift</label>
+              <label class="filter-item"><input type="checkbox" class="filter-author-chk" value="Sarah J. Maas"> Sarah J. Maas</label>
+            </div>
+          </div>
+
+          <div class="filter-actions-wrap">
+            <button id="shop-reset-filters-btn" class="btn btn-outline-dark" style="width: 100%; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+              <span>Reset All Filters</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- Product Grid (Scrolls Independently) -->
+        <main class="shop-main-content">
+          <div class="shop-topbar">
+            <div class="shop-count-text" id="shop-showing-count">
+              Showing <strong>1–12</strong> of <strong>12</strong> curated volumes
+            </div>
+            <div class="shop-sort-wrap">
+              <select id="shop-sort-select" class="form-control" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;">
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating-desc">Top Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="product-grid-3" id="shop-product-grid">
+            <!-- Book Card 1 -->
+            <div class="product-card" data-id="b1" data-category="mystery" data-price="19.00" data-format="Hardcover" data-author="Randall Klein" data-rating="4.9">
+              <div class="product-thumb-wrap">
+                <img src="images/book-1.webp" alt="Little Disasters">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b1" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b1" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b1" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Mystery</span>
+                <h3 class="product-title"><a href="#">Little Disasters</a></h3>
+                <div class="product-author">Randall Klein</div>
+                <div class="product-price-row">
+                  <span class="product-price">$19.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b1">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 2 -->
+            <div class="product-card" data-id="b2" data-category="sale" data-price="45.00" data-format="Hardcover" data-author="Melissa Broder" data-rating="4.8">
+              <div class="product-thumb-wrap">
+                <span class="product-badge">-8%</span>
+                <img src="images/book-2.webp" alt="The Pisces">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b2" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b2" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b2" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Sale</span>
+                <h3 class="product-title"><a href="#">The Pisces</a></h3>
+                <div class="product-author">Melissa Broder</div>
+                <div class="product-price-row">
+                  <span class="product-price"><span class="old-price">$49.00</span>$45.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b2">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 3 -->
+            <div class="product-card" data-id="b3" data-category="romance" data-price="23.00" data-format="Collector Edition" data-author="Jonathan Swift" data-rating="4.9">
+              <div class="product-thumb-wrap">
+                <img src="images/book-3.webp" alt="Gulliver’s Travels">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b3" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b3" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b3" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Romance</span>
+                <h3 class="product-title"><a href="#">Gulliver’s Travels</a></h3>
+                <div class="product-author">Jonathan Swift</div>
+                <div class="product-price-row">
+                  <span class="product-price">$23.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b3">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 4 -->
+            <div class="product-card" data-id="b4" data-category="mystery" data-price="26.00" data-format="Hardcover" data-author="Zac Brewer" data-rating="4.7">
+              <div class="product-thumb-wrap">
+                <img src="images/book-4.webp" alt="The Blood Between Us">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b4" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b4" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b4" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Mystery</span>
+                <h3 class="product-title"><a href="#">The Blood Between Us</a></h3>
+                <div class="product-author">Zac Brewer</div>
+                <div class="product-price-row">
+                  <span class="product-price">$26.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b4">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 5 -->
+            <div class="product-card" data-id="b5" data-category="romance" data-price="28.00" data-format="Paperback" data-author="Ali Hazelwood" data-rating="4.9">
+              <div class="product-thumb-wrap">
+                <span class="product-badge badge-new">NEW</span>
+                <img src="images/book-5.webp" alt="Not In Love">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b5" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b5" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b5" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Romance</span>
+                <h3 class="product-title"><a href="#">Not In Love</a></h3>
+                <div class="product-author">Ali Hazelwood</div>
+                <div class="product-price-row">
+                  <span class="product-price">$28.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b5">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 6 -->
+            <div class="product-card" data-id="b6" data-category="fantasy" data-price="36.00" data-format="Hardcover" data-author="Aaron Blabey" data-rating="4.8">
+              <div class="product-thumb-wrap">
+                <img src="images/book-6.webp" alt="A Witch’s Guide">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b6" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b6" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b6" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Fantasy</span>
+                <h3 class="product-title"><a href="#">A Witch’s Guide</a></h3>
+                <div class="product-author">Aaron Blabey</div>
+                <div class="product-price-row">
+                  <span class="product-price">$36.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b6">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 7 -->
+            <div class="product-card" data-id="b7" data-category="mystery" data-price="29.00" data-format="Hardcover" data-author="Ali Hazelwood" data-rating="4.5">
+              <div class="product-thumb-wrap">
+                <img src="images/book-7.webp" alt="Broken Prince">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b7" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b7" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b7" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Mystery</span>
+                <h3 class="product-title"><a href="#">Broken Prince</a></h3>
+                <div class="product-author">Ali Hazelwood</div>
+                <div class="product-price-row">
+                  <span class="product-price">$29.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b7">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 8 -->
+            <div class="product-card" data-id="b8" data-category="romance" data-price="21.00" data-format="Paperback" data-author="Francesca May" data-rating="4.7">
+              <div class="product-thumb-wrap">
+                <img src="images/book-8.webp" alt="The Many Dates of Indigo">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b8" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b8" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b8" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Romance</span>
+                <h3 class="product-title"><a href="#">The Many Dates of Indigo</a></h3>
+                <div class="product-author">Francesca May</div>
+                <div class="product-price-row">
+                  <span class="product-price">$21.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b8">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 9 -->
+            <div class="product-card" data-id="b9" data-category="fantasy" data-price="32.00" data-format="Collector Edition" data-author="Anna North" data-rating="4.8">
+              <div class="product-thumb-wrap">
+                <img src="images/book-9.webp" alt="These Infinite Threads">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b9" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b9" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b9" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Fantasy</span>
+                <h3 class="product-title"><a href="#">These Infinite Threads</a></h3>
+                <div class="product-author">Anna North</div>
+                <div class="product-price-row">
+                  <span class="product-price">$32.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b9">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 10 -->
+            <div class="product-card" data-id="b10" data-category="fantasy" data-price="19.00" data-format="Paperback" data-author="Jonathan Swift" data-rating="4.6">
+              <div class="product-thumb-wrap">
+                <img src="images/book-10.webp" alt="All the Acorns">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b10" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b10" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b10" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Fable</span>
+                <h3 class="product-title"><a href="#">All the Acorns</a></h3>
+                <div class="product-author">Jonathan Swift</div>
+                <div class="product-price-row">
+                  <span class="product-price">$19.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b10">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 11 -->
+            <div class="product-card" data-id="b11" data-category="drama" data-price="22.00" data-format="Hardcover" data-author="Elizabeth Acevedo" data-rating="4.8">
+              <div class="product-thumb-wrap">
+                <span class="product-badge">-18%</span>
+                <img src="images/book-11.webp" alt="Clap When You Land">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b11" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b11" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b11" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Drama</span>
+                <h3 class="product-title"><a href="#">Clap When You Land</a></h3>
+                <div class="product-author">Elizabeth Acevedo</div>
+                <div class="product-price-row">
+                  <span class="product-price"><span class="old-price">$27.00</span>$22.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b11">Buy now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Book Card 12 -->
+            <div class="product-card" data-id="b12" data-category="fantasy" data-price="34.00" data-format="Hardcover" data-author="Sarah J. Maas" data-rating="4.9">
+              <div class="product-thumb-wrap">
+                <span class="product-badge badge-new">BESTSELLER</span>
+                <img src="images/book-12.webp" alt="Tween Night">
+                <div class="product-actions-tray">
+                  <a href="404.html" class="product-action-btn wishlist-btn" data-id="b12" title="Wishlist">
+                    <span class="material-symbols-outlined">favorite</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn quick-view-btn" data-id="b12" title="Quick View">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a href="404.html" class="product-action-btn add-to-cart-btn" data-id="b12" title="Add to Bag">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </div>
+              </div>
+              <div class="product-info">
+                <span class="product-category-tag">Fantasy</span>
+                <h3 class="product-title"><a href="#">Tween Night</a></h3>
+                <div class="product-author">Sarah J. Maas</div>
+                <div class="product-price-row">
+                  <span class="product-price">$34.00</span>
+                  <a href="404.html" class="btn-buy-now" data-id="b12">Buy now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: FLASH SALE OF THE WEEK (Editorial Showcase)
+       ========================================================================= -->
+  <section class="shop-flash-section">
+    <div class="flash-ambient-sheen"></div>
+    <div class="container relative-container">
+      <div class="flash-sale-layout">
+        <!-- Editorial Content -->
+        <div class="flash-sale-info">
+          <div class="flash-badge-pill">
+            <span class="badge-pulse-beacon gold"></span>
+            <span class="material-symbols-outlined">bolt</span>
+            <span>LIMITED TIME CURATOR OFFER</span>
+          </div>
+          <h2 class="flash-sale-title">Flash Sale: Collector Hardcovers up to 30% OFF</h2>
+          <p class="flash-sale-desc">
+            Acquire archival first editions, gilt-edged classics, and signed copies at seasonal curator rates. Offer expires strictly when the timer reaches zero.
+          </p>
+          <div class="flash-sale-cta-row">
+            <a href="404.html" class="btn-flash-explore">
+              <span class="material-symbols-outlined">local_offer</span>
+              <span>Browse 30% Off Volumes</span>
+            </a>
+            <span class="flash-stock-note">
+              <span class="material-symbols-outlined">inventory_2</span>
+              <span>Only 14 Boxed Copies Remaining</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Live Countdown Glass Stage -->
+        <div class="flash-timer-card">
+          <div class="timer-card-header">
+            <span class="material-symbols-outlined timer-clock-icon">schedule</span>
+            <span>PROMOTION CLOSES IN</span>
+          </div>
+          <div class="flash-countdown-grid" id="flash-countdown-timer">
+            <div class="countdown-unit-box">
+              <div class="countdown-num-wrap">
+                <span class="countdown-digit" id="flash-timer-hours">23</span>
+              </div>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <span class="countdown-colon">:</span>
+            <div class="countdown-unit-box">
+              <div class="countdown-num-wrap">
+                <span class="countdown-digit" id="flash-timer-mins">48</span>
+              </div>
+              <span class="countdown-label">Minutes</span>
+            </div>
+            <span class="countdown-colon">:</span>
+            <div class="countdown-unit-box">
+              <div class="countdown-num-wrap">
+                <span class="countdown-digit" id="flash-timer-secs">29</span>
+              </div>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+          <div class="timer-card-footer">
+            <span class="status-indicator-live"></span>
+            <span>Real-time Vault Stock Sync Active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: BROWSE BY FEATURED AUTHORS (Writers Circle - Strict Equalized Alignment)
+       ========================================================================= -->
+  <section class="section-padding bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Writers Circle</span>
+        <h2 class="section-title">Explore Author Catalogues</h2>
+      </div>
+
+      <div class="author-catalogue-grid">
+        <!-- Author Card 1: Ali Hazelwood -->
+        <div class="author-card-modern">
+          <div class="author-avatar-wrap">
+            <img src="images/user-1.webp" alt="Ali Hazelwood" class="author-avatar-img">
+            <div class="author-avatar-badge" title="Verified Author">
+              <span class="material-symbols-outlined">auto_awesome</span>
+            </div>
+          </div>
+          <h3 class="author-card-name">Ali Hazelwood</h3>
+          <span class="author-genre-badge">STEM Romance</span>
+          <p class="author-card-bio">Neuroscientist and author known for witty, heartfelt romantic narratives and complex characters.</p>
+          <div class="author-stats-row">
+            <span><strong>6</strong> Curated Volumes</span>
+            <span>•</span>
+            <span><span class="material-symbols-outlined author-rating-star">star</span> <strong>4.9</strong></span>
+          </div>
+          <a href="404.html" class="btn-author-explore">
+            <span>Explore Works</span>
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+        </div>
+
+        <!-- Author Card 2: Randall Klein -->
+        <div class="author-card-modern">
+          <div class="author-avatar-wrap">
+            <img src="images/user-2.webp" alt="Randall Klein" class="author-avatar-img">
+            <div class="author-avatar-badge" title="Curator Choice">
+              <span class="material-symbols-outlined">workspace_premium</span>
+            </div>
+          </div>
+          <h3 class="author-card-name">Randall Klein</h3>
+          <span class="author-genre-badge">Psychological Mystery</span>
+          <p class="author-card-bio">Acclaimed thriller novelist weaving intricate suburban tensions, deception, and moral ambiguity.</p>
+          <div class="author-stats-row">
+            <span><strong>4</strong> Curated Volumes</span>
+            <span>•</span>
+            <span><span class="material-symbols-outlined author-rating-star">star</span> <strong>4.8</strong></span>
+          </div>
+          <a href="404.html" class="btn-author-explore">
+            <span>Explore Works</span>
+            <span class="material-symbols-outlined">psychology</span>
+          </a>
+        </div>
+
+        <!-- Author Card 3: Jonathan Swift -->
+        <div class="author-card-modern">
+          <div class="author-avatar-wrap">
+            <img src="images/user-3.webp" alt="Jonathan Swift" class="author-avatar-img">
+            <div class="author-avatar-badge" title="Immortal Classic">
+              <span class="material-symbols-outlined">history_edu</span>
+            </div>
+          </div>
+          <h3 class="author-card-name">Jonathan Swift</h3>
+          <span class="author-genre-badge">Classic Satire & Fables</span>
+          <p class="author-card-bio">Legendary satirist and essayist exploring human nature, allegorical voyages, and timeless philosophies.</p>
+          <div class="author-stats-row">
+            <span><strong>8</strong> Curated Volumes</span>
+            <span>•</span>
+            <span><span class="material-symbols-outlined author-rating-star">star</span> <strong>4.9</strong></span>
+          </div>
+          <a href="404.html" class="btn-author-explore">
+            <span>Explore Works</span>
+            <span class="material-symbols-outlined">history_edu</span>
+          </a>
+        </div>
+
+        <!-- Author Card 4: Melissa Broder -->
+        <div class="author-card-modern">
+          <div class="author-avatar-wrap">
+            <img src="images/user-4.webp" alt="Melissa Broder" class="author-avatar-img">
+            <div class="author-avatar-badge" title="Literary Voice">
+              <span class="material-symbols-outlined">ink_pen</span>
+            </div>
+          </div>
+          <h3 class="author-card-name">Melissa Broder</h3>
+          <span class="author-genre-badge">Literary Fiction</span>
+          <p class="author-card-bio">Visionary novelist exploring modern mythological longing, dark comedy, and emotional vulnerability.</p>
+          <div class="author-stats-row">
+            <span><strong>5</strong> Curated Volumes</span>
+            <span>•</span>
+            <span><span class="material-symbols-outlined author-rating-star">star</span> <strong>4.7</strong></span>
+          </div>
+          <a href="404.html" class="btn-author-explore">
+            <span>Explore Works</span>
+            <span class="material-symbols-outlined">menu_book</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: CURATED BUNDLES & GIFT SETS
+       ========================================================================= -->
+  <section class="section-padding bg-beige">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Curated Bundles</span>
+        <h2 class="section-title">Special Editions & Boxsets</h2>
+      </div>
+
+      <div class="bundles-showcase-grid">
+        <!-- Bundle 1 -->
+        <div class="bundle-card-modern">
+          <div class="bundle-thumb-stage">
+            <span class="bundle-save-ribbon">SAVE 25% BUNDLE</span>
+            <img src="images/membership-box.webp" alt="The Dark Mystery Trilogy Boxset" class="bundle-thumb-img">
+          </div>
+          <div class="bundle-content-box">
+            <h3 class="bundle-title">The Dark Mystery Trilogy Boxset</h3>
+            <p class="bundle-desc">Complete psychological tension package delivered in a handcrafted velvet slipcase.</p>
+            <div class="bundle-includes-list">
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Little Disasters (Hardcover Foil)</span>
+              </div>
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>The Blood Between Us & Broken Prince</span>
+              </div>
+            </div>
+            <div class="bundle-price-footer">
+              <div class="bundle-price-wrap">
+                <span class="bundle-price-current">$55.00</span>
+                <span class="bundle-price-old">$74.00</span>
+              </div>
+              <a href="404.html" class="btn-bundle-add">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Add Bundle</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bundle 2 -->
+        <div class="bundle-card-modern">
+          <div class="bundle-thumb-stage">
+            <span class="bundle-save-ribbon">SAVE 20% DUO</span>
+            <img src="images/about-reading.webp" alt="Modern Romance Duo Collection" class="bundle-thumb-img">
+          </div>
+          <div class="bundle-content-box">
+            <h3 class="bundle-title">Modern Romance Duo Collection</h3>
+            <p class="bundle-desc">Featuring Not In Love & The Many Dates of Indigo with exclusive signed art prints.</p>
+            <div class="bundle-includes-list">
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Not In Love (Special Paperback)</span>
+              </div>
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>The Many Dates of Indigo + Signed Bookmark</span>
+              </div>
+            </div>
+            <div class="bundle-price-footer">
+              <div class="bundle-price-wrap">
+                <span class="bundle-price-current">$39.00</span>
+                <span class="bundle-price-old">$49.00</span>
+              </div>
+              <a href="404.html" class="btn-bundle-add">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Add Bundle</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bundle 3 -->
+        <div class="bundle-card-modern">
+          <div class="bundle-thumb-stage">
+            <span class="bundle-save-ribbon">SAVE 30% LEATHER</span>
+            <img src="images/about-cafe.webp" alt="Immortal Classics Leatherbound Set" class="bundle-thumb-img">
+          </div>
+          <div class="bundle-content-box">
+            <h3 class="bundle-title">Immortal Classics Leatherbound Set</h3>
+            <p class="bundle-desc">Gulliver’s Travels & All the Acorns bound in gilded vegan leather with gold ribbon markers.</p>
+            <div class="bundle-includes-list">
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Gulliver’s Travels (Leatherbound)</span>
+              </div>
+              <div class="bundle-includes-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>All the Acorns (Gilded Edge Edition)</span>
+              </div>
+            </div>
+            <div class="bundle-price-footer">
+              <div class="bundle-price-wrap">
+                <span class="bundle-price-current">$48.00</span>
+                <span class="bundle-price-old">$68.00</span>
+              </div>
+              <a href="404.html" class="btn-bundle-add">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Add Bundle</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 7: SHOPPING GUARANTEES & TRUST BADGES
+       ========================================================================= -->
+  <section class="section-padding-sm bg-cream">
+    <div class="container">
+      <div class="trust-badges-grid">
+        <div class="trust-badge-card">
+          <div class="trust-badge-icon-coin">
+            <span class="material-symbols-outlined">local_shipping</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Free Express Shipping</h4>
+            <div class="trust-badge-desc">On all orders over $45 worldwide</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-badge-icon-coin">
+            <span class="material-symbols-outlined">verified_user</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">30-Day Easy Returns</h4>
+            <div class="trust-badge-desc">100% money back guarantee</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-badge-icon-coin">
+            <span class="material-symbols-outlined">auto_stories</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Archival Protection</h4>
+            <div class="trust-badge-desc">Eco-friendly acid-free wraps</div>
+          </div>
+        </div>
+
+        <div class="trust-badge-card">
+          <div class="trust-badge-icon-coin">
+            <span class="material-symbols-outlined">support_agent</span>
+          </div>
+          <div>
+            <h4 class="trust-badge-title">Literary Advisory</h4>
+            <div class="trust-badge-desc">Real human curator recommendation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 8: CATALOGUE DOWNLOAD & DISPATCH CTA
+       ========================================================================= -->
+  <section class="shop-cta-section">
+    <div class="cta-ambient-glow"></div>
+    <div class="container relative-container">
+      <div class="cta-editorial-badge">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>2026 PRINTED EDITION • 64 PAGES</span>
+      </div>
+      <h2 class="shop-cta-title">Download Our Curated Seasonal Catalogue</h2>
+      <p class="shop-cta-desc">
+        Explore author essays, upcoming limited releases, and exclusive member discounts in an archival PDF guide.
+      </p>
+      <div class="shop-cta-btn-group">
+        <a href="404.html" class="btn-cta-gold">
+          <span class="material-symbols-outlined">download</span>
+          <span>Download Free PDF Guide</span>
+        </a>
+        <a href="404.html" class="btn-cta-outline-white">
+          <span class="material-symbols-outlined">card_membership</span>
+          <span>Join Membership Circle</span>
+        </a>
+      </div>
+      <div class="cta-features-strip">
+        <span class="cta-feature-item">
+          <span class="material-symbols-outlined">verified</span>
+          <span>Archival 64-Page Format</span>
+        </span>
+        <span class="cta-feature-dot">•</span>
+        <span class="cta-feature-item">
+          <span class="material-symbols-outlined">ink_pen</span>
+          <span>Exclusive Author Essays</span>
+        </span>
+        <span class="cta-feature-dot">•</span>
+        <span class="cta-feature-item">
+          <span class="material-symbols-outlined">local_shipping</span>
+          <span>Free Dispatch Worldwide</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo" aria-label="Stackly Home">
+            <img src="images/logo.webp" alt="Stackly Logo">
+          </a>
+          <p class="footer-text">
+            A premier boutique bookstore and community sanctuary for readers, writers, and curious thinkers. Established in 2012.
+          </p>
+          <div class="footer-social-links">
+            <a href="404.html" class="footer-social-link" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Twitter" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.65 1.66 1.66 0 0 0 1.65-1.65A1.66 1.66 0 0 0 7.83 6.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="membership.html">Membership Circle</a></li>
+            <li><a href="about.html">About Our Story</a></li>
+            <li><a href="shop.html">Browse Catalogue</a></li>
+            <li><a href="contact.html">Contact & Directions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="404.html">My Account</a></li>
+            <li><a href="404.html">Track My Order</a></li>
+            <li><a href="404.html">Member Perks</a></li>
+            <li><a href="404.html">Returns & Refunds</a></li>
+            <li><a href="404.html">Store Policies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4 class="footer-col-title">Bookstore Flagship</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">location_on</span>
+              <div class="footer-contact-desc">
+                <strong>MMR COMPLEX, CHINNA THIRUPATHI,</strong><br>
+                <span>NEAR CHINNA MUNIYAPPAN KOVIL,</span><br>
+                <span>SALEM - 636 003</span>
+              </div>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">phone_in_talk</span>
+              <a href="404.html" class="footer-contact-action">+91 90909 09090</a>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">mail</span>
+              <a href="404.html" class="footer-contact-action">info@stackly.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-big-brand">STACKLY BOOKS</div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Bookstore. All rights reserved. Crafted with passion.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

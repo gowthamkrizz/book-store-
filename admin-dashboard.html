@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal – Bookstore Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+  <style>
+    /* Field Validation Styles */
+    .dashboard-field-error {
+      color: #dc2626;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 0.35rem;
+      display: none;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .form-control.is-invalid {
+      border-color: #ef4444 !important;
+      background-color: #fff8f8 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+    }
+    .form-control.is-valid {
+      border-color: #22c55e !important;
+      background-color: #f6fdf8 !important;
+    }
+  </style>
+</head>
+<body class="bg-cream">
+
+  <!-- Add Book Modal -->
+  <div id="add-book-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 580px; display: block; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 25px 60px rgba(0,0,0,0.25);">
+      <button class="modal-close-btn" onclick="closeAddBookModal()" title="Close Modal">✕</button>
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 28px;">menu_book</span>
+        <h3 style="font-size: 1.6rem; margin: 0; font-family: var(--font-heading);">Add New Volume to Catalogue</h3>
+      </div>
+      <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Enter catalogue specifications to add a new book release to the inventory.</p>
+      
+      <form id="admin-add-book-form" onsubmit="handleAddNewBook(event)">
+        <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Book Title *</label>
+          <input type="text" id="new-book-title" class="form-control" placeholder="e.g. The Midnight Library" required style="border-radius: 8px;">
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Author Name *</label>
+          <input type="text" id="new-book-author" class="form-control" placeholder="e.g. Matt Haig" required style="border-radius: 8px;">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Category *</label>
+            <select id="new-book-category" class="form-control" required style="border-radius: 8px;">
+              <option value="Mystery">Mystery & Noir</option>
+              <option value="Romance">Romance & Drama</option>
+              <option value="Fantasy">Epic Fantasy</option>
+              <option value="Classics">Classic Literature</option>
+              <option value="Non-Fiction">Non-Fiction</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Price ($) *</label>
+            <input type="number" id="new-book-price" class="form-control" placeholder="24.00" step="0.01" required style="border-radius: 8px;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; margin-bottom: 1.5rem;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Format</label>
+            <select id="new-book-format" class="form-control" style="border-radius: 8px;">
+              <option value="Hardcover">Hardcover Collector Edition</option>
+              <option value="Paperback">Paperback</option>
+              <option value="Signed First Edition">Signed First Edition</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Initial Stock Units</label>
+            <input type="number" id="new-book-stock" class="form-control" placeholder="50" value="50" style="border-radius: 8px;">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-forest" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 700; border-radius: 8px;">
+          Save Book to Inventory
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="dashboard-mobile-overlay" id="dashboardOverlay" onclick="toggleMobileSidebar()"></div>
+
+    <!-- ANIMATED SIDE MENU BAR (Sticky / Fixed Navigation) -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+      <!-- Brand Header (Normal STACKLY Logo Image on Top, ADMIN PORTAL on Down Side) -->
+      <div class="dashboard-sidebar-header">
+        <a href="admin-dashboard.html" onclick="window.location.reload(); return false;" class="dashboard-brand-box" title="Click to refresh dashboard">
+          <img src="images/logo.webp" alt="Stackly Bookstore Logo" class="dashboard-header-logo-img">
+          <div class="dashboard-admin-subbadge">
+            <span class="subbadge-dot"></span>
+            <span>ADMIN PORTAL</span>
+          </div>
+        </a>
+        <button class="dashboard-sidebar-close-btn" onclick="toggleMobileSidebar()" title="Close Navigation Menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links with Interactive Tab Switching & Slide Animations -->
+      <nav class="dashboard-nav">
+        <div class="dashboard-nav-section-title">Main Portal</div>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link active" id="nav-overview" onclick="switchDashboardTab('overview')">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard Overview</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-inventory" onclick="switchDashboardTab('inventory')">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span>Books Inventory</span>
+          <span class="dashboard-nav-badge" id="sidebar-book-count">10 Titles</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-orders" onclick="switchDashboardTab('orders')">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span>Orders & Shipments</span>
+          <span class="dashboard-nav-badge" id="sidebar-orders-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);">34</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-membership" onclick="switchDashboardTab('membership')">
+          <span class="material-symbols-outlined">diversity_3</span>
+          <span>Membership Circle</span>
+          <span class="dashboard-nav-badge" style="background: rgba(145, 206, 108, 0.2); color: var(--color-accent-lime); border-color: rgba(145, 206, 108, 0.4);">New</span>
+        </a>
+
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-analytics" onclick="switchDashboardTab('analytics')">
+          <span class="material-symbols-outlined">insights</span>
+          <span>Sales & Analytics</span>
+        </a>
+
+        <div class="dashboard-nav-section-title">Store Operations</div>
+
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-settings" onclick="switchDashboardTab('settings')">
+          <span class="material-symbols-outlined">settings</span>
+          <span>Store Settings</span>
+        </a>
+
+        <!-- Sidebar Footer -->
+        <div class="dashboard-sidebar-footer">
+          <a href="login.html" class="dashboard-nav-link" style="color: #ef4444;">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Sign Out</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA WITH FIXED HEADER BAR -->
+    <main class="dashboard-main">
+      
+      <!-- FIXED HEADER MENU BAR (Perfect Alignment, No Search Box) -->
+      <header class="dashboard-fixed-header">
+        <!-- Left Side: Title & Status Indicator -->
+        <div class="dashboard-header-left">
+          <button class="dashboard-icon-btn dashboard-mobile-toggle" onclick="toggleMobileSidebar()" title="Toggle Sidebar">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <div class="dashboard-header-title-box">
+            <h2 class="dashboard-header-main-title" id="headerTitle">Bookstore Management Center</h2>
+            <div class="dashboard-header-status-pill">
+              <span class="status-live-dot"></span>
+              <span>Storefront Live & Synchronized</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Date, Notification, Add Book, and Curator Profile -->
+        <div class="dashboard-header-right">
+          <!-- Live Date Badge -->
+          <div class="dashboard-date-badge">
+            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-primary);">calendar_today</span>
+            <span>Today, Oct 6</span>
+          </div>
+
+          <!-- Notification Bell -->
+          <button class="dashboard-icon-btn" onclick="window.location.href='404.html'" title="Notifications">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="dashboard-icon-badge">3</span>
+          </button>
+
+          <!-- Primary Add Book Button -->
+          <button class="btn btn-primary btn-sm dashboard-header-add-btn" onclick="window.location.href='404.html'">
+            <span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+            <span>Add New Book</span>
+          </button>
+
+          <!-- Entered User Profile Pill (Name & Email ID Only) -->
+          <div class="dashboard-user-badge" id="adminUserBadge" onclick="window.location.href='404.html'" title="Admin Profile" style="cursor: pointer;">
+            <div class="dashboard-avatar-container">
+              <div class="dashboard-user-avatar-initials" id="adminHeaderAvatar">ER</div>
+              <span class="user-online-dot"></span>
+            </div>
+            <div class="dashboard-user-info">
+              <strong class="dashboard-user-name" id="adminHeaderName">Elena Rostova</strong>
+              <span class="dashboard-user-role" id="adminHeaderEmail">elena@stacklybooks.com</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD MAIN BODY CONTENT -->
+      <div class="dashboard-main-content">
+        
+        <!-- SECTION 1: DASHBOARD OVERVIEW -->
+        <section id="section-overview" class="dashboard-section active">
+          
+          <!-- Section Header & Filter Alignment -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.25rem;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); background: rgba(145, 206, 108, 0.16); border: 1px solid rgba(145, 206, 108, 0.35); padding: 0.22rem 0.7rem; border-radius: 100px; margin-bottom: 0.4rem;">
+                <span class="status-live-dot" style="width: 6px; height: 6px;"></span>
+                <span>Live Storefront Telemetry</span>
+              </div>
+              <h1 style="font-size: 2.2rem; margin-bottom: 0.35rem; font-family: var(--font-heading); color: var(--color-text-dark); letter-spacing: -0.01em;">
+                Executive Overview
+              </h1>
+              <p style="color: var(--color-text-muted); font-size: 0.95rem; margin: 0;">
+                Real-time bookstore performance, live transactions, dispatch statuses, and catalogue metrics.
+              </p>
+            </div>
+            
+            <div class="dashboard-tab-filters">
+              <button class="dashboard-tab-btn active" onclick="setKpiPeriod(this, 'Today')">Today</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'This Week')">This Week</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'This Month')">This Month</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'All-Time')">All-Time</button>
+            </div>
+          </div>
+
+          <!-- 4 Stat Metric Cards (Animated, Beautiful Top Accent Lines, Aligned Trend Badges) -->
+          <div class="stats-grid-4">
+            
+            <!-- Stat Card 1: Revenue -->
+            <div class="stat-card card-accent-green">
+              <div class="stat-card-header">
+                <span class="stat-label">Total Store Revenue</span>
+                <div class="stat-icon" style="background: rgba(145, 206, 108, 0.15); color: #1a5908;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">payments</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-rev">$84,920</div>
+              <div class="stat-trend-chip trend-positive">
+                <span class="material-symbols-outlined" style="font-size: 15px;">trending_up</span>
+                <span>↑ 14.2% this month</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 2: Volumes -->
+            <div class="stat-card card-accent-blue">
+              <div class="stat-card-header">
+                <span class="stat-label">Total Volumes Sold</span>
+                <div class="stat-icon" style="background: #E8F0FE; color: #1A73E8;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">auto_stories</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-vols">12,450</div>
+              <div class="stat-trend-chip trend-info">
+                <span class="material-symbols-outlined" style="font-size: 15px;">trending_up</span>
+                <span>↑ 8.6% vs last quarter</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 3: Membership -->
+            <div class="stat-card card-accent-gold">
+              <div class="stat-card-header">
+                <span class="stat-label">Active Circle Members</span>
+                <div class="stat-icon" style="background: rgba(255, 199, 79, 0.2); color: #B06000;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">card_membership</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-mems">1,840</div>
+              <div class="stat-trend-chip trend-positive">
+                <span class="material-symbols-outlined" style="font-size: 15px;">group_add</span>
+                <span>↑ 22.4% new signups</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 4: Shipments -->
+            <div class="stat-card card-accent-coral">
+              <div class="stat-card-header">
+                <span class="stat-label">Pending Shipments</span>
+                <div class="stat-icon" style="background: #FCE8E6; color: #C5221F;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">inventory_2</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-ship">34</div>
+              <div class="stat-trend-chip trend-warning">
+                <span class="material-symbols-outlined" style="font-size: 15px;">local_shipping</span>
+                <span>Packing Required Today</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Genre Distribution & Real-time Activity Stream Row -->
+          <div class="dashboard-overview-grid" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+            
+            <!-- Genre Performance Chart Card -->
+            <div class="dashboard-table-card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="table-header-row">
+                  <div>
+                    <h3 style="font-size: 1.3rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                      Genre Sales Distribution
+                    </h3>
+                    <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0;">Top performing categories across storefront & flagship bookstore.</p>
+                  </div>
+                  <span style="font-size: 0.74rem; font-weight: 800; color: var(--color-primary); background: rgba(145, 206, 108, 0.2); padding: 0.28rem 0.65rem; border-radius: 100px; border: 1px solid rgba(145, 206, 108, 0.35);">
+                    Live Today
+                  </span>
+                </div>
+
+                <!-- Segmented Multi-Bar Visualizer -->
+                <div style="background: var(--color-bg-cream); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
+                  <div style="display: flex; height: 16px; border-radius: 8px; overflow: hidden; gap: 2px; margin-bottom: 0.85rem;">
+                    <div style="background: #1A5908; width: 38%;" title="Mystery 38% ($32,270)"></div>
+                    <div style="background: #91CE6C; width: 27%;" title="Romance 27% ($22,928)"></div>
+                    <div style="background: #FFC74F; width: 18%;" title="Classics 18% ($15,285)"></div>
+                    <div style="background: #2F4231; width: 17%;" title="Fantasy 17% ($14,437)"></div>
+                  </div>
+
+                  <!-- Individual Category Breakdown Rows with Progress Bars -->
+                  <div class="genre-breakdown-row">
+                    <div class="genre-breakdown-header">
+                      <span style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="width: 8px; height: 8px; background: #1A5908; border-radius: 50%;"></span>
+                        <span>Mystery & Thrillers</span>
+                      </span>
+                      <span style="color: var(--color-text-dark); font-weight: 800;">38% <span style="color: var(--color-text-muted); font-weight: 600; font-size: 0.75rem;">($32,270)</span></span>
+                    </div>
+                    <div class="genre-bar-track"><div class="genre-bar-fill" style="background: #1A5908; width: 38%;"></div></div>
+                  </div>
+
+                  <div class="genre-breakdown-row">
+                    <div class="genre-breakdown-header">
+                      <span style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="width: 8px; height: 8px; background: #91CE6C; border-radius: 50%;"></span>
+                        <span>Romance & Drama</span>
+                      </span>
+                      <span style="color: var(--color-text-dark); font-weight: 800;">27% <span style="color: var(--color-text-muted); font-weight: 600; font-size: 0.75rem;">($22,928)</span></span>
+                    </div>
+                    <div class="genre-bar-track"><div class="genre-bar-fill" style="background: #91CE6C; width: 27%;"></div></div>
+                  </div>
+
+                  <div class="genre-breakdown-row">
+                    <div class="genre-breakdown-header">
+                      <span style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="width: 8px; height: 8px; background: #FFC74F; border-radius: 50%;"></span>
+                        <span>Literary Classics</span>
+                      </span>
+                      <span style="color: var(--color-text-dark); font-weight: 800;">18% <span style="color: var(--color-text-muted); font-weight: 600; font-size: 0.75rem;">($15,285)</span></span>
+                    </div>
+                    <div class="genre-bar-track"><div class="genre-bar-fill" style="background: #FFC74F; width: 18%;"></div></div>
+                  </div>
+
+                  <div class="genre-breakdown-row" style="margin-bottom: 0;">
+                    <div class="genre-breakdown-header">
+                      <span style="display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="width: 8px; height: 8px; background: #2F4231; border-radius: 50%;"></span>
+                        <span>Sci-Fi & Fantasy</span>
+                      </span>
+                      <span style="color: var(--color-text-dark); font-weight: 800;">17% <span style="color: var(--color-text-muted); font-weight: 600; font-size: 0.75rem;">($14,437)</span></span>
+                    </div>
+                    <div class="genre-bar-track"><div class="genre-bar-fill" style="background: #2F4231; width: 17%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Operational Actions Alignment -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 0.5rem;">
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                  <span>Add Book</span>
+                </button>
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+                  <span>Export Data</span>
+                </button>
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">sync</span>
+                  <span>Sync Store</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Real-time Activity Feed -->
+            <div class="dashboard-table-card" style="margin-bottom: 0;">
+              <div class="table-header-row">
+                <div>
+                  <h3 style="font-size: 1.3rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                    Live Activity Feed
+                  </h3>
+                  <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0;">Stream of customer dispatches & VIP circle updates.</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 800; color: #1a5908; background: rgba(145, 206, 108, 0.15); padding: 0.25rem 0.6rem; border-radius: 100px;">
+                  <span class="status-live-dot" style="width: 6px; height: 6px;"></span>
+                  <span>LIVE</span>
+                </div>
+              </div>
+
+              <div class="activity-feed-list">
+                <div class="activity-item">
+                  <div class="activity-icon green"><span class="material-symbols-outlined" style="font-size: 19px;">local_shipping</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Order #STK-9402 Dispatched</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Arthur Pendelton • Standard Express</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">2m ago</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon gold"><span class="material-symbols-outlined" style="font-size: 19px;">card_membership</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">New Bibliophile VIP Joined</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Maya Angelou ($149 Annual Tier)</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">18m ago</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon blue"><span class="material-symbols-outlined" style="font-size: 19px;">library_books</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Restock Added: +20 Units</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">The Pisces (Collector Hardcover)</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">1h ago</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon green"><span class="material-symbols-outlined" style="font-size: 19px;">payments</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Payment Confirmed ($148.50)</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Online Checkout • Stripe Gateway</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">2h ago</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Operational Highlights Row -->
+          <div class="overview-subcards-grid">
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(145, 206, 108, 0.18); color: #1a5908; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">verified</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Fulfillment SLA</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">98.4% On-Time</strong>
+              </div>
+            </div>
+
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(255, 199, 79, 0.2); color: #B06000; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">star</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Top Bestseller</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">The Secret History</strong>
+              </div>
+            </div>
+
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: #E8F0FE; color: #1A73E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">cloud_done</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Storefront API</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">100% Operational</strong>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- SECTION 2: BOOKS INVENTORY -->
+        <section id="section-inventory" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Catalogue Inventory Management
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Live inventory levels, pricing adjustments, stock alerts, and catalogue controls.
+                </p>
+              </div>
+              
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Filter Pills -->
+                <div class="dashboard-tab-filters">
+                  <button class="dashboard-tab-btn active" onclick="filterInventoryByCategory('all', this)">All</button>
+                  <button class="dashboard-tab-btn" onclick="filterInventoryByCategory('Mystery', this)">Mystery</button>
+                  <button class="dashboard-tab-btn" onclick="filterInventoryByCategory('Romance', this)">Romance</button>
+                  <button class="dashboard-tab-btn" onclick="filterInventoryByCategory('Fantasy', this)">Fantasy</button>
+                  <button class="dashboard-tab-btn" onclick="filterInventoryByCategory('Classics', this)">Classics</button>
+                </div>
+
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'" style="display: flex; align-items: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                  <span>Add New Volume</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Inventory Table -->
+            <div style="overflow-x: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Book Title & Edition</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Stock Units</th>
+                    <th style="text-align: right;">Inventory Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-books-table-body">
+                  <!-- Dynamically rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: ORDERS & SHIPMENTS -->
+        <section id="section-orders" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Orders & Shipment Fulfillment
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Track real-time reader purchases, courier dispatches, and customer receipts.
+                </p>
+              </div>
+              
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('all', this)">All (4)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('processing', this)">Processing (1)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('shipped', this)">Shipped (1)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('completed', this)">Completed (2)</button>
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'" style="display: flex; align-items: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+                  <span>Export CSV</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items Ordered</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Date & Time</th>
+                    <th style="text-align: right;">Dispatch Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body">
+                  <tr data-status="completed">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-9402</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-1.webp" alt="Arthur" style="width: 28px; height: 28px; border-radius: 50%;">
+                        <strong>Arthur Pendelton</strong>
+                      </div>
+                    </td>
+                    <td>Little Disasters (Hardcover), The Pisces</td>
+                    <td><strong>$64.00</strong></td>
+                    <td><span class="status-pill completed"><span class="material-symbols-outlined" style="font-size: 12px;">check_circle</span> Completed</span></td>
+                    <td style="color: var(--color-text-muted); font-size: 0.82rem;">Today, 2:14 PM</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">View Invoice</button>
+                    </td>
+                  </tr>
+                  <tr data-status="processing">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-9401</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-2.webp" alt="Clara" style="width: 28px; height: 28px; border-radius: 50%;">
+                        <strong>Clara Oswald</strong>
+                      </div>
+                    </td>
+                    <td>Not In Love, These Infinite Threads</td>
+                    <td><strong>$60.00</strong></td>
+                    <td><span class="status-pill processing"><span class="material-symbols-outlined" style="font-size: 12px;">hourglass_top</span> Processing</span></td>
+                    <td style="color: var(--color-text-muted); font-size: 0.82rem;">Today, 1:30 PM</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-forest" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">Pack & Dispatch</button>
+                    </td>
+                  </tr>
+                  <tr data-status="shipped">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-9400</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-3.webp" alt="Jonathan" style="width: 28px; height: 28px; border-radius: 50%;">
+                        <strong>Jonathan Harker</strong>
+                      </div>
+                      </td>
+                    <td>Gulliver’s Travels (Collector Edition)</td>
+                    <td><strong>$23.00</strong></td>
+                    <td><span class="status-pill shipped"><span class="material-symbols-outlined" style="font-size: 12px;">local_shipping</span> Shipped</span></td>
+                    <td style="color: var(--color-text-muted); font-size: 0.82rem;">Yesterday, 4:10 PM</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">Track Courier</button>
+                    </td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-9399</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-4.webp" alt="Maya" style="width: 28px; height: 28px; border-radius: 50%;">
+                        <strong>Maya Angelou</strong>
+                      </div>
+                    </td>
+                    <td>Bibliophile Elite Annual Membership Pass</td>
+                    <td><strong>$149.00</strong></td>
+                    <td><span class="status-pill completed"><span class="material-symbols-outlined" style="font-size: 12px;">verified</span> Completed</span></td>
+                    <td style="color: var(--color-text-muted); font-size: 0.82rem;">Yesterday, 11:20 AM</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">VIP Boxset</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: MEMBERSHIP CIRCLE -->
+        <section id="section-membership" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Membership Circle & VIP Roster
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Manage reader subscription tiers, perks allocation, and active subscribers.
+                </p>
+              </div>
+              <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'">
+                + Invite New Member
+              </button>
+            </div>
+
+            <!-- 3 Membership Tier Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                  <strong style="font-size: 1.1rem; color: var(--color-text-dark);">Reader Pass (Free)</strong>
+                  <span class="status-pill completed">1,240 Active</span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 1rem;">Digital bookshelf sync, monthly newsletter, and community book club discussion access.</p>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Free Forever</div>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                  <strong style="font-size: 1.1rem; color: var(--color-primary);">Bookworm Tier ($19/mo)</strong>
+                  <span class="status-pill processing">450 Active</span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 1rem;">15% storewide discount, early book release previews, and quarterly curator bookmarks.</p>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">$8,550 / month revenue</div>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                  <strong style="font-size: 1.1rem; color: var(--color-accent-coral);">Bibliophile Elite ($149/yr)</strong>
+                  <span class="status-pill shipped">150 VIPs</span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 1rem;">25% storewide discount, luxury VIP archival gift box, priority shipping & author sessions.</p>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">$22,350 / year revenue</div>
+              </div>
+            </div>
+
+            <!-- Member Roster Table -->
+            <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem; color: var(--color-text-dark);">Recent VIP Member Roster</h4>
+            <div style="overflow-x: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Member Name</th>
+                    <th>Email Address</th>
+                    <th>Tier</th>
+                    <th>Join Date</th>
+                    <th>Books Read / Bought</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-4.webp" alt="Maya" style="width: 30px; height: 30px; border-radius: 50%;">
+                        <strong>Maya Angelou</strong>
+                      </div>
+                    </td>
+                    <td>maya.reader@example.com</td>
+                    <td><span class="status-pill shipped">Bibliophile Elite</span></td>
+                    <td>Oct 5, 2026</td>
+                    <td><strong>24 Volumes</strong></td>
+                    <td style="text-align: right;"><button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'">Send Gift</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.6rem;">
+                        <img src="images/user-2.webp" alt="Clara" style="width: 30px; height: 30px; border-radius: 50%;">
+                        <strong>Clara Oswald</strong>
+                      </div>
+                    </td>
+                    <td>clara.o@example.com</td>
+                    <td><span class="status-pill processing">Bookworm Tier</span></td>
+                    <td>Oct 1, 2026</td>
+                    <td><strong>18 Volumes</strong></td>
+                    <td style="text-align: right;"><button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'">Upgrade</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: SALES & ANALYTICS -->
+        <section id="section-analytics" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Sales & Revenue Intelligence
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">Comprehensive breakdown of storefront revenues, top selling volumes, and author performance.</p>
+              </div>
+              <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'">
+                Download Annual Report
+              </button>
+            </div>
+
+            <!-- Revenue Breakdown & Top Selling Volumes Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+              <!-- Revenue Channels -->
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;">Revenue Channel Mix</h4>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  <span>Online Digital Storefront (72%)</span>
+                  <strong>$61,142</strong>
+                </div>
+                <div style="height: 12px; background: rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem;">
+                  <div style="width: 72%; height: 100%; background: var(--color-primary);"></div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  <span>Salem Flagship Bookstore (28%)</span>
+                  <strong>$23,778</strong>
+                </div>
+                <div style="height: 12px; background: rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden;">
+                  <div style="width: 28%; height: 100%; background: var(--color-accent-gold);"></div>
+                </div>
+              </div>
+
+              <!-- Top Metrics -->
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-around;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-size: 0.78rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700;">Average Order Value (AOV)</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-text-dark);">$48.20</div>
+                  </div>
+                  <span class="status-pill completed">↑ 5.2%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 1rem;">
+                  <div>
+                    <div style="font-size: 0.78rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700;">Cart Conversion Rate</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-text-dark);">3.84%</div>
+                  </div>
+                  <span class="status-pill completed">Industry Leading</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Selling Volumes Leaderboard -->
+            <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem; color: var(--color-text-dark);">Top 5 Best-Selling Titles This Month</h4>
+            <div style="background: var(--color-bg-cream); border-radius: 10px; border: 1px solid var(--color-border); overflow: hidden;">
+              <div class="leaderboard-item">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <strong style="color: var(--color-primary); font-size: 1.1rem;">#1</strong>
+                  <img src="images/book-1.webp" alt="Book" style="width: 32px; height: 44px; object-fit: cover; border-radius: 3px;">
+                  <div><strong>The Psychology of Money</strong><div style="font-size: 0.75rem; color: var(--color-text-muted);">Morgan Housel • Hardcover</div></div>
+                </div>
+                <div><strong>1,420 Sold</strong> • <span style="color: var(--color-primary); font-weight: 700;">$34,080</span></div>
+              </div>
+              <div class="leaderboard-item">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <strong style="color: var(--color-primary); font-size: 1.1rem;">#2</strong>
+                  <img src="images/book-2.webp" alt="Book" style="width: 32px; height: 44px; object-fit: cover; border-radius: 3px;">
+                  <div><strong>Atomic Habits</strong><div style="font-size: 0.75rem; color: var(--color-text-muted);">James Clear • Hardcover</div></div>
+                </div>
+                <div><strong>1,180 Sold</strong> • <span style="color: var(--color-primary); font-weight: 700;">$28,320</span></div>
+              </div>
+              <div class="leaderboard-item">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <strong style="color: var(--color-primary); font-size: 1.1rem;">#3</strong>
+                  <img src="images/book-3.webp" alt="Book" style="width: 32px; height: 44px; object-fit: cover; border-radius: 3px;">
+                  <div><strong>The Midnight Library</strong><div style="font-size: 0.75rem; color: var(--color-text-muted);">Matt Haig • Fiction</div></div>
+                </div>
+                <div><strong>950 Sold</strong> • <span style="color: var(--color-primary); font-weight: 700;">$22,800</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: STORE SETTINGS -->
+        <section id="section-settings" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Store Configuration & Operational Settings
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">Manage store profile, contact information, shipping rates, and catalogue thresholds.</p>
+              </div>
+            </div>
+
+            <form id="storeSettingsForm" onsubmit="handleSaveSettings(event)" novalidate>
+              <div class="settings-grid-2">
+                <!-- Store Profile Card -->
+                <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                  <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem;">Bookstore Identity & Contact</h4>
+                  
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Bookstore Name *</label>
+                    <input type="text" id="settingStoreName" class="form-control" placeholder="e.g. Stackly Books & Literary Vault" style="border-radius: 8px;">
+                    <div class="dashboard-field-error" id="settingStoreName-error"></div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Flagship Address *</label>
+                    <input type="text" id="settingAddress" class="form-control" placeholder="e.g. 42 Bibliophile Row, Heritage Quarter" style="border-radius: 8px;">
+                    <div class="dashboard-field-error" id="settingAddress-error"></div>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Support Email *</label>
+                      <input type="email" id="settingEmail" class="form-control" placeholder="e.g. concierge@stacklybooks.com" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="settingEmail-error"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Phone Hotline *</label>
+                      <input type="tel" id="settingPhone" class="form-control" placeholder="e.g. (555) 342-8920" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="settingPhone-error"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shipping & Inventory Rules -->
+                <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                  <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem;">Shipping & Catalogue Rules</h4>
+                  
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Default Currency *</label>
+                      <select id="settingCurrency" class="form-control" style="border-radius: 8px;">
+                        <option value="" disabled selected>Select Currency</option>
+                        <option value="USD">USD ($) United States</option>
+                        <option value="INR">INR (₹) Indian Rupee</option>
+                        <option value="EUR">EUR (€) Euro</option>
+                        <option value="GBP">GBP (£) British Pound</option>
+                      </select>
+                      <div class="dashboard-field-error" id="settingCurrency-error"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Standard Shipping ($) *</label>
+                      <input type="number" id="settingShippingRate" class="form-control" placeholder="e.g. 4.99" step="0.01" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="settingShippingRate-error"></div>
+                    </div>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Free Shipping Over ($) *</label>
+                      <input type="number" id="settingFreeShippingThreshold" class="form-control" placeholder="e.g. 50.00" step="0.01" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="settingFreeShippingThreshold-error"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Low Stock Alert Limit *</label>
+                      <input type="number" id="settingLowStockThreshold" class="form-control" placeholder="e.g. 5" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="settingLowStockThreshold-error"></div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-forest" style="width: 100%; padding: 0.8rem; font-weight: 700; border-radius: 8px;">
+                    Save Store Configuration
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="adminToastContainer" class="toast-container"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab switching for all 7 sections
+    function switchDashboardTab(tabId) {
+      document.querySelectorAll('.dashboard-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.dashboard-nav-link').forEach(link => link.classList.remove('active'));
+
+      const targetSection = document.getElementById('section-' + tabId);
+      const targetNav = document.getElementById('nav-' + tabId);
+      const headerTitle = document.getElementById('headerTitle');
+
+      if (targetSection) targetSection.classList.add('active');
+      if (targetNav) targetNav.classList.add('active');
+
+      const titles = {
+        'overview': 'Bookstore Management Center',
+        'inventory': 'Catalogue & Inventory Controls',
+        'orders': 'Orders & Shipment Fulfillment',
+        'membership': 'Membership Circle & VIP Tiers',
+        'analytics': 'Sales & Revenue Intelligence',
+        'settings': 'Store Configuration & Settings'
+      };
+
+      if (headerTitle && titles[tabId]) {
+        headerTitle.textContent = titles[tabId];
+      }
+
+      // Close mobile sidebar if open
+      const sidebar = document.getElementById('dashboardSidebar');
+      const overlay = document.getElementById('dashboardOverlay');
+      if (sidebar) sidebar.classList.remove('is-open');
+      if (overlay) overlay.classList.remove('is-open');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openAddBookModal() {
+      const modal = document.getElementById('add-book-modal');
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeAddBookModal() {
+      const modal = document.getElementById('add-book-modal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('dashboardSidebar');
+      const overlay = document.getElementById('dashboardOverlay');
+      if (sidebar) sidebar.classList.toggle('is-open');
+      if (overlay) overlay.classList.toggle('is-open');
+    }
+
+    function setKpiPeriod(btn, period) {
+      document.querySelectorAll('.dashboard-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const statVals = document.querySelectorAll('.stat-val');
+      statVals.forEach(v => {
+        v.style.transition = 'transform 0.18s ease, opacity 0.18s ease';
+        v.style.opacity = '0.4';
+        v.style.transform = 'scale(0.95)';
+      });
+
+      setTimeout(() => {
+        const rev = document.getElementById('stat-rev');
+        const vols = document.getElementById('stat-vols');
+        const mems = document.getElementById('stat-mems');
+        const ship = document.getElementById('stat-ship');
+
+        if (period === 'Today') {
+          if (rev) rev.textContent = '$3,420';
+          if (vols) vols.textContent = '148';
+          if (mems) mems.textContent = '14';
+          if (ship) ship.textContent = '34';
+        } else if (period === 'This Week') {
+          if (rev) rev.textContent = '$19,840';
+          if (vols) vols.textContent = '890';
+          if (mems) mems.textContent = '96';
+          if (ship) ship.textContent = '34';
+        } else if (period === 'This Month') {
+          if (rev) rev.textContent = '$84,920';
+          if (vols) vols.textContent = '12,450';
+          if (mems) mems.textContent = '1,840';
+          if (ship) ship.textContent = '34';
+        } else {
+          if (rev) rev.textContent = '$428,500';
+          if (vols) vols.textContent = '64,200';
+          if (mems) mems.textContent = '6,450';
+          if (ship) ship.textContent = '34';
+        }
+
+        statVals.forEach(v => {
+          v.style.opacity = '1';
+          v.style.transform = 'scale(1)';
+        });
+      }, 150);
+
+      showToast(`Showing telemetry for: ${period}`);
+    }
+
+    function filterInventoryByCategory(cat, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll('.dashboard-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      if (typeof BOOKS_DATA === 'undefined') return;
+      
+      const tbody = document.getElementById('admin-books-table-body');
+      if (!tbody) return;
+
+      const filtered = (cat === 'all') 
+        ? BOOKS_DATA.slice(0, 10) 
+        : BOOKS_DATA.filter(b => b.category.toLowerCase().includes(cat.toLowerCase()));
+
+      tbody.innerHTML = filtered.map(book => `
+        <tr>
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <img src="${book.image}" alt="${book.title}" style="width: 38px; height: 52px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+              <div>
+                <strong>${book.title}</strong>
+                <div style="font-size: 0.78rem; color: var(--color-text-muted);">${book.format || 'Hardcover'}</div>
+              </div>
+            </div>
+          </td>
+          <td>${book.author}</td>
+          <td><span class="status-pill completed">${book.category}</span></td>
+          <td><strong>$${book.price.toFixed(2)}</strong></td>
+          <td><span class="status-pill instock"><span class="material-symbols-outlined" style="font-size: 12px;">check</span> In Stock (${book.stock || 42})</span></td>
+          <td style="text-align: right;">
+            <div style="display: flex; gap: 0.4rem; justify-content: flex-end;">
+              <button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">+10 Stock</button>
+              <button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="window.location.href='404.html'">Edit</button>
+              <button class="btn btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; color: var(--color-accent-coral); background: #FCE8E6; border: 1px solid rgba(197, 34, 31, 0.2);" onclick="window.location.href='404.html'">Delete</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function restockBook(id) {
+      if (typeof BOOKS_DATA === 'undefined') return;
+      const b = BOOKS_DATA.find(item => item.id === id);
+      if (b) {
+        b.stock = (b.stock || 42) + 10;
+        filterInventoryByCategory('all');
+        showToast(`Restocked +10 units for "${b.title}"! Total: ${b.stock}`);
+      }
+    }
+
+    function filterOrdersByStatus(status, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll('.btn').forEach(b => {
+          b.classList.remove('btn-forest');
+          b.classList.add('btn-outline-dark');
+        });
+        btn.classList.remove('btn-outline-dark');
+        btn.classList.add('btn-forest');
+      }
+
+      const rows = document.querySelectorAll('#admin-orders-table-body tr');
+      rows.forEach(r => {
+        if (status === 'all' || r.getAttribute('data-status') === status) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    function handleAddNewBook(e) {
+      e.preventDefault();
+      const title = document.getElementById('new-book-title').value;
+      const author = document.getElementById('new-book-author').value;
+      const category = document.getElementById('new-book-category').value;
+      const price = parseFloat(document.getElementById('new-book-price').value) || 24.00;
+      const format = document.getElementById('new-book-format').value || 'Hardcover';
+      const stock = parseInt(document.getElementById('new-book-stock').value) || 50;
+
+      if (typeof BOOKS_DATA !== 'undefined') {
+        const newId = 'b' + (BOOKS_DATA.length + 1);
+        BOOKS_DATA.unshift({
+          id: newId,
+          title,
+          author,
+          category,
+          price,
+          image: 'images/book-1.webp',
+          rating: 5.0,
+          pages: 350,
+          format,
+          stock,
+          desc: 'New curated arrival in bookstore catalogue.'
+        });
+
+        filterInventoryByCategory('all');
+        const countBadge = document.getElementById('sidebar-book-count');
+        if (countBadge) countBadge.textContent = `${BOOKS_DATA.length} Titles`;
+      }
+
+      showToast(`Book "${title}" added to catalogue successfully!`);
+      document.getElementById('admin-add-book-form').reset();
+      closeAddBookModal();
+    }
+
+    function updateOrderStatus(btn, orderId) {
+      const row = btn.closest('tr');
+      if (row) {
+        row.setAttribute('data-status', 'completed');
+        const statusCell = row.querySelector('.status-pill');
+        if (statusCell) {
+          statusCell.className = 'status-pill completed';
+          statusCell.innerHTML = '<span class="material-symbols-outlined" style="font-size: 12px;">check_circle</span> Completed';
+        }
+        btn.outerHTML = '<button class="btn btn-sm btn-outline-dark" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="showToast(\'Receipt ' + orderId + ' sent to customer\')">View Invoice</button>';
+      }
+      showToast(`Order ${orderId} marked as Dispatched & Completed!`);
+    }
+
+    function exportOrdersCsv() {
+      showToast('Generating Orders CSV Export... Download will start automatically.');
+    }
+
+    // Helper functions for Store Settings Validation
+    function showSettingError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field) {
+        field.classList.add('is-invalid');
+        field.classList.remove('is-valid');
+      }
+      if (errorEl) {
+        errorEl.textContent = '⚠ ' + message;
+        errorEl.style.display = 'flex';
+      }
+    }
+
+    function clearSettingError(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field) {
+        field.classList.remove('is-invalid');
+        field.classList.add('is-valid');
+      }
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.style.display = 'none';
+      }
+    }
+
+    function validateSettingStoreName() {
+      const el = document.getElementById('settingStoreName');
+      const val = el ? el.value.trim() : '';
+      if (!val || val.length < 2) {
+        showSettingError('settingStoreName', 'Please enter a valid bookstore name (min 2 characters).');
+        return false;
+      }
+      clearSettingError('settingStoreName');
+      return true;
+    }
+
+    function validateSettingAddress() {
+      const el = document.getElementById('settingAddress');
+      const val = el ? el.value.trim() : '';
+      if (!val || val.length < 5) {
+        showSettingError('settingAddress', 'Please enter the complete flagship address (min 5 characters).');
+        return false;
+      }
+      clearSettingError('settingAddress');
+      return true;
+    }
+
+    function validateSettingEmail() {
+      const el = document.getElementById('settingEmail');
+      const val = el ? el.value.trim() : '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!val) {
+        showSettingError('settingEmail', 'Support email address is required.');
+        return false;
+      }
+      if (!emailRegex.test(val)) {
+        showSettingError('settingEmail', 'Please enter a valid email address (e.g. concierge@stacklybooks.com).');
+        return false;
+      }
+      clearSettingError('settingEmail');
+      return true;
+    }
+
+    function validateSettingPhone() {
+      const el = document.getElementById('settingPhone');
+      const val = el ? el.value.trim() : '';
+      const phoneDigits = val.replace(/\D/g, '');
+      if (!val) {
+        showSettingError('settingPhone', 'Phone hotline number is required.');
+        return false;
+      }
+      if (phoneDigits.length < 7) {
+        showSettingError('settingPhone', 'Please enter a valid phone number (at least 7 digits).');
+        return false;
+      }
+      clearSettingError('settingPhone');
+      return true;
+    }
+
+    function validateSettingCurrency() {
+      const el = document.getElementById('settingCurrency');
+      const val = el ? el.value : '';
+      if (!val) {
+        showSettingError('settingCurrency', 'Please select a default operational currency.');
+        return false;
+      }
+      clearSettingError('settingCurrency');
+      return true;
+    }
+
+    function validateSettingShippingRate() {
+      const el = document.getElementById('settingShippingRate');
+      const val = el ? el.value.trim() : '';
+      const num = parseFloat(val);
+      if (!val || isNaN(num) || num < 0) {
+        showSettingError('settingShippingRate', 'Please enter a valid standard shipping rate ($ >= 0).');
+        return false;
+      }
+      clearSettingError('settingShippingRate');
+      return true;
+    }
+
+    function validateSettingFreeShipping() {
+      const el = document.getElementById('settingFreeShippingThreshold');
+      const val = el ? el.value.trim() : '';
+      const num = parseFloat(val);
+      if (!val || isNaN(num) || num <= 0) {
+        showSettingError('settingFreeShippingThreshold', 'Please enter a valid free shipping threshold ($ > 0).');
+        return false;
+      }
+      clearSettingError('settingFreeShippingThreshold');
+      return true;
+    }
+
+    function validateSettingLowStock() {
+      const el = document.getElementById('settingLowStockThreshold');
+      const val = el ? el.value.trim() : '';
+      const num = parseInt(val, 10);
+      if (!val || isNaN(num) || num < 1) {
+        showSettingError('settingLowStockThreshold', 'Please enter a minimum low-stock limit (>= 1).');
+        return false;
+      }
+      clearSettingError('settingLowStockThreshold');
+      return true;
+    }
+
+    function bindStoreSettingsValidationListeners() {
+      const sn = document.getElementById('settingStoreName');
+      const ad = document.getElementById('settingAddress');
+      const em = document.getElementById('settingEmail');
+      const ph = document.getElementById('settingPhone');
+      const cu = document.getElementById('settingCurrency');
+      const sr = document.getElementById('settingShippingRate');
+      const fs = document.getElementById('settingFreeShippingThreshold');
+      const ls = document.getElementById('settingLowStockThreshold');
+
+      if (sn) { sn.addEventListener('input', validateSettingStoreName); sn.addEventListener('blur', validateSettingStoreName); }
+      if (ad) { ad.addEventListener('input', validateSettingAddress); ad.addEventListener('blur', validateSettingAddress); }
+      if (em) { em.addEventListener('input', validateSettingEmail); em.addEventListener('blur', validateSettingEmail); }
+      if (ph) { ph.addEventListener('input', validateSettingPhone); ph.addEventListener('blur', validateSettingPhone); }
+      if (cu) { cu.addEventListener('change', validateSettingCurrency); cu.addEventListener('blur', validateSettingCurrency); }
+      if (sr) { sr.addEventListener('input', validateSettingShippingRate); sr.addEventListener('blur', validateSettingShippingRate); }
+      if (fs) { fs.addEventListener('input', validateSettingFreeShipping); fs.addEventListener('blur', validateSettingFreeShipping); }
+      if (ls) { ls.addEventListener('input', validateSettingLowStock); ls.addEventListener('blur', validateSettingLowStock); }
+    }
+
+    function handleSaveSettings(e) {
+      e.preventDefault();
+
+      const vStore = validateSettingStoreName();
+      const vAddr = validateSettingAddress();
+      const vEmail = validateSettingEmail();
+      const vPhone = validateSettingPhone();
+      const vCurr = validateSettingCurrency();
+      const vShip = validateSettingShippingRate();
+      const vFree = validateSettingFreeShipping();
+      const vStock = validateSettingLowStock();
+
+      if (!vStore || !vAddr || !vEmail || !vPhone || !vCurr || !vShip || !vFree || !vStock) {
+        const firstInvalid = document.querySelector('#storeSettingsForm .is-invalid');
+        if (firstInvalid) {
+          firstInvalid.focus();
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        showToast('Please enter all required valid details before saving.', true);
+        return false;
+      }
+
+      const storeName = document.getElementById('settingStoreName').value.trim();
+      const address = document.getElementById('settingAddress').value.trim();
+      const email = document.getElementById('settingEmail').value.trim();
+      const phone = document.getElementById('settingPhone').value.trim();
+      const currency = document.getElementById('settingCurrency').value;
+      const shippingRate = document.getElementById('settingShippingRate').value.trim();
+      const freeShipping = document.getElementById('settingFreeShippingThreshold').value.trim();
+      const lowStock = document.getElementById('settingLowStockThreshold').value.trim();
+
+      try {
+        localStorage.setItem('stackly_store_settings', JSON.stringify({ 
+          storeName, address, email, phone, currency, shippingRate, freeShipping, lowStock 
+        }));
+      } catch(err) {}
+
+      // Redirect into 404 error page only after all valid details are submitted
+      window.location.href = '404.html';
+    }
+
+    function loadAdminHeaderUser() {
+      let savedUser = null;
+      try {
+        savedUser = JSON.parse(localStorage.getItem('stackly_admin_user') || localStorage.getItem('stackly_current_user') || 'null');
+      } catch(e) {}
+
+      const nameEl = document.getElementById('adminHeaderName');
+      const emailEl = document.getElementById('adminHeaderEmail');
+      const avatarEl = document.getElementById('adminHeaderAvatar');
+      const badgeEl = document.getElementById('adminUserBadge');
+
+      if (savedUser && (savedUser.name || savedUser.email)) {
+        const displayName = savedUser.name || 'Admin User';
+        const displayEmail = savedUser.email || 'admin@stackly.com';
+        
+        if (nameEl) nameEl.textContent = displayName;
+        if (emailEl) emailEl.textContent = displayEmail;
+        if (badgeEl) badgeEl.title = `${displayName} (${displayEmail})`;
+
+        if (avatarEl) {
+          const parts = displayName.trim().split(/\s+/);
+          let initials = '';
+          if (parts.length > 1 && parts[0] && parts[parts.length - 1]) {
+            initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+          } else if (parts[0]) {
+            initials = parts[0].slice(0, 2).toUpperCase();
+          } else {
+            initials = 'AD';
+          }
+          avatarEl.textContent = initials;
+        }
+      }
+    }
+
+    // Initialize initial render on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAdminHeaderUser();
+      bindStoreSettingsValidationListeners();
+      setTimeout(() => {
+        filterInventoryByCategory('all');
+        if (typeof BOOKS_DATA !== 'undefined') {
+          const countBadge = document.getElementById('sidebar-book-count');
+          if (countBadge) countBadge.textContent = `${BOOKS_DATA.length} Titles`;
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

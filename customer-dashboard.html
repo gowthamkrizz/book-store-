@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reading Lounge – Stackly Books</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+  <style>
+    .form-control.is-invalid {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18) !important;
+      background-color: #fff8f8 !important;
+    }
+    .form-control.is-valid {
+      border-color: #22c55e !important;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important;
+      background-color: #f7fff8 !important;
+    }
+    .dashboard-field-error {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      color: #dc2626;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-top: 0.35rem;
+      animation: fieldErrFadeIn 0.2s ease-in-out forwards;
+    }
+    .dashboard-field-error.visible {
+      display: flex;
+    }
+    @keyframes fieldErrFadeIn {
+      from { opacity: 0; transform: translateY(-3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-cream">
+
+  <!-- Log Reading Progress Modal -->
+  <div id="log-progress-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 560px; display: block; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 25px 60px rgba(0,0,0,0.25);">
+      <button class="modal-close-btn" onclick="closeLogProgressModal()" title="Close Modal">✕</button>
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 28px;">auto_stories</span>
+        <h3 style="font-size: 1.6rem; margin: 0; font-family: var(--font-heading);">Update Reading Log</h3>
+      </div>
+      <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Record your daily reading pace, bookmark pages, and share thoughts with your club.</p>
+      
+      <form id="customer-progress-form" onsubmit="handleUpdateProgress(event)">
+        <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Select Book Volume *</label>
+          <select id="progress-book-select" class="form-control" style="border-radius: 8px;" required>
+            <option value="Little Disasters" selected>Little Disasters (Randall Klein) – Hardcover</option>
+            <option value="The Pisces">The Pisces (Melissa Broder)</option>
+            <option value="These Infinite Threads">These Infinite Threads (Tahereh Mafi)</option>
+            <option value="Gulliver's Travels">Gulliver's Travels (Jonathan Swift)</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Current Page *</label>
+            <input type="number" id="progress-current-page" class="form-control" placeholder="e.g. 280" min="1" max="384" required style="border-radius: 8px;">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Total Pages</label>
+            <input type="number" id="progress-total-pages" class="form-control" placeholder="384" value="384" readonly style="border-radius: 8px; background: #f3eee3;">
+          </div>
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+          <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Reading Status</label>
+          <select id="progress-status" class="form-control" style="border-radius: 8px;">
+            <option value="reading" selected>Currently Reading</option>
+            <option value="completed">Completed / Finished</option>
+            <option value="paused">On Temporary Hold</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
+          <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Curator & Journal Notes (Optional)</label>
+          <textarea id="progress-notes" class="form-control" rows="3" placeholder="Chapter 18 revelation was completely unexpected..." style="border-radius: 8px; resize: none;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-forest" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 700; border-radius: 8px;">
+          Save Reading Progress
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- VIP Lounge Pass QR Modal -->
+  <div id="vip-qr-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px; display: block; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 25px 60px rgba(0,0,0,0.25); text-align: center;">
+      <button class="modal-close-btn" onclick="closeVipQrModal()" title="Close Modal">✕</button>
+      
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: rgba(145, 206, 108, 0.2); color: var(--color-primary); margin-bottom: 1rem;">
+        <span class="material-symbols-outlined" style="font-size: 32px;">qr_code_2</span>
+      </div>
+
+      <h3 style="font-size: 1.6rem; margin-bottom: 0.35rem; font-family: var(--font-heading);">Bibliophile Elite Lounge Pass</h3>
+      <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Present this digital badge at any Stackly Flagship Cafe for complimentary coffee and 25% in-store discount.</p>
+
+      <!-- Digital Pass Card Box -->
+      <div style="background: linear-gradient(145deg, #1A5908 0%, #111d14 100%); color: var(--color-white); padding: 1.75rem; border-radius: 14px; border: 1px solid rgba(145, 206, 108, 0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.25); margin-bottom: 1.5rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <div>
+            <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-accent-lime); font-weight: 800;">STACKLY READER CIRCLE</div>
+            <strong style="font-size: 1.15rem; font-family: var(--font-heading);" id="qrModalUserName">Eleanor Vance</strong>
+          </div>
+          <span style="background: var(--color-accent-lime); color: #131d14; font-size: 0.68rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 100px;">VIP ELITE</span>
+        </div>
+
+        <!-- Simulated QR Pattern Visualizer -->
+        <div style="background: #ffffff; padding: 1rem; border-radius: 10px; width: 140px; height: 140px; margin: 0 auto 1.25rem auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+          <span class="material-symbols-outlined" style="font-size: 110px; color: #111d14;">qr_code_2</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.75rem;">
+          <span style="color: rgba(255,255,255,0.7);">Member ID: <strong style="color: #fff;">#VIP-8829-EV</strong></span>
+          <span style="color: var(--color-accent-lime);">Pass: Valid 2026-2027</span>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-dark" onclick="closeVipQrModal()" style="width: 100%; padding: 0.75rem; border-radius: 8px;">
+        Close Pass
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN DASHBOARD LAYOUT -->
+  <div class="dashboard-layout">
+    
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="dashboard-mobile-overlay" id="dashboardOverlay" onclick="toggleMobileSidebar()"></div>
+
+    <!-- ANIMATED SIDE MENU BAR (Sticky / Fixed Navigation) -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+      <!-- Brand Header -->
+      <div class="dashboard-sidebar-header">
+        <a href="customer-dashboard.html" onclick="window.location.reload(); return false;" class="dashboard-brand-box" title="Click to refresh dashboard">
+          <img src="images/logo.webp" alt="Stackly Bookstore Logo" class="dashboard-header-logo-img">
+          <div class="dashboard-admin-subbadge" style="color: var(--color-accent-lime); background: rgba(145, 206, 108, 0.12); border-color: rgba(145, 206, 108, 0.3);">
+            <span class="subbadge-dot"></span>
+            <span>CUSTOMER LOUNGE</span>
+          </div>
+        </a>
+        <button class="dashboard-sidebar-close-btn" onclick="toggleMobileSidebar()" title="Close Navigation Menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links with Interactive Tab Switching & Slide Animations -->
+      <nav class="dashboard-nav">
+        <div class="dashboard-nav-section-title">Reader Sanctuary</div>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link active" id="nav-overview" onclick="switchDashboardTab('overview')">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Reading Overview</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-bookshelf" onclick="switchDashboardTab('bookshelf')">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span>Digital Bookshelf</span>
+          <span class="dashboard-nav-badge" id="sidebar-shelf-count">12 Books</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-orders" onclick="switchDashboardTab('orders')">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span>Orders & Parcels</span>
+          <span class="dashboard-nav-badge" id="sidebar-orders-badge" style="background: rgba(145, 206, 108, 0.2); color: var(--color-accent-lime); border-color: rgba(145, 206, 108, 0.4);">1 Active</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-membership" onclick="switchDashboardTab('membership')">
+          <span class="material-symbols-outlined">card_membership</span>
+          <span>Elite Member Perks</span>
+          <span class="dashboard-nav-badge" style="background: rgba(255, 199, 79, 0.2); color: var(--color-accent-gold); border-color: rgba(255, 199, 79, 0.4);">VIP</span>
+        </a>
+
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-wishlist" onclick="switchDashboardTab('wishlist')">
+          <span class="material-symbols-outlined">favorite</span>
+          <span>Saved Wishlist</span>
+          <span class="dashboard-nav-badge" id="sidebar-wishlist-count">4 Saved</span>
+        </a>
+
+        <div class="dashboard-nav-section-title">Account & Services</div>
+
+        <a href="javascript:void(0)" class="dashboard-nav-link" id="nav-profile" onclick="switchDashboardTab('profile')">
+          <span class="material-symbols-outlined">manage_accounts</span>
+          <span>Profile & Sanctuary</span>
+        </a>
+
+        <!-- Sidebar Footer -->
+        <div class="dashboard-sidebar-footer">
+          <a href="login.html" class="dashboard-nav-link" style="color: #ef4444;">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Sign Out</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA WITH FIXED HEADER BAR -->
+    <main class="dashboard-main">
+      
+      <!-- FIXED HEADER MENU BAR (Matches Admin Pattern) -->
+      <header class="dashboard-fixed-header">
+        <!-- Left Side: Title & Status Indicator -->
+        <div class="dashboard-header-left">
+          <button class="dashboard-icon-btn dashboard-mobile-toggle" onclick="toggleMobileSidebar()" title="Toggle Sidebar">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <div class="dashboard-header-title-box">
+            <h2 class="dashboard-header-main-title" id="headerTitle">Customer Reading Lounge</h2>
+            <div class="dashboard-header-status-pill">
+              <span class="status-live-dot"></span>
+              <span>Reader Circle • Bibliophile Elite Active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Date, Notification, Quick Action, and User Profile Pill -->
+        <div class="dashboard-header-right">
+          <!-- Live Date Badge -->
+          <div class="dashboard-date-badge">
+            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-primary);">calendar_today</span>
+            <span>Today, Oct 7</span>
+          </div>
+
+          <!-- Notification Bell -->
+          <button class="dashboard-icon-btn" onclick="window.location.href='404.html'" title="Notifications">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="dashboard-icon-badge">2</span>
+          </button>
+
+          <!-- Primary Update Reading Log Button -->
+          <button class="btn btn-primary btn-sm dashboard-header-add-btn" onclick="window.location.href='404.html'">
+            <span class="material-symbols-outlined" style="font-size: 18px;">auto_stories</span>
+            <span>Log Progress</span>
+          </button>
+
+          <!-- Entered User Profile Pill (Dynamic Sync with Login) -->
+          <div class="dashboard-user-badge" id="customerUserBadge" onclick="window.location.href='404.html'" title="Customer Profile" style="cursor: pointer;">
+            <div class="dashboard-avatar-container">
+              <div class="dashboard-user-avatar-initials" id="customerHeaderAvatar">EV</div>
+              <span class="user-online-dot"></span>
+            </div>
+            <div class="dashboard-user-info">
+              <strong class="dashboard-user-name" id="customerHeaderName">Eleanor Vance</strong>
+              <span class="dashboard-user-role" id="customerHeaderEmail">Bibliophile Elite VIP</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD MAIN BODY CONTENT -->
+      <div class="dashboard-main-content">
+        
+        <!-- SECTION 1: DASHBOARD OVERVIEW -->
+        <section id="section-overview" class="dashboard-section active">
+          
+          <!-- Section Header & Filter Alignment -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.25rem;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-primary); background: rgba(145, 206, 108, 0.16); border: 1px solid rgba(145, 206, 108, 0.35); padding: 0.22rem 0.7rem; border-radius: 100px; margin-bottom: 0.4rem;">
+                <span class="status-live-dot" style="width: 6px; height: 6px;"></span>
+                <span>Live Reader Telemetry</span>
+              </div>
+              <h1 style="font-size: 2.2rem; margin-bottom: 0.35rem; font-family: var(--font-heading); color: var(--color-text-dark); letter-spacing: -0.01em;">
+                Welcome back, <span id="welcomeUserName">Eleanor</span>
+              </h1>
+              <p style="color: var(--color-text-muted); font-size: 0.95rem; margin: 0;">
+                Track your active books, parcel shipments, reading goals, and exclusive VIP Circle privileges.
+              </p>
+            </div>
+            
+            <div class="dashboard-tab-filters">
+              <button class="dashboard-tab-btn active" onclick="setKpiPeriod(this, 'Today')">Today</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'This Month')">This Month</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'Year 2026')">Year 2026</button>
+              <button class="dashboard-tab-btn" onclick="setKpiPeriod(this, 'All-Time')">All-Time</button>
+            </div>
+          </div>
+
+          <!-- 4 Stat Metric Cards (Animated, Beautiful Top Accent Lines, Aligned Trend Badges) -->
+          <div class="stats-grid-4">
+            
+            <!-- Stat Card 1: 2026 Reading Goal -->
+            <div class="stat-card card-accent-green">
+              <div class="stat-card-header">
+                <span class="stat-label">2026 Reading Goal</span>
+                <div class="stat-icon" style="background: rgba(145, 206, 108, 0.15); color: #1a5908;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">menu_book</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-goal">24 / 30</div>
+              <div class="stat-trend-chip trend-positive">
+                <span class="material-symbols-outlined" style="font-size: 15px;">trending_up</span>
+                <span>↑ 6 books to goal (80% on track)</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 2: Pages Read -->
+            <div class="stat-card card-accent-blue">
+              <div class="stat-card-header">
+                <span class="stat-label">Total Pages Read</span>
+                <div class="stat-icon" style="background: #E8F0FE; color: #1A73E8;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">auto_stories</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-pages">7,820</div>
+              <div class="stat-trend-chip trend-info">
+                <span class="material-symbols-outlined" style="font-size: 15px;">military_tech</span>
+                <span>Top 5% community reader</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 3: Loyalty Rewards Balance -->
+            <div class="stat-card card-accent-gold">
+              <div class="stat-card-header">
+                <span class="stat-label">Loyalty Rewards Balance</span>
+                <div class="stat-icon" style="background: rgba(255, 199, 79, 0.2); color: #B06000;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">stars</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-points">1,450 pts</div>
+              <div class="stat-trend-chip trend-positive">
+                <span class="material-symbols-outlined" style="font-size: 15px;">redeem</span>
+                <span>$25 reward voucher unlocked</span>
+              </div>
+            </div>
+
+            <!-- Stat Card 4: Monthly VIP Boxes -->
+            <div class="stat-card card-accent-coral">
+              <div class="stat-card-header">
+                <span class="stat-label">Curated VIP Boxes</span>
+                <div class="stat-icon" style="background: #FCE8E6; color: #C5221F;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">inventory_2</span>
+                </div>
+              </div>
+              <div class="stat-val" id="stat-boxes">8 Boxes</div>
+              <div class="stat-trend-chip trend-warning">
+                <span class="material-symbols-outlined" style="font-size: 15px;">local_shipping</span>
+                <span>Next Box Dispatches: Oct 15</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Middle Row: Currently Reading Spotlight + Real-time Reader Activity Feed -->
+          <div class="dashboard-overview-grid" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+            
+            <!-- Currently Reading Showcase Card -->
+            <div class="dashboard-table-card" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="table-header-row" style="margin-bottom: 1.25rem;">
+                  <div>
+                    <h3 style="font-size: 1.3rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                      Currently Reading Sanctuary
+                    </h3>
+                    <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0;">Live progress synchronization & curator book club milestones.</p>
+                  </div>
+                  <span style="font-size: 0.74rem; font-weight: 800; color: var(--color-primary); background: rgba(145, 206, 108, 0.2); padding: 0.28rem 0.65rem; border-radius: 100px; border: 1px solid rgba(145, 206, 108, 0.35);">
+                    Active Session
+                  </span>
+                </div>
+
+                <!-- Book Media Highlight Layout -->
+                <div style="display: flex; gap: 1.75rem; align-items: center; background: var(--color-bg-cream); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
+                  <div style="position: relative; flex-shrink: 0;">
+                    <img src="images/book-1.webp" alt="Little Disasters" style="width: 110px; height: 160px; object-fit: cover; border-radius: 6px; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
+                    <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(17,29,20,0.85); backdrop-filter: blur(4px); color: var(--color-accent-lime); font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">68%</span>
+                  </div>
+
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.25rem;">
+                      <span class="material-symbols-outlined" style="font-size: 15px;">bookmark</span>
+                      <span>PSYCHOLOGICAL THRILLER</span>
+                    </div>
+                    <h3 style="font-size: 1.4rem; font-family: var(--font-heading); margin-bottom: 0.2rem; color: var(--color-text-dark);">Little Disasters</h3>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.85rem;">by Randall Klein • Hardcover Edition • Page 261 of 384</p>
+                    
+                    <!-- Progress Bar -->
+                    <div style="margin-bottom: 0.85rem;">
+                      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem;">
+                        <span style="color: var(--color-text-dark);">Chapter 22: The Broken Mirror</span>
+                        <span style="color: var(--color-primary);">68% Finished</span>
+                      </div>
+                      <div class="genre-bar-track" style="height: 10px; background: rgba(0,0,0,0.08); border-radius: 5px;">
+                        <div class="genre-bar-fill" style="background: linear-gradient(90deg, #1A5908 0%, #91CE6C 100%); width: 68%;"></div>
+                      </div>
+                    </div>
+
+                    <div style="font-size: 0.78rem; color: var(--color-text-muted);">
+                      Estimated time remaining: <strong>2h 15m</strong> at your pace (32 pgs/day).
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Genre Breakdown Bar for Customer -->
+                <div style="background: var(--color-bg-cream); padding: 1rem 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+                  <div style="font-size: 0.78rem; font-weight: 800; color: var(--color-text-dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">2026 Genre Preferences</div>
+                  <div style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 0.65rem;">
+                    <div style="background: #1A5908; width: 45%;" title="Mystery & Thrillers 45%"></div>
+                    <div style="background: #91CE6C; width: 25%;" title="Romance & Drama 25%"></div>
+                    <div style="background: #FFC74F; width: 18%;" title="Classics 18%"></div>
+                    <div style="background: #2F4231; width: 12%;" title="Sci-Fi & Fantasy 12%"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--color-text-muted); font-weight: 700;">
+                    <span style="color: #1A5908;">● Mystery 45%</span>
+                    <span style="color: #558d38;">● Romance 25%</span>
+                    <span style="color: #B06000;">● Classics 18%</span>
+                    <span style="color: #2F4231;">● Fantasy 12%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Reader Actions -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1rem;">
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span>
+                  <span>Update Pages</span>
+                </button>
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">qr_code</span>
+                  <span>Lounge Pass</span>
+                </button>
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'" style="font-size: 0.78rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">forum</span>
+                  <span>Club Chat</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Real-time Reader Activity Feed -->
+            <div class="dashboard-table-card" style="margin-bottom: 0;">
+              <div class="table-header-row">
+                <div>
+                  <h3 style="font-size: 1.3rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                    Live Activity Stream
+                  </h3>
+                  <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0;">Your shipments, reading achievements & club invites.</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 800; color: #1a5908; background: rgba(145, 206, 108, 0.15); padding: 0.25rem 0.6rem; border-radius: 100px;">
+                  <span class="status-live-dot" style="width: 6px; height: 6px;"></span>
+                  <span>LIVE</span>
+                </div>
+              </div>
+
+              <div class="activity-feed-list">
+                <div class="activity-item">
+                  <div class="activity-icon green"><span class="material-symbols-outlined" style="font-size: 19px;">local_shipping</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Curated Box #STK-8921 Shipped</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">3 Hardcovers • In Transit via DHL Express</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">15m ago</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon blue"><span class="material-symbols-outlined" style="font-size: 19px;">auto_stories</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Reading Milestone Reached</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Completed The Pisces • Rated ★★★★★</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">2h ago</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon gold"><span class="material-symbols-outlined" style="font-size: 19px;">coffee</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Flagship Cafe Pass Redeemed</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Artisanal Flat White • +50 Loyalty Points</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">Yesterday</span>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon green"><span class="material-symbols-outlined" style="font-size: 19px;">group</span></div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark);">Curator Circle Invitation</div>
+                    <div style="color: var(--color-text-muted); font-size: 0.74rem;">Live Author Q&A with Tahereh Mafi</div>
+                  </div>
+                  <span style="font-size: 0.7rem; color: var(--color-text-muted); font-weight: 700; white-space: nowrap;">2d ago</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Operational Highlights Row -->
+          <div class="overview-subcards-grid">
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(145, 206, 108, 0.18); color: #1a5908; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">verified</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Tier Status</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">Bibliophile Elite VIP</strong>
+              </div>
+            </div>
+
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(255, 199, 79, 0.2); color: #B06000; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">event</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Next Book Club</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">Oct 18 • 7:00 PM EST</strong>
+              </div>
+            </div>
+
+            <div class="overview-subcard">
+              <div style="width: 42px; height: 42px; border-radius: 10px; background: #E8F0FE; color: #1A73E8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span class="material-symbols-outlined" style="font-size: 22px;">local_cafe</span>
+              </div>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 800;">Flagship Pass</div>
+                <strong style="font-size: 1.05rem; color: var(--color-text-dark);">Unlimited Cafe Access</strong>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- SECTION 2: DIGITAL BOOKSHELF -->
+        <section id="section-bookshelf" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Digital Bookshelf & Personal Library
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Your curated collection of active reads, finished volumes, and wishlist bookmarks.
+                </p>
+              </div>
+              
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Filter Pills -->
+                <div class="dashboard-tab-filters">
+                  <button class="dashboard-tab-btn active" onclick="filterBookshelf('all', this)">All (12)</button>
+                  <button class="dashboard-tab-btn" onclick="filterBookshelf('reading', this)">Currently Reading (2)</button>
+                  <button class="dashboard-tab-btn" onclick="filterBookshelf('completed', this)">Completed (8)</button>
+                  <button class="dashboard-tab-btn" onclick="filterBookshelf('want', this)">Want to Read (2)</button>
+                </div>
+
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'" style="display: flex; align-items: center; gap: 0.35rem;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                  <span>Log New Volume</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bookshelf Grid -->
+            <div class="product-grid-4" id="customerBookshelfGrid">
+              
+              <!-- Book 1: Little Disasters -->
+              <div class="product-card" data-shelf-status="reading" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-1.webp" alt="Little Disasters">
+                    <span style="position: absolute; top: 10px; right: 10px; background: var(--color-primary); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">READING</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">Little Disasters</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Randall Klein • Hardcover</div>
+                  
+                  <!-- Reading progress track -->
+                  <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.2rem;">
+                      <span>Pg 261 / 384</span>
+                      <span style="color: var(--color-primary);">68%</span>
+                    </div>
+                    <div class="genre-bar-track" style="height: 6px;"><div class="genre-bar-fill" style="width: 68%;"></div></div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1; padding: 0.4rem;" onclick="window.location.href='404.html'">Update Log</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'"><span class="material-symbols-outlined" style="font-size: 16px;">forum</span></button>
+                </div>
+              </div>
+
+              <!-- Book 2: The Pisces -->
+              <div class="product-card" data-shelf-status="completed" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-2.webp" alt="The Pisces">
+                    <span style="position: absolute; top: 10px; right: 10px; background: #22c55e; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">COMPLETED</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">The Pisces</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Melissa Broder • Paperback</div>
+                  <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.75rem;">★★★★★ <span style="color: var(--color-text-muted); font-size: 0.75rem;">(5.0)</span></div>
+                </div>
+                <button class="btn btn-sm btn-outline-dark" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">View Review</button>
+              </div>
+
+              <!-- Book 3: Gulliver's Travels -->
+              <div class="product-card" data-shelf-status="completed" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-3.webp" alt="Gulliver's Travels">
+                    <span style="position: absolute; top: 10px; right: 10px; background: #22c55e; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">COMPLETED</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">Gulliver’s Travels</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Jonathan Swift • Collector Ed.</div>
+                  <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.75rem;">★★★★☆ <span style="color: var(--color-text-muted); font-size: 0.75rem;">(4.0)</span></div>
+                </div>
+                <button class="btn btn-sm btn-outline-dark" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">View Review</button>
+              </div>
+
+              <!-- Book 4: These Infinite Threads -->
+              <div class="product-card" data-shelf-status="completed" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-9.webp" alt="These Infinite Threads">
+                    <span style="position: absolute; top: 10px; right: 10px; background: #22c55e; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">COMPLETED</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">These Infinite Threads</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Tahereh Mafi • Hardcover</div>
+                  <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.75rem;">★★★★★ <span style="color: var(--color-text-muted); font-size: 0.75rem;">(5.0)</span></div>
+                </div>
+                <button class="btn btn-sm btn-outline-dark" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">View Review</button>
+              </div>
+
+              <!-- Book 5: Not In Love -->
+              <div class="product-card" data-shelf-status="reading" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-5.webp" alt="Not In Love">
+                    <span style="position: absolute; top: 10px; right: 10px; background: var(--color-primary); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">READING</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">Not In Love</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Ali Hazelwood • STEM Romance</div>
+                  
+                  <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.2rem;">
+                      <span>Pg 85 / 384</span>
+                      <span style="color: var(--color-primary);">22%</span>
+                    </div>
+                    <div class="genre-bar-track" style="height: 6px;"><div class="genre-bar-fill" style="width: 22%;"></div></div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1; padding: 0.4rem;" onclick="window.location.href='404.html'">Update Log</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'"><span class="material-symbols-outlined" style="font-size: 16px;">forum</span></button>
+                </div>
+              </div>
+
+              <!-- Book 6: The Blood Between Us -->
+              <div class="product-card" data-shelf-status="want" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-4.webp" alt="The Blood Between Us">
+                    <span style="position: absolute; top: 10px; right: 10px; background: var(--color-accent-gold); color: #111d14; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">QUEUE</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">The Blood Between Us</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Zac Brewer • Mystery Thriller</div>
+                  <div style="color: var(--color-text-muted); font-size: 0.8rem; margin-bottom: 0.75rem;">In Next Up Reading Queue</div>
+                </div>
+                <button class="btn btn-sm btn-forest" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">Start Reading</button>
+              </div>
+
+              <!-- Book 7: A Witch's Guide -->
+              <div class="product-card" data-shelf-status="completed" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-6.webp" alt="A Witch's Guide">
+                    <span style="position: absolute; top: 10px; right: 10px; background: #22c55e; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">COMPLETED</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">A Witch’s Guide</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Aaron Blabey • Hardcover</div>
+                  <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.75rem;">★★★★★ <span style="color: var(--color-text-muted); font-size: 0.75rem;">(4.8)</span></div>
+                </div>
+                <button class="btn btn-sm btn-outline-dark" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">View Review</button>
+              </div>
+
+              <!-- Book 8: Tween Night -->
+              <div class="product-card" data-shelf-status="want" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap" style="position: relative;">
+                    <img src="images/book-12.webp" alt="Tween Night">
+                    <span style="position: absolute; top: 10px; right: 10px; background: var(--color-accent-gold); color: #111d14; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 100px;">QUEUE</span>
+                  </div>
+                  <h4 style="font-size: 1.15rem; margin-top: 0.75rem; margin-bottom: 0.2rem;">Tween Night</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.6rem;">Sarah J. Maas • Epic Fantasy</div>
+                  <div style="color: var(--color-text-muted); font-size: 0.8rem; margin-bottom: 0.75rem;">Arriving in October Boxset</div>
+                </div>
+                <button class="btn btn-sm btn-forest" style="width: 100%; padding: 0.4rem;" onclick="window.location.href='404.html'">Start Reading</button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: ORDERS & SHIPMENTS -->
+        <section id="section-orders" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  My Orders & Curated Parcels
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Track real-time dispatches, monthly subscription boxsets, and purchase receipts.
+                </p>
+              </div>
+              
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-forest" onclick="filterOrdersByStatus('all', this)">All (4)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('shipped', this)">Shipped (1)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="filterOrdersByStatus('completed', this)">Delivered (3)</button>
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+                  <span>Export History</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Order #</th>
+                    <th>Parcel Description</th>
+                    <th>Order Date</th>
+                    <th>Total Paid</th>
+                    <th>Fulfillment Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="customer-orders-table-body">
+                  <tr data-status="shipped">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-8921</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="images/membership-box.webp" alt="Box" style="width: 38px; height: 38px; object-fit: cover; border-radius: 6px;">
+                        <div>
+                          <strong>October Curated Member Box</strong>
+                          <div style="font-size: 0.75rem; color: var(--color-text-muted);">3 Collector Editions + Wax Sealed Letter</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Oct 1, 2026</td>
+                    <td><strong style="color: var(--color-primary);">$0.00</strong> <span style="font-size: 0.75rem; color: var(--color-text-muted);">(VIP Perk)</span></td>
+                    <td><span class="status-pill shipped"><span class="material-symbols-outlined" style="font-size: 12px;">local_shipping</span> Shipped via DHL</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-forest" style="padding: 0.28rem 0.75rem; font-size: 0.78rem;" onclick="window.location.href='404.html'">Track Parcel</button>
+                    </td>
+                  </tr>
+
+                  <tr data-status="completed">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-8419</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="images/book-2.webp" alt="The Pisces" style="width: 32px; height: 44px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                          <strong>The Pisces & Not In Love</strong>
+                          <div style="font-size: 0.75rem; color: var(--color-text-muted);">Signed Author Editions • Hardcover</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Sep 14, 2026</td>
+                    <td><strong>$73.00</strong></td>
+                    <td><span class="status-pill completed"><span class="material-symbols-outlined" style="font-size: 12px;">check_circle</span> Delivered</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.28rem 0.75rem; font-size: 0.78rem;" onclick="window.location.href='404.html'">Download PDF</button>
+                    </td>
+                  </tr>
+
+                  <tr data-status="completed">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-7932</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="images/book-9.webp" alt="Threads" style="width: 32px; height: 44px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                          <strong>September Curated Member Box</strong>
+                          <div style="font-size: 0.75rem; color: var(--color-text-muted);">These Infinite Threads Collector Box</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Sep 1, 2026</td>
+                    <td><strong style="color: var(--color-primary);">$0.00</strong> <span style="font-size: 0.75rem; color: var(--color-text-muted);">(VIP Perk)</span></td>
+                    <td><span class="status-pill completed"><span class="material-symbols-outlined" style="font-size: 12px;">check_circle</span> Delivered</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.28rem 0.75rem; font-size: 0.78rem;" onclick="window.location.href='404.html'">Download PDF</button>
+                    </td>
+                  </tr>
+
+                  <tr data-status="completed">
+                    <td><strong style="color: var(--color-primary); font-family: monospace; font-size: 0.9rem;">#STK-7201</strong></td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="images/book-3.webp" alt="Gulliver" style="width: 32px; height: 44px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                          <strong>Gulliver’s Travels (Leather-Bound)</strong>
+                          <div style="font-size: 0.75rem; color: var(--color-text-muted);">Salem Flagship In-Store Purchase</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Aug 18, 2026</td>
+                    <td><strong>$23.00</strong></td>
+                    <td><span class="status-pill completed"><span class="material-symbols-outlined" style="font-size: 12px;">check_circle</span> Delivered</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-outline-dark" style="padding: 0.28rem 0.75rem; font-size: 0.78rem;" onclick="window.location.href='404.html'">View Receipt</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: MEMBERSHIP CIRCLE & PERKS -->
+        <section id="section-membership" class="dashboard-section">
+          <div class="dashboard-table-card">
+            
+            <!-- VIP Hero Banner Card -->
+            <div style="background: linear-gradient(135deg, #1A5908 0%, #111d14 100%); color: var(--color-white); padding: 2.25rem 2.5rem; border-radius: 14px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border: 1px solid rgba(145, 206, 108, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+              <div>
+                <span class="section-subtitle light" style="margin-bottom: 0.6rem;">Active Reader Circle Tier</span>
+                <h2 style="font-size: 2.2rem; color: var(--color-accent-lime); margin-bottom: 0.35rem; font-family: var(--font-heading);">Bibliophile Elite Tier</h2>
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; margin: 0;">
+                  Your annual pass renews on <strong>January 14, 2027</strong> ($149 / year). All VIP benefits active.
+                </p>
+              </div>
+              <div style="display: flex; gap: 0.75rem;">
+                <button class="btn btn-primary" onclick="window.location.href='404.html'" style="display: flex; align-items: center; gap: 0.4rem; padding: 0.75rem 1.25rem;">
+                  <span class="material-symbols-outlined" style="font-size: 20px;">qr_code_2</span>
+                  <span>Show Lounge QR Code</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-header-row" style="margin-bottom: 1.25rem;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Your Elite Tier Privileges
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">Exclusive amenities included in your Bibliophile Elite subscription.</p>
+              </div>
+            </div>
+
+            <!-- 4 Tier Privileges Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+              <div style="background: var(--color-bg-cream); padding: 1.6rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(145, 206, 108, 0.2); color: var(--color-primary); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">percent</span>
+                </div>
+                <strong style="font-size: 1.15rem; color: var(--color-text-dark); display: block; margin-bottom: 0.4rem;">25% Storewide Discount</strong>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.85rem;">Automatically calculated at web checkout and at in-store flagship registers.</p>
+                <span class="status-pill completed">Always Applied</span>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.6rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(255, 199, 79, 0.2); color: #B06000; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">local_cafe</span>
+                </div>
+                <strong style="font-size: 1.15rem; color: var(--color-text-dark); display: block; margin-bottom: 0.4rem;">Unlimited Cafe Lounge Access</strong>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.85rem;">Complimentary espresso, pour-overs, and cold brew at all flagship stores.</p>
+                <span class="status-pill completed">Unlimited Drinks</span>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.6rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="width: 44px; height: 44px; border-radius: 10px; background: #E8F0FE; color: #1A73E8; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">card_giftcard</span>
+                </div>
+                <strong style="font-size: 1.15rem; color: var(--color-text-dark); display: block; margin-bottom: 0.4rem;">Monthly Curated Boxset</strong>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.85rem;">Dispatched on the 1st of every calendar month with wax seal & curator letters.</p>
+                <span class="status-pill shipped">Next: Oct 15</span>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.6rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                <div style="width: 44px; height: 44px; border-radius: 10px; background: #FCE8E6; color: #C5221F; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                  <span class="material-symbols-outlined" style="font-size: 24px;">history_edu</span>
+                </div>
+                <strong style="font-size: 1.15rem; color: var(--color-text-dark); display: block; margin-bottom: 0.4rem;">VIP Author Salons & First Editions</strong>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.85rem;">Private live Q&As, signed collector edition reservations, and early drop access.</p>
+                <span class="status-pill completed">Priority RSVP</span>
+              </div>
+            </div>
+
+            <!-- Loyalty Rewards Catalog -->
+            <div class="table-header-row" style="margin-bottom: 1.25rem;">
+              <div>
+                <h3 style="font-size: 1.35rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Redeem Loyalty Points (1,450 Pts Available)
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">Exchange earned reading points for instant store credits & merchandise.</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.2rem;">$10 Store Credit</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-primary); font-weight: 700;">Cost: 500 Points</span>
+                </div>
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'">Redeem</button>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.2rem;">$25 Store Credit</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-primary); font-weight: 700;">Cost: 1,000 Points</span>
+                </div>
+                <button class="btn btn-sm btn-forest" onclick="window.location.href='404.html'">Redeem</button>
+              </div>
+
+              <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.2rem;">Embroidered Tote Bag</strong>
+                  <span style="font-size: 0.8rem; color: var(--color-primary); font-weight: 700;">Cost: 1,500 Points</span>
+                </div>
+                <button class="btn btn-sm btn-outline-dark" onclick="window.location.href='404.html'">50 Pts Left</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 5: SAVED WISHLIST -->
+        <section id="section-wishlist" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Saved Wishlist & Anticipated Releases
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
+                  Volumes you have saved for future orders, member boxes, or in-store reservation.
+                </p>
+              </div>
+              <a href="404.html" class="btn btn-sm btn-forest" style="display: flex; align-items: center; gap: 0.35rem;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">add_shopping_cart</span>
+                <span>Browse Store Catalogue</span>
+              </a>
+            </div>
+
+            <!-- Wishlist Grid -->
+            <div class="product-grid-4">
+              <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap">
+                    <img src="images/book-7.webp" alt="Broken Prince">
+                  </div>
+                  <h4 style="font-size: 1.1rem; margin-top: 0.6rem; margin-bottom: 0.2rem;">Broken Prince</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Ali Hazelwood • Mystery</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">$29.00</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1;" onclick="window.location.href='404.html'">Add to Cart</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'">✕</button>
+                </div>
+              </div>
+
+              <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap">
+                    <img src="images/book-8.webp" alt="Indigo">
+                  </div>
+                  <h4 style="font-size: 1.1rem; margin-top: 0.6rem; margin-bottom: 0.2rem;">The Many Dates of Indigo</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Francesca May • Romance</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">$21.00</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1;" onclick="window.location.href='404.html'">Add to Cart</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'">✕</button>
+                </div>
+              </div>
+
+              <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap">
+                    <img src="images/book-10.webp" alt="Acorns">
+                  </div>
+                  <h4 style="font-size: 1.1rem; margin-top: 0.6rem; margin-bottom: 0.2rem;">All the Acorns</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Jonathan Swift • Fable</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">$19.00</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1;" onclick="window.location.href='404.html'">Add to Cart</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'">✕</button>
+                </div>
+              </div>
+
+              <div class="product-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="product-thumb-wrap">
+                    <img src="images/book-11.webp" alt="Clap When You Land">
+                  </div>
+                  <h4 style="font-size: 1.1rem; margin-top: 0.6rem; margin-bottom: 0.2rem;">Clap When You Land</h4>
+                  <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Elizabeth Acevedo • Drama</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">$22.00</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="btn btn-sm btn-forest" style="flex: 1;" onclick="window.location.href='404.html'">Add to Cart</button>
+                  <button class="btn btn-sm btn-outline-dark" style="padding: 0.4rem 0.6rem;" onclick="window.location.href='404.html'">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: PROFILE & PREFERENCES -->
+        <section id="section-profile" class="dashboard-section">
+          <div class="dashboard-table-card">
+            <div class="table-header-row">
+              <div>
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); color: var(--color-text-dark); margin-bottom: 0.2rem;">
+                  Personal Profile & Delivery Sanctuary
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">Manage your contact details, shipping destination, and curated reading tastes.</p>
+              </div>
+            </div>
+
+            <form id="customerProfileForm" onsubmit="handleSaveProfile(event)" novalidate>
+              <div class="settings-grid-2">
+                <!-- Personal Identity Card -->
+                <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border);">
+                  <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--color-text-dark);">Reader Identity & Contact</h4>
+                  
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Full Name *</label>
+                    <input type="text" id="profileFullName" class="form-control" placeholder="Enter full name" required style="border-radius: 8px;">
+                    <div class="dashboard-field-error" id="err-profileFullName"></div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Email Address *</label>
+                    <input type="email" id="profileEmail" class="form-control" placeholder="Enter email address" required style="border-radius: 8px;">
+                    <div class="dashboard-field-error" id="err-profileEmail"></div>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Phone Number</label>
+                      <input type="tel" id="profilePhone" class="form-control" placeholder="e.g. +1 (555) 234-8901" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="err-profilePhone"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">2026 Annual Goal</label>
+                      <input type="number" id="profileAnnualGoal" class="form-control" placeholder="e.g. 30" style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="err-profileAnnualGoal"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Favorite Literary Genre *</label>
+                    <select id="profileFavGenre" class="form-control" style="border-radius: 8px;">
+                      <option value="" disabled selected>Select Favorite Genre</option>
+                      <option value="Mystery">Mystery & Psychological Thrillers</option>
+                      <option value="Romance">Romance & STEM Fiction</option>
+                      <option value="Fantasy">Epic Fantasy & Myth</option>
+                      <option value="Classics">Classic & Vintage Literature</option>
+                    </select>
+                    <div class="dashboard-field-error" id="err-profileFavGenre"></div>
+                  </div>
+                </div>
+
+                <!-- Shipping Destination Card -->
+                <div style="background: var(--color-bg-cream); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--color-text-dark);">Shipping Sanctuary Address</h4>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Street Address *</label>
+                      <input type="text" id="profileAddress" class="form-control" placeholder="Enter street address & apartment" required style="border-radius: 8px;">
+                      <div class="dashboard-field-error" id="err-profileAddress"></div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                      <div class="form-group">
+                        <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">City & State *</label>
+                        <input type="text" id="profileCity" class="form-control" placeholder="Enter city & state" required style="border-radius: 8px;">
+                        <div class="dashboard-field-error" id="err-profileCity"></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Postal / ZIP Code *</label>
+                        <input type="text" id="profileZip" class="form-control" placeholder="Enter postal / ZIP code" required style="border-radius: 8px;">
+                        <div class="dashboard-field-error" id="err-profileZip"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                      <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Curator Delivery Notes</label>
+                      <input type="text" id="profileDeliveryNotes" class="form-control" placeholder="e.g. Leave at front porch or concierge (optional)" style="border-radius: 8px;">
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-forest" style="width: 100%; padding: 0.85rem; font-weight: 700; border-radius: 8px;">
+                    Save Profile & Sanctuary Settings
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="customerToastContainer" class="toast-container"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab switching for Customer Sections
+    function switchDashboardTab(tabId) {
+      document.querySelectorAll('.dashboard-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.dashboard-nav-link').forEach(link => link.classList.remove('active'));
+
+      const targetSection = document.getElementById('section-' + tabId);
+      const targetNav = document.getElementById('nav-' + tabId);
+      const headerTitle = document.getElementById('headerTitle');
+
+      if (targetSection) targetSection.classList.add('active');
+      if (targetNav) targetNav.classList.add('active');
+
+      const titles = {
+        'overview': 'Customer Reading Lounge',
+        'bookshelf': 'Digital Bookshelf & Personal Library',
+        'orders': 'Orders & Curated Shipments',
+        'membership': 'Bibliophile Elite Privileges & Perks',
+        'wishlist': 'Saved Wishlist & Anticipated Volumes',
+        'profile': 'Profile & Delivery Sanctuary'
+      };
+
+      if (headerTitle && titles[tabId]) {
+        headerTitle.textContent = titles[tabId];
+      }
+
+      // Close mobile sidebar if open
+      const sidebar = document.getElementById('dashboardSidebar');
+      const overlay = document.getElementById('dashboardOverlay');
+      if (sidebar) sidebar.classList.remove('is-open');
+      if (overlay) overlay.classList.remove('is-open');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile Sidebar Toggle
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('dashboardSidebar');
+      const overlay = document.getElementById('dashboardOverlay');
+      if (sidebar) sidebar.classList.toggle('is-open');
+      if (overlay) overlay.classList.toggle('is-open');
+    }
+
+    // Modals
+    function openLogProgressModal() {
+      const modal = document.getElementById('log-progress-modal');
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeLogProgressModal() {
+      const modal = document.getElementById('log-progress-modal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    function openVipQrModal() {
+      const modal = document.getElementById('vip-qr-modal');
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeVipQrModal() {
+      const modal = document.getElementById('vip-qr-modal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    // Filter Bookshelf
+    function filterBookshelf(status, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll('.dashboard-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      const cards = document.querySelectorAll('#customerBookshelfGrid .product-card');
+      cards.forEach(card => {
+        if (status === 'all' || card.getAttribute('data-shelf-status') === status) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Filter Orders
+    function filterOrdersByStatus(status, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll('.btn').forEach(b => {
+          b.classList.remove('btn-forest');
+          b.classList.add('btn-outline-dark');
+        });
+        btn.classList.remove('btn-outline-dark');
+        btn.classList.add('btn-forest');
+      }
+
+      const rows = document.querySelectorAll('#customer-orders-table-body tr');
+      rows.forEach(r => {
+        if (status === 'all' || r.getAttribute('data-status') === status) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    // KPI Periods
+    function setKpiPeriod(btn, period) {
+      if (btn) {
+        btn.parentElement.querySelectorAll('.dashboard-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      const goalEl = document.getElementById('stat-goal');
+      const pagesEl = document.getElementById('stat-pages');
+      const pointsEl = document.getElementById('stat-points');
+      const boxesEl = document.getElementById('stat-boxes');
+
+      if (period === 'Today') {
+        if (goalEl) goalEl.textContent = '1 / 1';
+        if (pagesEl) pagesEl.textContent = '48';
+        if (pointsEl) pointsEl.textContent = '1,450 pts';
+        if (boxesEl) boxesEl.textContent = '1 Transit';
+      } else if (period === 'This Month') {
+        if (goalEl) goalEl.textContent = '3 / 4';
+        if (pagesEl) pagesEl.textContent = '860';
+        if (pointsEl) pointsEl.textContent = '1,450 pts';
+        if (boxesEl) boxesEl.textContent = '1 Box';
+      } else if (period === 'Year 2026') {
+        if (goalEl) goalEl.textContent = '24 / 30';
+        if (pagesEl) pagesEl.textContent = '7,820';
+        if (pointsEl) pointsEl.textContent = '1,450 pts';
+        if (boxesEl) boxesEl.textContent = '8 Boxes';
+      } else {
+        if (goalEl) goalEl.textContent = '52 / 60';
+        if (pagesEl) pagesEl.textContent = '18,400';
+        if (pointsEl) pointsEl.textContent = '3,200 pts';
+        if (boxesEl) boxesEl.textContent = '16 Boxes';
+      }
+      showToast(`Showing telemetry for: ${period}`);
+    }
+
+    // Handle Update Progress Form
+    function handleUpdateProgress(e) {
+      e.preventDefault();
+      const book = document.getElementById('progress-book-select').value;
+      const page = document.getElementById('progress-current-page').value;
+      const total = document.getElementById('progress-total-pages').value;
+      const pct = Math.round((page / total) * 100);
+
+      showToast(`Logged: "${book}" updated to Page ${page} (${pct}% completed)!`);
+      closeLogProgressModal();
+    }
+
+    // Form Validation Helpers
+    function showFieldError(fieldId, errorMsg) {
+      const input = document.getElementById(fieldId);
+      const errElem = document.getElementById('err-' + fieldId);
+      if (input) {
+        input.classList.add('is-invalid');
+        input.classList.remove('is-valid');
+      }
+      if (errElem) {
+        errElem.innerHTML = `<span class="material-symbols-outlined" style="font-size: 15px;">error</span> <span>${errorMsg}</span>`;
+        errElem.classList.add('visible');
+      }
+    }
+
+    function clearFieldError(fieldId) {
+      const input = document.getElementById(fieldId);
+      const errElem = document.getElementById('err-' + fieldId);
+      if (input) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      }
+      if (errElem) {
+        errElem.classList.remove('visible');
+      }
+    }
+
+    function validateProfileFullName() {
+      const el = document.getElementById('profileFullName');
+      const val = el ? el.value.trim() : '';
+      if (!val || val.length < 2) {
+        showFieldError('profileFullName', 'Please enter your full name (minimum 2 characters).');
+        return false;
+      }
+      clearFieldError('profileFullName');
+      return true;
+    }
+
+    function validateProfileEmail() {
+      const el = document.getElementById('profileEmail');
+      const val = el ? el.value.trim() : '';
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!val) {
+        showFieldError('profileEmail', 'Please enter your email address.');
+        return false;
+      }
+      if (!emailRegex.test(val)) {
+        showFieldError('profileEmail', 'Please enter a valid email address (e.g. name@example.com).');
+        return false;
+      }
+      clearFieldError('profileEmail');
+      return true;
+    }
+
+    function validateProfilePhone() {
+      const el = document.getElementById('profilePhone');
+      const val = el ? el.value.trim() : '';
+      if (val) {
+        const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]{7,15}$/;
+        if (!phoneRegex.test(val)) {
+          showFieldError('profilePhone', 'Please enter a valid phone number (7-15 digits).');
+          return false;
+        }
+      }
+      clearFieldError('profilePhone');
+      return true;
+    }
+
+    function validateProfileAnnualGoal() {
+      const el = document.getElementById('profileAnnualGoal');
+      const val = el ? el.value.trim() : '';
+      if (val) {
+        const num = parseInt(val, 10);
+        if (isNaN(num) || num < 1 || num > 365) {
+          showFieldError('profileAnnualGoal', 'Please enter a realistic annual reading goal (1 to 365 books).');
+          return false;
+        }
+      }
+      clearFieldError('profileAnnualGoal');
+      return true;
+    }
+
+    function validateProfileFavGenre() {
+      const el = document.getElementById('profileFavGenre');
+      const val = el ? el.value : '';
+      if (!val) {
+        showFieldError('profileFavGenre', 'Please select your preferred literary genre.');
+        return false;
+      }
+      clearFieldError('profileFavGenre');
+      return true;
+    }
+
+    function validateProfileAddress() {
+      const el = document.getElementById('profileAddress');
+      const val = el ? el.value.trim() : '';
+      if (!val || val.length < 5) {
+        showFieldError('profileAddress', 'Please enter your complete street address & apartment/suite (min. 5 chars).');
+        return false;
+      }
+      clearFieldError('profileAddress');
+      return true;
+    }
+
+    function validateProfileCity() {
+      const el = document.getElementById('profileCity');
+      const val = el ? el.value.trim() : '';
+      if (!val || val.length < 2) {
+        showFieldError('profileCity', 'Please enter your city and state.');
+        return false;
+      }
+      clearFieldError('profileCity');
+      return true;
+    }
+
+    function validateProfileZip() {
+      const el = document.getElementById('profileZip');
+      const val = el ? el.value.trim() : '';
+      const zipRegex = /^[a-zA-Z0-9\s-]{3,10}$/;
+      if (!val) {
+        showFieldError('profileZip', 'Please enter your postal / ZIP code.');
+        return false;
+      }
+      if (!zipRegex.test(val)) {
+        showFieldError('profileZip', 'Please enter a valid ZIP or postal code (3-10 characters).');
+        return false;
+      }
+      clearFieldError('profileZip');
+      return true;
+    }
+
+    function bindProfileValidationListeners() {
+      const fn = document.getElementById('profileFullName');
+      const em = document.getElementById('profileEmail');
+      const ph = document.getElementById('profilePhone');
+      const gl = document.getElementById('profileAnnualGoal');
+      const gr = document.getElementById('profileFavGenre');
+      const ad = document.getElementById('profileAddress');
+      const ct = document.getElementById('profileCity');
+      const zp = document.getElementById('profileZip');
+
+      if (fn) { fn.addEventListener('input', validateProfileFullName); fn.addEventListener('blur', validateProfileFullName); }
+      if (em) { em.addEventListener('input', validateProfileEmail); em.addEventListener('blur', validateProfileEmail); }
+      if (ph) { ph.addEventListener('input', validateProfilePhone); ph.addEventListener('blur', validateProfilePhone); }
+      if (gl) { gl.addEventListener('input', validateProfileAnnualGoal); gl.addEventListener('blur', validateProfileAnnualGoal); }
+      if (gr) { gr.addEventListener('change', validateProfileFavGenre); gr.addEventListener('blur', validateProfileFavGenre); }
+      if (ad) { ad.addEventListener('input', validateProfileAddress); ad.addEventListener('blur', validateProfileAddress); }
+      if (ct) { ct.addEventListener('input', validateProfileCity); ct.addEventListener('blur', validateProfileCity); }
+      if (zp) { zp.addEventListener('input', validateProfileZip); zp.addEventListener('blur', validateProfileZip); }
+    }
+
+    // Handle Profile Save
+    function handleSaveProfile(e) {
+      e.preventDefault();
+
+      const vName = validateProfileFullName();
+      const vEmail = validateProfileEmail();
+      const vPhone = validateProfilePhone();
+      const vGoal = validateProfileAnnualGoal();
+      const vGenre = validateProfileFavGenre();
+      const vAddr = validateProfileAddress();
+      const vCity = validateProfileCity();
+      const vZip = validateProfileZip();
+
+      if (!vName || !vEmail || !vPhone || !vGoal || !vGenre || !vAddr || !vCity || !vZip) {
+        const firstInvalid = document.querySelector('#customerProfileForm .is-invalid');
+        if (firstInvalid) {
+          firstInvalid.focus();
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        showToast('Please fix the highlighted errors before saving.', true);
+        return false;
+      }
+
+      const name = document.getElementById('profileFullName').value.trim();
+      const email = document.getElementById('profileEmail').value.trim();
+      const phone = document.getElementById('profilePhone').value.trim();
+      const goal = document.getElementById('profileAnnualGoal').value.trim();
+      const genre = document.getElementById('profileFavGenre').value;
+      const address = document.getElementById('profileAddress').value.trim();
+      const city = document.getElementById('profileCity').value.trim();
+      const zip = document.getElementById('profileZip').value.trim();
+      const notes = document.getElementById('profileDeliveryNotes').value.trim();
+
+      try {
+        const currentUser = { name, email, phone, goal, genre, address, city, zip, notes, role: 'customer' };
+        localStorage.setItem('stackly_current_user', JSON.stringify(currentUser));
+        localStorage.setItem('stackly_customer_user', JSON.stringify(currentUser));
+      } catch(err) {}
+
+      // Redirect directly to 404 error page after entering all valid details
+      window.location.href = '404.html';
+      return false;
+    }
+
+    // Dynamic Header User Sync
+    function loadCustomerHeaderUser() {
+      let savedUser = null;
+      try {
+        savedUser = JSON.parse(localStorage.getItem('stackly_customer_user') || localStorage.getItem('stackly_current_user') || 'null');
+      } catch(e) {}
+
+      const nameEl = document.getElementById('customerHeaderName');
+      const emailEl = document.getElementById('customerHeaderEmail');
+      const avatarEl = document.getElementById('customerHeaderAvatar');
+      const badgeEl = document.getElementById('customerUserBadge');
+      const welcomeName = document.getElementById('welcomeUserName');
+      const qrName = document.getElementById('qrModalUserName');
+      const profileNameInput = document.getElementById('profileFullName');
+      const profileEmailInput = document.getElementById('profileEmail');
+
+      if (savedUser && (savedUser.name || savedUser.email)) {
+        const displayName = savedUser.name || 'Eleanor Vance';
+        const displayEmail = savedUser.email || 'Bibliophile Elite VIP';
+        
+        if (nameEl) nameEl.textContent = displayName;
+        if (welcomeName) welcomeName.textContent = displayName.split(' ')[0];
+        if (qrName) qrName.textContent = displayName;
+        if (badgeEl) badgeEl.title = `${displayName} (${displayEmail})`;
+
+        if (avatarEl) {
+          const parts = displayName.trim().split(/\s+/);
+          let initials = '';
+          if (parts.length > 1 && parts[0] && parts[parts.length - 1]) {
+            initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+          } else if (parts[0]) {
+            initials = parts[0].slice(0, 2).toUpperCase();
+          } else {
+            initials = 'EV';
+          }
+          avatarEl.textContent = initials;
+        }
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCustomerHeaderUser();
+      bindProfileValidationListeners();
+    });
+  </script>
+</body>
+</html>

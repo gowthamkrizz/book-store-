@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Circle – Stackly Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+</head>
+<body class="bg-cream">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <img src="images/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="membership.html" class="nav-link active">Membership</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+        <div class="nav-item"><a href="shop.html" class="nav-link">Shop</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-header-login" title="Account Login">
+          <span class="material-symbols-outlined">person</span>
+          <span>Login</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer (Fullscreen Luxury Menu) -->
+  <div class="drawer-overlay"></div>
+  <div class="mobile-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="header-logo"><img src="images/logo.webp" alt="Stackly Logo"></a>
+      <button class="drawer-close-btn" aria-label="Close menu">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html"><span>Home</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="shop.html"><span>Shop Books</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="membership.html"><span>Membership Circle</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="about.html"><span>About Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="contact.html"><span>Contact Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="mobile-drawer-login-btn">
+          <span class="material-symbols-outlined">person</span>
+          <span>Sign In / Member Portal</span>
+        </a>
+        <div class="mobile-drawer-info">
+          <span>✦ Rare & Bestselling Books • Free Delivery $35+ ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 style="font-size: 1.5rem; font-weight: 600;">Your Reading Bag</h3>
+      <button class="cart-close-btn" aria-label="Close cart">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span class="cart-subtotal-val">$19.00</span>
+      </div>
+      <a href="shop.html" class="btn btn-forest" style="width: 100%; margin-bottom: 0.75rem;">Proceed to Checkout</a>
+      <a href="shop.html" class="btn btn-outline-dark" style="width: 100%;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 1: MEMBERSHIP HERO HEADER & BREADCRUMBS
+       ========================================================================= -->
+  <section class="page-hero membership-page-hero">
+    <div class="page-hero-ambient-glow"></div>
+    <div class="container relative-container">
+      <div class="breadcrumb-nav">
+        <a href="index.html">Home</a> <span>/</span> <span class="current">Membership</span>
+      </div>
+      <div class="membership-hero-pill">
+        <span class="pulse-dot"></span>
+        <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">workspace_premium</span>
+        <span>PATRON CIRCLE 2026</span>
+      </div>
+      <h1 class="page-hero-title">Unlimited Reading, <span class="hero-italic-highlight">Exclusive Privileges</span></h1>
+      <p class="page-hero-desc">
+        Elevate your reading lifestyle with curated monthly book parcels, private author salons, and member discounts across our entire catalogue.
+      </p>
+
+      <!-- Trust Badges Row -->
+      <div class="membership-hero-stats">
+        <div class="m-hero-stat">
+          <span class="m-stat-val">15,000+</span>
+          <span class="m-stat-lbl">Active Bibliophiles</span>
+        </div>
+        <div class="m-hero-divider"></div>
+        <div class="m-hero-stat">
+          <span class="m-stat-val">100% Free</span>
+          <span class="m-stat-lbl">Priority Shipping</span>
+        </div>
+        <div class="m-hero-divider"></div>
+        <div class="m-hero-stat">
+          <span class="m-stat-val">4.9 <span class="material-symbols-outlined" style="font-size: 1.15rem; color: #FFC74F; vertical-align: -2px;">star</span></span>
+          <span class="m-stat-lbl">Patron Rating (2.4k)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: MEMBERSHIP CORE BENEFITS (Privilege Cards)
+       ========================================================================= -->
+  <section class="section-padding bg-cream privileges-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">loyalty</span>
+          <span>PRIVILEGES</span>
+        </div>
+        <h2 class="section-title">Designed for <span class="blog-heading-accent">Serious Readers</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 600px; margin: 0.5rem auto 0 auto;">
+          Every tier unlocks bespoke literary delights, priority privileges, and bookstore sanctuary access.
+        </p>
+      </div>
+
+      <div class="product-grid-4 privileges-grid">
+        <!-- Benefit 1 -->
+        <div class="service-icon-box privilege-card" data-service="box">
+          <span class="service-card-num">01</span>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <span class="material-symbols-outlined">inventory_2</span>
+            </div>
+          </div>
+          <h3 class="service-title">Monthly Curated Box</h3>
+          <p class="service-desc">Receive 1 to 3 hardcover titles matched to your unique literary taste profile every month.</p>
+          <div class="service-card-footer">
+            <a href="404.html" class="service-link">
+              <span>View Box Details</span>
+              <span class="service-link-arrow material-symbols-outlined">redeem</span>
+            </a>
+          </div>
+          <div class="service-card-sheen"></div>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="service-icon-box privilege-card" data-service="shipping">
+          <span class="service-card-num">02</span>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <span class="material-symbols-outlined">local_shipping</span>
+            </div>
+          </div>
+          <h3 class="service-title">Free Express Shipping</h3>
+          <p class="service-desc">Zero delivery fees on all bookstore orders with guaranteed priority acid-free protective packaging.</p>
+          <div class="service-card-footer">
+            <a href="404.html" class="service-link">
+              <span>Delivery Guarantee</span>
+              <span class="service-link-arrow material-symbols-outlined">local_shipping</span>
+            </a>
+          </div>
+          <div class="service-card-sheen"></div>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="service-icon-box privilege-card" data-service="salons">
+          <span class="service-card-num">03</span>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <span class="material-symbols-outlined">podium</span>
+            </div>
+          </div>
+          <h3 class="service-title">VIP Author Salons</h3>
+          <p class="service-desc">Exclusive front-row access and digital streams for intimate author Q&As, signings, and retreats.</p>
+          <div class="service-card-footer">
+            <a href="404.html" class="service-link">
+              <span>Upcoming Salons</span>
+              <span class="service-link-arrow material-symbols-outlined">loyalty</span>
+            </a>
+          </div>
+          <div class="service-card-sheen"></div>
+        </div>
+
+        <!-- Benefit 4 -->
+        <div class="service-icon-box privilege-card" data-service="cafe">
+          <span class="service-card-num">04</span>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <span class="material-symbols-outlined">local_cafe</span>
+            </div>
+          </div>
+          <h3 class="service-title">Book Cafe Pass</h3>
+          <p class="service-desc">Enjoy complimentary artisan brew coffee and quiet lounge seating in our flagship sanctuary stores.</p>
+          <div class="service-card-footer">
+            <a href="404.html" class="service-link">
+              <span>Lounge Locations</span>
+              <span class="service-link-arrow material-symbols-outlined">event_seat</span>
+            </a>
+          </div>
+          <div class="service-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: TIERED PRICING PLANS
+       ========================================================================= -->
+  <section class="section-padding bg-beige pricing-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">payments</span>
+          <span>TIERED MEMBERSHIP</span>
+        </div>
+        <h2 class="section-title">Select Your <span class="blog-heading-accent">Reader Journey</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 600px; margin: 0.5rem auto 1.5rem auto;">
+          Simple transparent tiers. Upgrade, pause, or cancel anytime with one click.
+        </p>
+
+        <!-- Interactive Monthly / Annual Billing Switch -->
+        <div class="pricing-billing-switch-wrap">
+          <span class="billing-opt active" id="billing-monthly-btn">Monthly Billing</span>
+          <div class="billing-toggle-pill" id="billing-toggle" title="Toggle Billing Period">
+            <div class="toggle-knob"></div>
+          </div>
+          <span class="billing-opt" id="billing-annual-btn">
+            Annual Billing <span class="badge-save-pill">Save 20%</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Tier 1 -->
+        <div class="pricing-card">
+          <h3 class="pricing-tier-name">Reader Pass</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1rem;">For occasional weekend book enthusiasts.</p>
+          <div class="pricing-price">
+            <span class="price-currency">$</span><span class="price-val">0</span>
+            <span class="price-period">/ forever free</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>5% off all retail store purchases</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Access to public community forums</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Monthly digital reading newsletter</span>
+            </li>
+          </ul>
+          <a href="404.html" class="btn btn-outline-dark" style="width: 100%;">Get Started Free</a>
+        </div>
+
+        <!-- Tier 2 (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">MOST POPULAR</div>
+          <h3 class="pricing-tier-name" style="color: #A8E885;">Bookworm Tier</h3>
+          <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.75); margin-bottom: 1rem;">For dedicated readers seeking regular deliveries.</p>
+          <div class="pricing-price" style="color: var(--color-white);">
+            <span class="price-currency">$</span><span class="price-val price-tier-2" data-monthly="19" data-annual="15">19</span>
+            <span class="price-period price-period-tier-2">/ month</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span><strong>1 Curated Hardcover</strong> delivered monthly</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>15% discount on all store orders</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Free Worldwide Express Shipping</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Exclusive Author Salon Livestreams</span>
+            </li>
+          </ul>
+          <a href="404.html" class="btn btn-primary" style="width: 100%;">Join Bookworm Tier</a>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="pricing-card">
+          <h3 class="pricing-tier-name">Bibliophile Elite</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1rem;">The ultimate literary patron experience.</p>
+          <div class="pricing-price">
+            <span class="price-currency">$</span><span class="price-val price-tier-3" data-monthly="149" data-annual="119">149</span>
+            <span class="price-period price-period-tier-3">/ year</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span><strong>3 Collector Hardcovers</strong> per box</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>25% Lifetime Catalogue Discount</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Hand-Signed First Edition Guarantee</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span class="material-symbols-outlined check-icon">check_circle</span>
+              <span>Free Artisan Coffee in Flagship Cafes</span>
+            </li>
+          </ul>
+          <a href="404.html" class="btn btn-forest" style="width: 100%;">Become an Elite Member</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: PERKS COMPARISON MATRIX (Luxury Interactive Grid)
+       ========================================================================= -->
+  <section class="section-padding bg-cream matrix-luxury-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="matrix-ambient-glow matrix-glow-1"></div>
+    <div class="matrix-ambient-glow matrix-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">table_chart</span>
+          <span>TIER COMPARISON</span>
+        </div>
+        <h2 class="section-title">Membership <span class="blog-heading-accent">Matrix</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 620px; margin: 0.5rem auto 0 auto;">
+          Compare tier privileges side-by-side and choose your personal literary sanctuary level.
+        </p>
+      </div>
+
+      <div class="matrix-card-container">
+        <div class="perks-table-wrap">
+          <table class="perks-table-modern">
+            <thead>
+              <tr>
+                <th class="matrix-col-feature">
+                  <span class="matrix-head-label">Features & Privileges</span>
+                  <span class="matrix-head-sub">Included across all tiers</span>
+                </th>
+                <th class="matrix-col-tier">
+                  <div class="tier-head-badge">Free</div>
+                  <h4 class="tier-head-title">Reader Pass</h4>
+                  <div class="tier-head-price">$0 <span>/ free</span></div>
+                </th>
+                <th class="matrix-col-tier matrix-featured-column">
+                  <div class="tier-popular-ribbon">
+                    <span class="material-symbols-outlined ribbon-star">star</span>
+                    <span>MOST POPULAR</span>
+                  </div>
+                  <h4 class="tier-head-title text-lime">Bookworm Tier</h4>
+                  <div class="tier-head-price text-white">$19 <span>/ month</span></div>
+                </th>
+                <th class="matrix-col-tier">
+                  <div class="tier-head-badge gold">VIP Patron</div>
+                  <h4 class="tier-head-title">Bibliophile Elite</h4>
+                  <div class="tier-head-price">$149 <span>/ year</span></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1: Physical Book Parcel -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">inventory_2</span>
+                    <div>
+                      <strong class="feature-name">Monthly Physical Book Parcel</strong>
+                      <span class="feature-desc">Hardcovers handpicked by resident editors</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-inactive">
+                    <span class="material-symbols-outlined">remove</span>
+                  </span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-pill-active">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <strong>1 Curated Hardcover</strong>
+                  </span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-elite">
+                    <span class="material-symbols-outlined">workspace_premium</span>
+                    <strong>3 Collector Editions</strong>
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Row 2: Catalogue Discount -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">percent</span>
+                    <div>
+                      <strong class="feature-name">Storewide Catalogue Discount</strong>
+                      <span class="feature-desc">Valid on all new releases, classics & gift sets</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-discount-pill">5% OFF</span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-discount-pill featured">15% OFF</span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-discount-pill elite">25% OFF</span>
+                </td>
+              </tr>
+
+              <!-- Row 3: Priority Shipping -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">local_shipping</span>
+                    <div>
+                      <strong class="feature-name">Priority Express Shipping</strong>
+                      <span class="feature-desc">Acid-free packaging with tracked delivery</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-text-sub">Standard ($4.99)</span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-pill-active">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <strong>Free Worldwide</strong>
+                  </span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-elite">
+                    <span class="material-symbols-outlined">bolt</span>
+                    <strong>Free Same-Day Courier</strong>
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Row 4: Signed Author Prints -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">history_edu</span>
+                    <div>
+                      <strong class="feature-name">Hand-Signed Author Prints</strong>
+                      <span class="feature-desc">Archival foil-stamped bookplates & signatures</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-inactive">
+                    <span class="material-symbols-outlined">remove</span>
+                  </span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-badge-soft">Quarterly Drop</span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-elite">
+                    <span class="material-symbols-outlined">verified</span>
+                    <strong>Guaranteed Every Box</strong>
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Row 5: Cafe Coffee Pass -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">local_cafe</span>
+                    <div>
+                      <strong class="feature-name">Flagship Cafe Coffee Pass</strong>
+                      <span class="feature-desc">Complimentary artisan brew in sanctuary lounges</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-inactive">
+                    <span class="material-symbols-outlined">remove</span>
+                  </span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-badge-soft">2 Free Drinks / Mo</span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-elite">
+                    <span class="material-symbols-outlined">local_cafe</span>
+                    <strong>Unlimited Brews</strong>
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Row 6: Digital Bookshelf & Salons -->
+              <tr class="matrix-row">
+                <td class="feature-cell">
+                  <div class="feature-title-wrap">
+                    <span class="material-symbols-outlined feature-icon">podium</span>
+                    <div>
+                      <strong class="feature-name">VIP Author Salons & Livestreams</strong>
+                      <span class="feature-desc">Interactive Q&A masterclasses with novelists</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-text-sub">Public Recordings</span>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <span class="matrix-pill-active">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <strong>Live Front-Row</strong>
+                  </span>
+                </td>
+                <td class="tier-cell">
+                  <span class="matrix-pill-elite">
+                    <span class="material-symbols-outlined">workspace_premium</span>
+                    <strong>Backstage VIP Passes</strong>
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Action Row -->
+              <tr class="matrix-action-row">
+                <td class="feature-cell">
+                  <span class="matrix-action-hint">Choose your plan to start reading</span>
+                </td>
+                <td class="tier-cell">
+                  <a href="404.html" class="btn-matrix-action outline">Get Free Pass</a>
+                </td>
+                <td class="tier-cell matrix-featured-column">
+                  <a href="404.html" class="btn-matrix-action primary">
+                    <span>Join Bookworm</span>
+                    <span class="material-symbols-outlined">verified</span>
+                  </a>
+                </td>
+                <td class="tier-cell">
+                  <a href="404.html" class="btn-matrix-action elite">
+                    <span>Become Elite</span>
+                    <span class="material-symbols-outlined">diamond</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: UNBOXING RITUAL & PARCEL SHOWCASE (Luxury Editorial)
+       ========================================================================= -->
+  <section class="section-padding unboxing-luxury-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="unboxing-ambient-glow unboxing-glow-1"></div>
+    <div class="unboxing-ambient-glow unboxing-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="unboxing-section-grid">
+        <!-- Left Content Column -->
+        <div class="unboxing-content-col">
+          <div class="testimonial-pill-tag">
+            <span class="pulse-dot"></span>
+            <span class="material-symbols-outlined" style="font-size: 15px; color: #91CE6C;">redeem</span>
+            <span>UNBOXING RITUAL</span>
+          </div>
+          
+          <h2 class="section-title light">
+            What Comes Inside Your <span class="text-accent-lime">Stackly Box</span>
+          </h2>
+          
+          <p class="unboxing-lead-text">
+            Every parcel is an aesthetic celebration. Hand-wrapped in embossed Italian tissue paper, sealed with botanical wax, and accompanied by curator letters, archival bookmarks, and author interviews.
+          </p>
+
+          <!-- Interactive Items Breakdown Checklist -->
+          <div class="unboxing-features-list">
+            <div class="unboxing-feature-row">
+              <div class="unboxing-item-icon">
+                <span class="material-symbols-outlined">verified</span>
+              </div>
+              <div class="unboxing-item-info">
+                <strong class="unboxing-item-title">Hand-Poured Botanical Wax Seal</strong>
+                <p class="unboxing-item-desc">Embossed with our trademark laurel wreath onto Italian vellum paper.</p>
+              </div>
+            </div>
+
+            <div class="unboxing-feature-row">
+              <div class="unboxing-item-icon">
+                <span class="material-symbols-outlined">auto_stories</span>
+              </div>
+              <div class="unboxing-item-info">
+                <strong class="unboxing-item-title">Curator’s Essay & Reading Guide</strong>
+                <p class="unboxing-item-desc">Thematic analysis, author interviews, and bespoke reading pairing notes.</p>
+              </div>
+            </div>
+
+            <div class="unboxing-feature-row">
+              <div class="unboxing-item-icon">
+                <span class="material-symbols-outlined">bookmark_heart</span>
+              </div>
+              <div class="unboxing-item-info">
+                <strong class="unboxing-item-title">Silk Ribbon & Archival Bookmark</strong>
+                <p class="unboxing-item-desc">Foil-stamped with the 2026 collector edition number and silk tassel.</p>
+              </div>
+            </div>
+
+            <div class="unboxing-feature-row">
+              <div class="unboxing-item-icon">
+                <span class="material-symbols-outlined">local_cafe</span>
+              </div>
+              <div class="unboxing-item-info">
+                <strong class="unboxing-item-title">Artisan Cafe Drink Voucher</strong>
+                <p class="unboxing-item-desc">Complimentary pour-over coffee in our flagship book sanctuary lounges.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action & Guarantee Row -->
+          <div class="unboxing-cta-wrap">
+            <a href="404.html" class="btn-unboxing-action">
+              <span>Claim Your First Box</span>
+              <span class="material-symbols-outlined btn-arrow">redeem</span>
+            </a>
+            <div class="unboxing-guarantee-badge">
+              <span class="material-symbols-outlined" style="color: #91CE6C; font-size: 18px;">eco</span>
+              <span>100% Acid-Free & Archival Materials</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Stage Column -->
+        <div class="unboxing-stage-col">
+          <div class="unboxing-card-frame" id="unboxing-stage-card">
+            <!-- Ambient Card Halo -->
+            <div class="unboxing-card-halo"></div>
+            
+            <!-- Main Image Container -->
+            <div class="unboxing-img-container">
+              <img src="images/membership-box.webp" alt="Stackly Member Box" class="unboxing-img">
+              <div class="unboxing-sheen-sweep"></div>
+            </div>
+
+            <!-- Floating Animated Badges -->
+            <div class="unboxing-float-tag tag-top">
+              <span class="badge-pulse-beacon"></span>
+              <span class="material-symbols-outlined tag-icon-gold">verified</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">Botanical Wax Seal</span>
+                <span class="tag-sub">Hand-stamped in London</span>
+              </div>
+            </div>
+
+            <div class="unboxing-float-tag tag-bottom">
+              <span class="badge-pulse-beacon green"></span>
+              <span class="material-symbols-outlined tag-icon-green">bookmark_heart</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">Silk Ribbon Bookmark</span>
+                <span class="tag-sub">Foil stamped • Archival</span>
+              </div>
+            </div>
+
+            <!-- Floating Edition Chip -->
+            <div class="unboxing-edition-chip">
+              <span class="material-symbols-outlined" style="font-size: 16px; color: #FFC74F;">workspace_premium</span>
+              <span>2026 COLLECTOR BATCH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: MEMBER TESTIMONIALS (Luxury Patron Sanctuary Reviews)
+       ========================================================================= -->
+  <section class="section-padding bg-cream testimonials-patron-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="testimonials-ambient-glow testimonials-glow-1"></div>
+    <div class="testimonials-ambient-glow testimonials-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">forum</span>
+          <span>COMMUNITY VOICES</span>
+        </div>
+        <h2 class="section-title">What Our <span class="blog-heading-accent">Members Say</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 600px; margin: 0.5rem auto 0 auto;">
+          Real thoughts from over 15,000 active bibliophiles receiving monthly curated parcels.
+        </p>
+      </div>
+
+      <div class="patron-reviews-grid">
+        <!-- Review Card 1 -->
+        <div class="patron-review-card">
+          <span class="material-symbols-outlined quote-watermark">format_quote</span>
+          
+          <div class="patron-card-header">
+            <div class="patron-star-rating">
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="star-rating-val">5.0</span>
+            </div>
+            <div class="patron-verified-badge">
+              <span class="material-symbols-outlined">verified</span>
+              <span>Verified Patron</span>
+            </div>
+          </div>
+
+          <p class="patron-quote-body">
+            “The Bibliophile tier has introduced me to genres I never thought I’d love. The signed copies are genuine treasures on my mantle, and the wax seal wrap is unforgettable.”
+          </p>
+
+          <div class="patron-card-footer">
+            <div class="patron-avatar-wrap">
+              <img src="images/user-2.webp" alt="Marcus Bennett" class="patron-avatar-img">
+              <span class="patron-online-dot"></span>
+            </div>
+            <div class="patron-meta-wrap">
+              <strong class="patron-name">Marcus Bennett</strong>
+              <div class="patron-tier-meta">
+                <span class="tier-pill elite">Bibliophile Elite</span>
+                <span class="patron-location">• London, UK</span>
+              </div>
+            </div>
+          </div>
+          <div class="patron-card-sheen"></div>
+        </div>
+
+        <!-- Review Card 2 (Featured) -->
+        <div class="patron-review-card featured">
+          <span class="material-symbols-outlined quote-watermark">format_quote</span>
+          
+          <div class="patron-card-header">
+            <div class="patron-star-rating">
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="star-rating-val">5.0</span>
+            </div>
+            <div class="patron-verified-badge gold">
+              <span class="material-symbols-outlined">workspace_premium</span>
+              <span>Top Contributor</span>
+            </div>
+          </div>
+
+          <p class="patron-quote-body">
+            “The free cafe pass in New York alone pays for the membership! Working from the Stackly bookstore reading room with an artisan pour-over is my favorite weekly ritual.”
+          </p>
+
+          <div class="patron-card-footer">
+            <div class="patron-avatar-wrap">
+              <img src="images/user-3.webp" alt="Sophia Loren" class="patron-avatar-img">
+              <span class="patron-online-dot"></span>
+            </div>
+            <div class="patron-meta-wrap">
+              <strong class="patron-name">Sophia Loren</strong>
+              <div class="patron-tier-meta">
+                <span class="tier-pill bookworm">Bookworm Member</span>
+                <span class="patron-location">• New York, NY</span>
+              </div>
+            </div>
+          </div>
+          <div class="patron-card-sheen"></div>
+        </div>
+
+        <!-- Review Card 3 -->
+        <div class="patron-review-card">
+          <span class="material-symbols-outlined quote-watermark">format_quote</span>
+          
+          <div class="patron-card-header">
+            <div class="patron-star-rating">
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="material-symbols-outlined star-icon">star</span>
+              <span class="star-rating-val">5.0</span>
+            </div>
+            <div class="patron-verified-badge">
+              <span class="material-symbols-outlined">verified</span>
+              <span>Verified Patron</span>
+            </div>
+          </div>
+
+          <p class="patron-quote-body">
+            “Unboxing day is the best day of the month for our whole family. The curation quality and archival bookmark feel noticeably superior to any other book club subscription.”
+          </p>
+
+          <div class="patron-card-footer">
+            <div class="patron-avatar-wrap">
+              <img src="images/user-4.webp" alt="Oliver Hayes" class="patron-avatar-img">
+              <span class="patron-online-dot"></span>
+            </div>
+            <div class="patron-meta-wrap">
+              <strong class="patron-name">Oliver Hayes</strong>
+              <div class="patron-tier-meta">
+                <span class="tier-pill elite">Elite Member</span>
+                <span class="patron-location">• Edinburgh, UK</span>
+              </div>
+            </div>
+          </div>
+          <div class="patron-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 7: MEMBERSHIP FAQ ACCORDION
+       ========================================================================= -->
+  <!-- =========================================================================
+       SECTION 7: MEMBERSHIP FAQ ACCORDION (Luxury Sanctuary Helpdesk)
+       ========================================================================= -->
+  <section class="section-padding bg-beige faq-luxury-section">
+    <!-- Atmospheric Ambient Glows -->
+    <div class="faq-ambient-glow faq-glow-1"></div>
+    <div class="faq-ambient-glow faq-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">help</span>
+          <span>GOT QUESTIONS?</span>
+        </div>
+        <h2 class="section-title">Frequently Asked <span class="blog-heading-accent">Questions</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 620px; margin: 0.5rem auto 0 auto;">
+          Everything you need to know about parcel delivery, bespoke curation, and membership privileges.
+        </p>
+      </div>
+
+      <div class="faq-accordion-modern">
+        <!-- Item 1 -->
+        <div class="accordion-card active">
+          <button class="accordion-trigger-modern" aria-expanded="true">
+            <div class="accordion-trigger-left">
+              <span class="faq-num">01</span>
+              <div class="faq-icon-wrap">
+                <span class="material-symbols-outlined">pause_circle</span>
+              </div>
+              <span class="faq-question-title">Can I pause or cancel my membership anytime?</span>
+            </div>
+            <div class="faq-toggle-circle">
+              <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+            </div>
+          </button>
+          <div class="accordion-body-modern">
+            <div class="accordion-body-inner">
+              <p>Yes, absolutely. You can pause your subscription for up to 3 months or cancel anytime directly from your customer dashboard with zero cancellation fees or hidden commitments.</p>
+              <div class="faq-perk-pill">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Instant 1-Click Pause & Resume in Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="accordion-card">
+          <button class="accordion-trigger-modern" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <span class="faq-num">02</span>
+              <div class="faq-icon-wrap">
+                <span class="material-symbols-outlined">auto_stories</span>
+              </div>
+              <span class="faq-question-title">How do you select which books I receive?</span>
+            </div>
+            <div class="faq-toggle-circle">
+              <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+            </div>
+          </button>
+          <div class="accordion-body-modern">
+            <div class="accordion-body-inner">
+              <p>During signup, you complete a quick 1-minute literary preference questionnaire. Our resident editors and curators (Stella, David, and team) handpick titles matching your favorite genres, themes, and reading habits.</p>
+              <div class="faq-perk-pill">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Personalized Curations by Senior Literary Editors</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="accordion-card">
+          <button class="accordion-trigger-modern" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <span class="faq-num">03</span>
+              <div class="faq-icon-wrap">
+                <span class="material-symbols-outlined">swap_horiz</span>
+              </div>
+              <span class="faq-question-title">What if I already own the book sent in my monthly box?</span>
+            </div>
+            <div class="faq-toggle-circle">
+              <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+            </div>
+          </button>
+          <div class="accordion-body-modern">
+            <div class="accordion-body-inner">
+              <p>No problem! Just let us know within 14 days and we will immediately send a replacement title or store credit coupon to your account at zero additional cost.</p>
+              <div class="faq-perk-pill">
+                <span class="material-symbols-outlined">restart_alt</span>
+                <span>100% Free Replacement or Store Credit Guarantee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="accordion-card">
+          <button class="accordion-trigger-modern" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <span class="faq-num">04</span>
+              <div class="faq-icon-wrap">
+                <span class="material-symbols-outlined">local_shipping</span>
+              </div>
+              <span class="faq-question-title">Do you ship internationally to members?</span>
+            </div>
+            <div class="faq-toggle-circle">
+              <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+            </div>
+          </button>
+          <div class="accordion-body-modern">
+            <div class="accordion-body-inner">
+              <p>Yes! We ship to over 70 countries worldwide with tracked courier delivery, custom acid-free parcel packaging, and customs clearance pre-managed by our logistics team.</p>
+              <div class="faq-perk-pill">
+                <span class="material-symbols-outlined">public</span>
+                <span>Tracked Express Shipping to 70+ Countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="accordion-card">
+          <button class="accordion-trigger-modern" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <span class="faq-num">05</span>
+              <div class="faq-icon-wrap">
+                <span class="material-symbols-outlined">card_giftcard</span>
+              </div>
+              <span class="faq-question-title">Can I gift a membership to a friend?</span>
+            </div>
+            <div class="faq-toggle-circle">
+              <span class="material-symbols-outlined faq-toggle-icon">expand_more</span>
+            </div>
+          </button>
+          <div class="accordion-body-modern">
+            <div class="accordion-body-inner">
+              <p>Yes! You can purchase 3, 6, or 12-month prepaid gift passes. We'll mail a personalized, wax-sealed physical gift certificate directly to the recipient or send a digital invitation immediately.</p>
+              <div class="faq-perk-pill">
+                <span class="material-symbols-outlined">mark_email_read</span>
+                <span>Wax-Sealed Physical Certificate or Digital Pass</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Concierge Card -->
+      <div class="faq-concierge-card">
+        <div class="concierge-avatars-cluster">
+          <img src="images/user-1.webp" alt="Curator 1" class="concierge-avatar">
+          <img src="images/user-2.webp" alt="Curator 2" class="concierge-avatar">
+          <img src="images/user-3.webp" alt="Curator 3" class="concierge-avatar">
+          <span class="concierge-status-indicator"></span>
+        </div>
+        <div class="concierge-info">
+          <h4 class="concierge-title">Still have unanswered questions?</h4>
+          <p class="concierge-desc">Our resident literary curators and support team are online 7 days a week.</p>
+        </div>
+        <a href="contact.html" class="btn-concierge-contact">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Contact Concierge</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 8: CALL-TO-ACTION BANNER
+       ========================================================================= -->
+  <section class="section-padding bg-forest" style="text-align: center;">
+    <div class="container">
+      <span class="section-subtitle light">Begin Your Chapter</span>
+      <h2 class="section-title light">Start Your 14-Day Free Reading Pass Today</h2>
+      <p style="color: var(--color-text-light); max-width: 650px; margin: 0 auto 2.5rem auto; font-size: 1.15rem;">
+        Experience the joy of handpicked literature delivered to your doorstep. Risk-free guarantee with instant access to member perks.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="404.html" class="btn btn-primary btn-lg">Activate Free Trial</a>
+        <a href="404.html" class="btn btn-outline-white btn-lg">Speak with a Curator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo" aria-label="Stackly Home">
+            <img src="images/logo.webp" alt="Stackly Logo">
+          </a>
+          <p class="footer-text">
+            A premier boutique bookstore and community sanctuary for readers, writers, and curious thinkers. Established in 2012.
+          </p>
+          <div class="footer-social-links">
+            <a href="404.html" class="footer-social-link" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Twitter" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.65 1.66 1.66 0 0 0 1.65-1.65A1.66 1.66 0 0 0 7.83 6.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="membership.html">Membership Circle</a></li>
+            <li><a href="about.html">About Our Story</a></li>
+            <li><a href="shop.html">Browse Catalogue</a></li>
+            <li><a href="contact.html">Contact & Directions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="404.html">My Account</a></li>
+            <li><a href="404.html">Track My Order</a></li>
+            <li><a href="404.html">Member Perks</a></li>
+            <li><a href="404.html">Returns & Refunds</a></li>
+            <li><a href="404.html">Store Policies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4 class="footer-col-title">Bookstore Flagship</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">location_on</span>
+              <div class="footer-contact-desc">
+                <strong>MMR COMPLEX, CHINNA THIRUPATHI,</strong><br>
+                <span>NEAR CHINNA MUNIYAPPAN KOVIL,</span><br>
+                <span>SALEM - 636 003</span>
+              </div>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">phone_in_talk</span>
+              <a href="404.html" class="footer-contact-action">+91 90909 09090</a>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">mail</span>
+              <a href="404.html" class="footer-contact-action">info@stackly.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-big-brand">STACKLY BOOKS</div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Bookstore. All rights reserved. Crafted with passion.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

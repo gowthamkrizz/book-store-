@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Stackly Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+</head>
+<body class="bg-cream">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <img src="images/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="membership.html" class="nav-link">Membership</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link active">About Us</a></div>
+        <div class="nav-item"><a href="shop.html" class="nav-link">Shop</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-header-login" title="Account Login">
+          <span class="material-symbols-outlined">person</span>
+          <span>Login</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer (Fullscreen Luxury Menu) -->
+  <div class="drawer-overlay"></div>
+  <div class="mobile-drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="header-logo"><img src="images/logo.webp" alt="Stackly Logo"></a>
+      <button class="drawer-close-btn" aria-label="Close menu">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html"><span>Home</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="shop.html"><span>Shop Books</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="membership.html"><span>Membership Circle</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="about.html"><span>About Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+        <li class="mobile-nav-item"><a href="contact.html"><span>Contact Us</span><span class="material-symbols-outlined">chevron_right</span></a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="mobile-drawer-login-btn">
+          <span class="material-symbols-outlined">person</span>
+          <span>Sign In / Member Portal</span>
+        </a>
+        <div class="mobile-drawer-info">
+          <span>✦ Rare & Bestselling Books • Free Delivery $35+ ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 style="font-size: 1.5rem; font-weight: 600;">Your Reading Bag</h3>
+      <button class="cart-close-btn" aria-label="Close cart">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="cart-drawer-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span class="cart-subtotal-val">$19.00</span>
+      </div>
+      <a href="shop.html" class="btn btn-forest" style="width: 100%; margin-bottom: 0.75rem;">Proceed to Checkout</a>
+      <a href="shop.html" class="btn btn-outline-dark" style="width: 100%;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 1: HERO & BREADCRUMBS
+       ========================================================================= -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-nav">
+        <a href="index.html">Home</a> <span>/</span> <span class="current">About Us</span>
+      </div>
+      <span class="section-subtitle">Our Story & Heritage</span>
+      <h1 class="page-hero-title">A Haven for Book Lovers Since 2012</h1>
+      <p style="max-width: 650px; margin: 1rem auto 0 auto; color: var(--color-text-body); font-size: 1.1rem;">
+        Dedicated to the tangible beauty of printed words, slow reading, and cultivating vibrant literary communities across the globe.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: OUR STORY & FOUNDING MISSION (Luxury Editorial)
+       ========================================================================= -->
+  <section class="section-padding bg-cream about-story-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="about-ambient-glow about-glow-1"></div>
+    <div class="about-ambient-glow about-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="about-story-grid">
+        <!-- Visual Stage Frame (Left) -->
+        <div class="about-visual-col">
+          <div class="about-card-frame" id="about-story-card">
+            <div class="about-img-container">
+              <img src="images/about-store.webp" alt="Stackly Bookstore Interior" class="about-story-img">
+              <div class="about-sheen-sweep"></div>
+            </div>
+
+            <!-- Floating Animated Badges -->
+            <div class="about-float-tag tag-top">
+              <span class="badge-pulse-beacon"></span>
+              <span class="material-symbols-outlined tag-icon-gold">location_on</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">Historic Literary District</span>
+                <span class="tag-sub">London Sanctuary</span>
+              </div>
+            </div>
+
+            <div class="about-float-tag tag-bottom">
+              <span class="badge-pulse-beacon green"></span>
+              <span class="material-symbols-outlined tag-icon-green">verified</span>
+              <div class="tag-text-wrap">
+                <span class="tag-title">100% Curated by Hand</span>
+                <span class="tag-sub">Independent & Archival</span>
+              </div>
+            </div>
+
+            <!-- Established Year Seal -->
+            <div class="about-est-seal">
+              <span class="material-symbols-outlined" style="font-size: 16px; color: #FFC74F;">history_edu</span>
+              <span>EST. 2012</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editorial Content Column (Right) -->
+        <div class="about-content-col">
+          <div class="blog-pill-tag">
+            <span class="pulse-dot"></span>
+            <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">auto_stories</span>
+            <span>THE PHILOSOPHY</span>
+          </div>
+
+          <h2 class="section-title">Where Every Page Tells <span class="blog-heading-accent">a Living Story</span></h2>
+
+          <p class="about-lead-text">
+            Founded in 2012 in the heart of the historic literary district, Stackly was born from a simple belief: in an increasingly fast-paced digital world, physical books remain the deepest technology for human empathy and contemplation.
+          </p>
+
+          <p class="about-desc-text">
+            We personally review every single title that touches our shelves. From hand-stitched bindings to rare international translations, our bookstore bridges centuries of wisdom with tomorrow's groundbreaking authors.
+          </p>
+
+          <!-- Core Philosophy Pillars -->
+          <div class="about-pillars-grid">
+            <div class="about-pillar-item">
+              <div class="about-pillar-icon">
+                <span class="material-symbols-outlined">menu_book</span>
+              </div>
+              <div class="about-pillar-info">
+                <strong>Archival Bindings</strong>
+                <span>Acid-free paper & foil-stamped prints</span>
+              </div>
+            </div>
+
+            <div class="about-pillar-item">
+              <div class="about-pillar-icon">
+                <span class="material-symbols-outlined">eco</span>
+              </div>
+              <div class="about-pillar-info">
+                <strong>100% Sustainable</strong>
+                <span>Carbon-neutral & eco-conscious parcels</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-cta-wrap">
+            <a href="404.html" class="btn-services-luxury">
+              <span>Explore Curated Editions</span>
+              <span class="btn-services-arrow">
+                <span class="material-symbols-outlined">auto_stories</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: BY THE NUMBERS STATS (Luxury Glassmorphic Metrics)
+       ========================================================================= -->
+  <section class="section-padding-sm about-metrics-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="metrics-ambient-glow metrics-glow-1"></div>
+    <div class="metrics-ambient-glow metrics-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="about-metrics-grid">
+        <!-- Metric Card 1 -->
+        <div class="about-metric-card" data-metric-card>
+          <span class="metric-watermark-num">01</span>
+          <div class="metric-top-row">
+            <div class="metric-icon-wrap">
+              <span class="material-symbols-outlined">auto_stories</span>
+            </div>
+            <span class="metric-chip">Global Community</span>
+          </div>
+          <div class="metric-value-display">
+            <span class="metric-num">150K</span><span class="metric-plus">+</span>
+          </div>
+          <strong class="metric-title-label">Active Readers</strong>
+          <span class="metric-desc-sub">Across 70+ countries worldwide</span>
+          <div class="metric-card-sheen"></div>
+        </div>
+
+        <!-- Metric Card 2 -->
+        <div class="about-metric-card" data-metric-card>
+          <span class="metric-watermark-num">02</span>
+          <div class="metric-top-row">
+            <div class="metric-icon-wrap">
+              <span class="material-symbols-outlined">inventory_2</span>
+            </div>
+            <span class="metric-chip">Curated Vault</span>
+          </div>
+          <div class="metric-value-display">
+            <span class="metric-num">300K</span><span class="metric-plus">+</span>
+          </div>
+          <strong class="metric-title-label">Books in Stock</strong>
+          <span class="metric-desc-sub">Archival first editions & classics</span>
+          <div class="metric-card-sheen"></div>
+        </div>
+
+        <!-- Metric Card 3 -->
+        <div class="about-metric-card" data-metric-card>
+          <span class="metric-watermark-num">03</span>
+          <div class="metric-top-row">
+            <div class="metric-icon-wrap">
+              <span class="material-symbols-outlined">workspace_premium</span>
+            </div>
+            <span class="metric-chip">Excellence</span>
+          </div>
+          <div class="metric-value-display">
+            <span class="metric-num">50</span><span class="metric-plus">+</span>
+          </div>
+          <strong class="metric-title-label">Literary Awards</strong>
+          <span class="metric-desc-sub">Global publishing recognitions</span>
+          <div class="metric-card-sheen"></div>
+        </div>
+
+        <!-- Metric Card 4 -->
+        <div class="about-metric-card" data-metric-card>
+          <span class="metric-watermark-num">04</span>
+          <div class="metric-top-row">
+            <div class="metric-icon-wrap">
+              <span class="material-symbols-outlined">podium</span>
+            </div>
+            <span class="metric-chip">Live Events</span>
+          </div>
+          <div class="metric-value-display">
+            <span class="metric-num">70</span><span class="metric-plus">+</span>
+          </div>
+          <strong class="metric-title-label">Annual Salons</strong>
+          <span class="metric-desc-sub">Intimate author Q&As & signings</span>
+          <div class="metric-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: CORE VALUES (Luxury Sanctuary Principles)
+       ========================================================================= -->
+  <section class="section-padding bg-beige values-luxury-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="values-ambient-glow values-glow-1"></div>
+    <div class="values-ambient-glow values-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">verified</span>
+          <span>OUR CORE VALUES</span>
+        </div>
+        <h2 class="section-title">What Drives Our <span class="blog-heading-accent">Curation</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 620px; margin: 0.5rem auto 0 auto;">
+          Four foundational principles that guide every volume, binding, and author partnership we embrace.
+        </p>
+      </div>
+
+      <div class="values-luxury-grid">
+        <!-- Value Card 1 -->
+        <div class="value-luxury-card" data-value-card>
+          <span class="value-card-num">01</span>
+          <div class="value-icon-box">
+            <span class="material-symbols-outlined">auto_stories</span>
+          </div>
+          <h3 class="value-card-title">Artisanal Quality</h3>
+          <p class="value-card-desc">Every volume is selected for superior typographic design, archival grade paper, and lasting narrative power.</p>
+          <div class="value-card-footer">
+            <span class="value-pill-tag">
+              <span class="material-symbols-outlined">verified</span>
+              <span>Archival Grade Paper</span>
+            </span>
+          </div>
+          <div class="value-card-sheen"></div>
+        </div>
+
+        <!-- Value Card 2 -->
+        <div class="value-luxury-card" data-value-card>
+          <span class="value-card-num">02</span>
+          <div class="value-icon-box">
+            <span class="material-symbols-outlined">groups</span>
+          </div>
+          <h3 class="value-card-title">Community First</h3>
+          <p class="value-card-desc">We foster inclusive reading circles, open-mic poetry nights, and mentorship for emerging novelists.</p>
+          <div class="value-card-footer">
+            <span class="value-pill-tag">
+              <span class="material-symbols-outlined">forum</span>
+              <span>Inclusive Reading Circles</span>
+            </span>
+          </div>
+          <div class="value-card-sheen"></div>
+        </div>
+
+        <!-- Value Card 3 -->
+        <div class="value-luxury-card" data-value-card>
+          <span class="value-card-num">03</span>
+          <div class="value-icon-box">
+            <span class="material-symbols-outlined">eco</span>
+          </div>
+          <h3 class="value-card-title">Eco-Publishing</h3>
+          <p class="value-card-desc">100% recycled packaging, carbon-neutral shipping options, and partnerships with sustainable presses.</p>
+          <div class="value-card-footer">
+            <span class="value-pill-tag">
+              <span class="material-symbols-outlined">compost</span>
+              <span>Carbon-Neutral Parcels</span>
+            </span>
+          </div>
+          <div class="value-card-sheen"></div>
+        </div>
+
+        <!-- Value Card 4 -->
+        <div class="value-luxury-card" data-value-card>
+          <span class="value-card-num">04</span>
+          <div class="value-icon-box">
+            <span class="material-symbols-outlined">public</span>
+          </div>
+          <h3 class="value-card-title">Global Diversity</h3>
+          <p class="value-card-desc">Translated fiction and essays from over 70 languages celebrating multicultural literary perspectives.</p>
+          <div class="value-card-footer">
+            <span class="value-pill-tag">
+              <span class="material-symbols-outlined">translate</span>
+              <span>70+ Translated Languages</span>
+            </span>
+          </div>
+          <div class="value-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: INSIDE STACKLY SPACES (Luxury Architectural Gallery)
+       ========================================================================= -->
+  <section class="section-padding bg-cream about-spaces-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="spaces-ambient-glow spaces-glow-1"></div>
+    <div class="spaces-ambient-glow spaces-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">chair</span>
+          <span>OUR ARCHITECTURAL SPACES</span>
+        </div>
+        <h2 class="section-title">Step Inside <span class="blog-heading-accent">the Haven</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 650px; margin: 0.5rem auto 0 auto;">
+          Explore three uniquely crafted architectural spaces designed for solitary immersion, archival discovery, and community dialogue.
+        </p>
+      </div>
+
+      <div class="about-spaces-grid">
+        <!-- Space Card 1 -->
+        <div class="space-luxury-card" data-space-card>
+          <div class="space-card-thumb-wrap">
+            <img src="images/about-cafe.webp" alt="Reading Lounge & Cafe" class="space-card-img">
+            <div class="space-badge-tag">
+              <span class="badge-pulse-beacon gold"></span>
+              <span class="material-symbols-outlined">local_cafe</span>
+              <span>Artisanal Espresso & Tea</span>
+            </div>
+            <span class="space-watermark-num">01</span>
+          </div>
+          
+          <div class="space-card-body">
+            <div class="space-card-header">
+              <div class="space-icon-wrap">
+                <span class="material-symbols-outlined">coffee</span>
+              </div>
+              <h3 class="space-card-title">The Reading Lounge & Cafe</h3>
+            </div>
+            
+            <p class="space-card-desc">
+              Artisan pour-overs, single-origin roasts, organic botanical teas, and velvet armchairs designed for long, uninterrupted reading afternoons.
+            </p>
+
+            <!-- Architectural Specs Grid -->
+            <div class="space-specs-grid">
+              <div class="space-spec-item">
+                <span class="spec-label">Atmosphere</span>
+                <strong class="spec-value">Solitary & Quiet</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Hours</span>
+                <strong class="spec-value">8:00 AM – 10 PM</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Signature</span>
+                <strong class="spec-value">Chemex Pour-Over</strong>
+              </div>
+            </div>
+
+            <!-- Perk Badges -->
+            <div class="space-perks-row">
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">wifi</span>
+                <span>High-Speed Fiber</span>
+              </span>
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">volume_off</span>
+                <span>Silent Sanctuary</span>
+              </span>
+            </div>
+
+            <!-- Equalized Action Footer -->
+            <div class="space-card-footer">
+              <a href="404.html" class="btn-space-action">
+                <span>Explore Lounge Hours</span>
+                <span class="material-symbols-outlined">schedule</span>
+              </a>
+            </div>
+          </div>
+          <div class="space-card-sheen"></div>
+        </div>
+
+        <!-- Space Card 2 -->
+        <div class="space-luxury-card" data-space-card>
+          <div class="space-card-thumb-wrap">
+            <img src="images/about-reading.webp" alt="Rare Manuscripts Chamber" class="space-card-img">
+            <div class="space-badge-tag">
+              <span class="badge-pulse-beacon gold"></span>
+              <span class="material-symbols-outlined">history_edu</span>
+              <span>Vault & First Editions</span>
+            </div>
+            <span class="space-watermark-num">02</span>
+          </div>
+          
+          <div class="space-card-body">
+            <div class="space-card-header">
+              <div class="space-icon-wrap">
+                <span class="material-symbols-outlined">menu_book</span>
+              </div>
+              <h3 class="space-card-title">The Rare Manuscripts Chamber</h3>
+            </div>
+            
+            <p class="space-card-desc">
+              Preserved first editions, hand-bound antiquarian classics, climate-controlled preservation vaults, and illuminated literary archives.
+            </p>
+
+            <!-- Architectural Specs Grid -->
+            <div class="space-specs-grid">
+              <div class="space-spec-item">
+                <span class="spec-label">Atmosphere</span>
+                <strong class="spec-value">Archival & Sacred</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Access</span>
+                <strong class="spec-value">By Vault Pass</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Signature</span>
+                <strong class="spec-value">Rare Editions</strong>
+              </div>
+            </div>
+
+            <!-- Perk Badges -->
+            <div class="space-perks-row">
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">lock</span>
+                <span>Curated Vault</span>
+              </span>
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">history_edu</span>
+                <span>Acid-Free Folios</span>
+              </span>
+            </div>
+
+            <!-- Equalized Action Footer -->
+            <div class="space-card-footer">
+              <a href="404.html" class="btn-space-action">
+                <span>Request Private Viewing</span>
+                <span class="material-symbols-outlined">visibility</span>
+              </a>
+            </div>
+          </div>
+          <div class="space-card-sheen"></div>
+        </div>
+
+        <!-- Space Card 3 -->
+        <div class="space-luxury-card" data-space-card>
+          <div class="space-card-thumb-wrap">
+            <img src="images/about-store.webp" alt="Main Hall & Amphitheatre" class="space-card-img">
+            <div class="space-badge-tag">
+              <span class="badge-pulse-beacon gold"></span>
+              <span class="material-symbols-outlined">podium</span>
+              <span>Literary Salons & Readings</span>
+            </div>
+            <span class="space-watermark-num">03</span>
+          </div>
+          
+          <div class="space-card-body">
+            <div class="space-card-header">
+              <div class="space-icon-wrap">
+                <span class="material-symbols-outlined">storefront</span>
+              </div>
+              <h3 class="space-card-title">The Main Hall & Amphitheatre</h3>
+            </div>
+            
+            <p class="space-card-desc">
+              Soaring double-height oak bookshelves, acoustic amphitheatre staging for international author readings, and open community salon spaces.
+            </p>
+
+            <!-- Architectural Specs Grid -->
+            <div class="space-specs-grid">
+              <div class="space-spec-item">
+                <span class="spec-label">Atmosphere</span>
+                <strong class="spec-value">Grand & Cultural</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Capacity</span>
+                <strong class="spec-value">120 Seat Hall</strong>
+              </div>
+              <div class="space-spec-item">
+                <span class="spec-label">Signature</span>
+                <strong class="spec-value">Author Salons</strong>
+              </div>
+            </div>
+
+            <!-- Perk Badges -->
+            <div class="space-perks-row">
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">event</span>
+                <span>70+ Annual Salons</span>
+              </span>
+              <span class="space-perk-item">
+                <span class="material-symbols-outlined">groups</span>
+                <span>120 Seat Hall</span>
+              </span>
+            </div>
+
+            <!-- Equalized Action Footer -->
+            <div class="space-card-footer">
+              <a href="404.html" class="btn-space-action">
+                <span>View Salon Schedule</span>
+                <span class="material-symbols-outlined">event_available</span>
+              </a>
+            </div>
+          </div>
+          <div class="space-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: LEADERSHIP & EDITORIAL BOARD (Curator Gallery)
+       ========================================================================= -->
+  <section class="section-padding bg-beige about-curators-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="curators-ambient-glow curators-glow-1"></div>
+    <div class="curators-ambient-glow curators-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="section-header">
+        <div class="blog-pill-tag">
+          <span class="pulse-dot"></span>
+          <span class="material-symbols-outlined" style="font-size: 15px; color: #D4A359;">ink_pen</span>
+          <span>THE CURATORS</span>
+        </div>
+        <h2 class="section-title">The Curators Behind <span class="blog-heading-accent">Stackly</span></h2>
+        <p style="color: var(--color-text-muted); max-width: 620px; margin: 0.5rem auto 0 auto;">
+          Meet the passionate bibliophiles, literary scholars, and master archivists shaping our collections.
+        </p>
+      </div>
+
+      <div class="curators-luxury-grid">
+        <!-- Curator Card 1 -->
+        <div class="curator-luxury-card" data-curator-card>
+          <div class="curator-avatar-wrap">
+            <img src="images/team-1.webp" alt="Stella Moore" class="curator-avatar-img">
+            <div class="curator-avatar-overlay"></div>
+            <div class="curator-role-badge">
+              <span class="badge-pulse-beacon gold"></span>
+              <span>Lead Fiction</span>
+            </div>
+            <span class="curator-num-watermark">01</span>
+          </div>
+          
+          <div class="curator-info-box">
+            <h3 class="curator-name">Stella Moore</h3>
+            <span class="curator-title-role">Head of Fiction & Writer</span>
+            
+            <p class="curator-bio">
+              Novelist and former literary journal editor, specializing in debut voices, translated essays, and contemporary literary fiction.
+            </p>
+
+            <div class="curator-specialty-row">
+              <span class="curator-specialty-chip">
+                <span class="material-symbols-outlined">auto_stories</span>
+                <span>Debut & Fiction</span>
+              </span>
+            </div>
+
+            <div class="curator-card-footer">
+              <div class="curator-social-row">
+                <a href="404.html" class="curator-social-btn" title="Contact Curator">
+                  <span class="material-symbols-outlined">mail</span>
+                </a>
+                <a href="404.html" class="curator-social-btn" title="Stella's Book Picks">
+                  <span class="material-symbols-outlined">menu_book</span>
+                </a>
+              </div>
+              <span class="curator-pill-tag">
+                <span class="material-symbols-outlined">verified</span>
+                <span>12 Yrs Archival</span>
+              </span>
+            </div>
+          </div>
+          <div class="curator-card-sheen"></div>
+        </div>
+
+        <!-- Curator Card 2 -->
+        <div class="curator-luxury-card" data-curator-card>
+          <div class="curator-avatar-wrap">
+            <img src="images/team-2.webp" alt="David Miller" class="curator-avatar-img">
+            <div class="curator-avatar-overlay"></div>
+            <div class="curator-role-badge">
+              <span class="badge-pulse-beacon gold"></span>
+              <span>Classic Literature</span>
+            </div>
+            <span class="curator-num-watermark">02</span>
+          </div>
+          
+          <div class="curator-info-box">
+            <h3 class="curator-name">David Miller</h3>
+            <span class="curator-title-role">Classic Literature Editor</span>
+            
+            <p class="curator-bio">
+              Oxford scholar in 19th-century literature, overseeing critical annotations, archival translations, and foil-stamped classics.
+            </p>
+
+            <div class="curator-specialty-row">
+              <span class="curator-specialty-chip">
+                <span class="material-symbols-outlined">history_edu</span>
+                <span>Archival Classics</span>
+              </span>
+            </div>
+
+            <div class="curator-card-footer">
+              <div class="curator-social-row">
+                <a href="404.html" class="curator-social-btn" title="Contact Curator">
+                  <span class="material-symbols-outlined">mail</span>
+                </a>
+                <a href="404.html" class="curator-social-btn" title="David's Book Picks">
+                  <span class="material-symbols-outlined">menu_book</span>
+                </a>
+              </div>
+              <span class="curator-pill-tag">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Oxford Fellow</span>
+              </span>
+            </div>
+          </div>
+          <div class="curator-card-sheen"></div>
+        </div>
+
+        <!-- Curator Card 3 -->
+        <div class="curator-luxury-card" data-curator-card>
+          <div class="curator-avatar-wrap">
+            <img src="images/team-3.webp" alt="Emma Watson" class="curator-avatar-img">
+            <div class="curator-avatar-overlay"></div>
+            <div class="curator-role-badge">
+              <span class="badge-pulse-beacon gold"></span>
+              <span>Poetry & Essay</span>
+            </div>
+            <span class="curator-num-watermark">03</span>
+          </div>
+          
+          <div class="curator-info-box">
+            <h3 class="curator-name">Emma Watson</h3>
+            <span class="curator-title-role">Poetry & Essay Curator</span>
+            
+            <p class="curator-bio">
+              Poetry fellow championing multicultural essays, independent presses, spoken word salons, and emerging international writers.
+            </p>
+
+            <div class="curator-specialty-row">
+              <span class="curator-specialty-chip">
+                <span class="material-symbols-outlined">format_quote</span>
+                <span>Poetry & Essays</span>
+              </span>
+            </div>
+
+            <div class="curator-card-footer">
+              <div class="curator-social-row">
+                <a href="404.html" class="curator-social-btn" title="Contact Curator">
+                  <span class="material-symbols-outlined">mail</span>
+                </a>
+                <a href="404.html" class="curator-social-btn" title="Emma's Book Picks">
+                  <span class="material-symbols-outlined">menu_book</span>
+                </a>
+              </div>
+              <span class="curator-pill-tag">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Poetry Fellow</span>
+              </span>
+            </div>
+          </div>
+          <div class="curator-card-sheen"></div>
+        </div>
+
+        <!-- Curator Card 4 -->
+        <div class="curator-luxury-card" data-curator-card>
+          <div class="curator-avatar-wrap">
+            <img src="images/team-4.webp" alt="Lucas Vance" class="curator-avatar-img">
+            <div class="curator-avatar-overlay"></div>
+            <div class="curator-role-badge">
+              <span class="badge-pulse-beacon gold"></span>
+              <span>Rare Manuscripts</span>
+            </div>
+            <span class="curator-num-watermark">04</span>
+          </div>
+          
+          <div class="curator-info-box">
+            <h3 class="curator-name">Lucas Vance</h3>
+            <span class="curator-title-role">Rare Books & Manuscripts</span>
+            
+            <p class="curator-bio">
+              Master antiquarian bookbinder and rare collector with 20+ years preserving centuries-old first editions and illuminated folios.
+            </p>
+
+            <div class="curator-specialty-row">
+              <span class="curator-specialty-chip">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span>Vault & Folios</span>
+              </span>
+            </div>
+
+            <div class="curator-card-footer">
+              <div class="curator-social-row">
+                <a href="404.html" class="curator-social-btn" title="Contact Curator">
+                  <span class="material-symbols-outlined">mail</span>
+                </a>
+                <a href="404.html" class="curator-social-btn" title="Lucas's Vault Picks">
+                  <span class="material-symbols-outlined">menu_book</span>
+                </a>
+              </div>
+              <span class="curator-pill-tag">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Guild Master</span>
+              </span>
+            </div>
+          </div>
+          <div class="curator-card-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 7: PUBLISHING PARTNERS MARQUEE
+       ========================================================================= -->
+  <section class="marquee-wrapper" style="background-color: var(--color-bg-beige); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="marquee-content">
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">Penguin Random House <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">HarperCollins Publishers <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">Faber & Faber Literary <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">Simon & Schuster Editions <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">Oxford University Press <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">Penguin Random House <span class="marquee-dot"></span></div>
+      <div class="marquee-item" style="color: var(--color-text-dark); opacity: 0.7;">HarperCollins Publishers <span class="marquee-dot"></span></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 8: VISIT OUR BOOKSTORE & CAFE CTA (Luxury Flagship Sanctuary)
+       ========================================================================= -->
+  <section class="about-visit-section">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="visit-ambient-glow visit-glow-1"></div>
+    <div class="visit-ambient-glow visit-glow-2"></div>
+
+    <div class="container relative-container">
+      <div class="about-visit-card-box">
+        <div class="about-visit-badge-wrap">
+          <div class="about-visit-pill-badge">
+            <span class="badge-pulse-beacon gold"></span>
+            <span class="material-symbols-outlined">storefront</span>
+            <span>VISIT OUR FLAGSHIP</span>
+          </div>
+        </div>
+
+        <h2 class="about-visit-title">Experience Stackly <span class="about-visit-accent">In Person</span></h2>
+        
+        <p class="about-visit-lead-text">
+          Step away from the rush of the city into a quiet literary haven. Browse thousands of curated volumes, meet our editorial scholars, or enjoy an artisanal pour-over in our sunlit lounge.
+        </p>
+
+        <!-- Flagship Feature Highlights Grid -->
+        <div class="about-visit-highlights-grid">
+          <div class="visit-highlight-card">
+            <div class="visit-highlight-icon">
+              <span class="material-symbols-outlined">schedule</span>
+            </div>
+            <div class="visit-highlight-info">
+              <span class="visit-highlight-label">FLAGSHIP HOURS</span>
+              <strong class="visit-highlight-title">Open Daily</strong>
+              <span class="visit-highlight-sub">8:00 AM – 10:00 PM</span>
+            </div>
+          </div>
+
+          <div class="visit-highlight-card">
+            <div class="visit-highlight-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="visit-highlight-info">
+              <span class="visit-highlight-label">MANHATTAN DISTRICT</span>
+              <strong class="visit-highlight-title">Flagship Sanctuary</strong>
+              <span class="visit-highlight-sub">482 Lexington Ave, Floor 2</span>
+            </div>
+          </div>
+
+          <div class="visit-highlight-card">
+            <div class="visit-highlight-icon">
+              <span class="material-symbols-outlined">local_cafe</span>
+            </div>
+            <div class="visit-highlight-info">
+              <span class="visit-highlight-label">SANCTUARY CAFE</span>
+              <strong class="visit-highlight-title">Artisan Espresso</strong>
+              <span class="visit-highlight-sub">Single-origin pour-overs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visit-cta-wrap">
+          <a href="404.html" class="btn-visit-gold">
+            <span>Plan Your Sanctuary Visit</span>
+            <span class="btn-visit-arrow">
+              <span class="material-symbols-outlined">calendar_month</span>
+            </span>
+          </a>
+          <a href="404.html" class="btn-visit-outline">
+            <span>Browse Online Catalogue</span>
+            <span class="material-symbols-outlined">menu_book</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo" aria-label="Stackly Home">
+            <img src="images/logo.webp" alt="Stackly Logo">
+          </a>
+          <p class="footer-text">
+            A premier boutique bookstore and community sanctuary for readers, writers, and curious thinkers. Established in 2012.
+          </p>
+          <div class="footer-social-links">
+            <a href="404.html" class="footer-social-link" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Twitter" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.65 1.66 1.66 0 0 0 1.65-1.65A1.66 1.66 0 0 0 7.83 6.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="membership.html">Membership Circle</a></li>
+            <li><a href="about.html">About Our Story</a></li>
+            <li><a href="shop.html">Browse Catalogue</a></li>
+            <li><a href="contact.html">Contact & Directions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="404.html">My Account</a></li>
+            <li><a href="404.html">Track My Order</a></li>
+            <li><a href="404.html">Member Perks</a></li>
+            <li><a href="404.html">Returns & Refunds</a></li>
+            <li><a href="404.html">Store Policies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4 class="footer-col-title">Bookstore Flagship</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">location_on</span>
+              <div class="footer-contact-desc">
+                <strong>MMR COMPLEX, CHINNA THIRUPATHI,</strong><br>
+                <span>NEAR CHINNA MUNIYAPPAN KOVIL,</span><br>
+                <span>SALEM - 636 003</span>
+              </div>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">phone_in_talk</span>
+              <a href="404.html" class="footer-contact-action">+91 90909 09090</a>
+            </div>
+            <div class="footer-contact-entry">
+              <span class="material-symbols-outlined footer-contact-icon">mail</span>
+              <a href="404.html" class="footer-contact-action">info@stackly.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-big-brand">STACKLY BOOKS</div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Stackly Bookstore. All rights reserved. Crafted with passion.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

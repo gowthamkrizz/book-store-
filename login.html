@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In – Stackly Books</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.webp" type="image/webp">
+</head>
+<body class="auth-cyber-body">
+
+  <div class="auth-cyber-wrapper">
+    <!-- Luxury Bookstore Corner Accents (Gold) -->
+    <div class="cyber-corner cyber-corner-tl"></div>
+    <div class="cyber-corner cyber-corner-tr"></div>
+    <div class="cyber-corner cyber-corner-bl"></div>
+    <div class="cyber-corner cyber-corner-br"></div>
+
+    <div class="auth-cyber-frame">
+      <div class="auth-cyber-grid">
+        
+        <!-- LEFT SHOWCASE PANEL -->
+        <div class="auth-showcase-panel">
+          <div>
+            <div class="auth-showcase-header">
+              <a href="index.html" class="auth-showcase-logo">
+                <img src="images/logo.webp" alt="Stackly Bookstore Logo">
+              </a>
+              <span class="auth-showcase-badge">
+                <span class="material-symbols-outlined" style="font-size: 14px;">auto_stories</span>
+                READER PASS
+              </span>
+            </div>
+
+            <h2 class="auth-showcase-title">
+              Unlock your <span class="auth-gradient-text">literary</span> world
+            </h2>
+            <p class="auth-showcase-desc">
+              Access your Stackly Bookstore reader profile to manage your personal bookshelf, track rare book deliveries, enjoy member perks, and explore curated bestsellers.
+            </p>
+          </div>
+
+          <!-- Showcase Image Card -->
+          <div class="auth-showcase-media">
+            <img src="images/about-reading.webp" alt="Stackly Reading Lounge">
+          </div>
+
+          <!-- Bottom Bookstore Badges -->
+          <div class="auth-showcase-tags">
+            <span class="auth-pill-tag">
+              <span class="material-symbols-outlined">menu_book</span> 10,000+ Titles
+            </span>
+            <span class="auth-pill-tag">
+              <span class="material-symbols-outlined">local_shipping</span> Express Delivery
+            </span>
+            <span class="auth-pill-tag">
+              <span class="material-symbols-outlined">card_membership</span> Member Perks
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM PANEL -->
+        <div class="auth-form-panel">
+          <div class="auth-mobile-logo">
+            <a href="index.html">
+              <img src="images/logo.webp" alt="Stackly Bookstore Logo">
+            </a>
+          </div>
+
+          <div class="auth-form-topbar">
+            <a href="index.html" class="auth-back-link">
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+              Back to Bookstore
+            </a>
+            <span class="auth-subhead-pill">— WELCOME BACK, READER</span>
+          </div>
+
+          <h1 class="auth-form-title">
+            Sign <span class="auth-gradient-text">in</span>
+          </h1>
+          <p class="auth-form-subtext">
+            Enter your credentials below to access your Stackly Bookstore account.
+          </p>
+
+          <form id="loginForm" novalidate onsubmit="handleLoginSubmit(event)">
+            <!-- USERNAME -->
+            <div class="auth-input-group">
+              <label class="auth-label">Username / Reader ID <span class="auth-label-required">*</span></label>
+              <div class="auth-input-box">
+                <span class="material-symbols-outlined auth-input-icon">person</span>
+                <input type="text" id="usernameInput" class="auth-input" placeholder="Enter your username or reader ID" required oninput="clearFieldError('usernameInput')">
+              </div>
+              <div class="auth-field-error" id="err-usernameInput"><span class="material-symbols-outlined" style="font-size: 14px;">error</span> Please enter your username or reader ID.</div>
+            </div>
+
+            <!-- SELECT ROLE -->
+            <div class="auth-input-group">
+              <label class="auth-label">Select Role <span class="auth-label-required">*</span></label>
+              <div class="auth-input-box">
+                <span class="material-symbols-outlined auth-input-icon">menu_book</span>
+                <select id="portalSelect" class="auth-input auth-select" required>
+                  <option value="customer" selected>Reader Dashboard</option>
+                  <option value="admin">Admin Dashboard</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- EMAIL ADDRESS -->
+            <div class="auth-input-group">
+              <label class="auth-label">Email Address <span class="auth-label-required">*</span></label>
+              <div class="auth-input-box">
+                <span class="material-symbols-outlined auth-input-icon">mail</span>
+                <input type="email" id="emailInput" class="auth-input" placeholder="reader@stacklybooks.com" required oninput="clearFieldError('emailInput')">
+              </div>
+              <div class="auth-field-error" id="err-emailInput"><span class="material-symbols-outlined" style="font-size: 14px;">error</span> Please enter a valid email address.</div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="auth-input-group">
+              <label class="auth-label">Password <span class="auth-label-required">*</span></label>
+              <div class="auth-input-box">
+                <span class="material-symbols-outlined auth-input-icon">lock</span>
+                <input type="password" id="passwordInput" class="auth-input" placeholder="Min. 8 characters" required oninput="validatePassword(this.value); clearFieldError('passwordInput');">
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('passwordInput', 'eyeIcon')" title="Toggle password visibility">
+                  <span class="material-symbols-outlined" id="eyeIcon">visibility</span>
+                </button>
+              </div>
+
+              <!-- Password Requirements Checklist -->
+              <div class="auth-req-grid">
+                <div class="auth-req-item" id="req-len">
+                  <span class="material-symbols-outlined">radio_button_unchecked</span> At least 8 characters
+                </div>
+                <div class="auth-req-item" id="req-upper">
+                  <span class="material-symbols-outlined">radio_button_unchecked</span> At least one uppercase (A-Z)
+                </div>
+                <div class="auth-req-item" id="req-lower">
+                  <span class="material-symbols-outlined">radio_button_unchecked</span> At least one lowercase (a-z)
+                </div>
+                <div class="auth-req-item" id="req-num">
+                  <span class="material-symbols-outlined">radio_button_unchecked</span> At least one number (0-9)
+                </div>
+              </div>
+              <div class="auth-field-error" id="err-passwordInput"><span class="material-symbols-outlined" style="font-size: 14px;">error</span> Please enter your valid password (min. 8 characters).</div>
+            </div>
+
+            <!-- Extras (Remember Me & Forgot Password) -->
+            <div class="auth-extras-row">
+              <label class="auth-checkbox-label">
+                <input type="checkbox" id="rememberToken">
+                <span>Remember my reader session</span>
+              </label>
+              <a href="404.html" class="auth-forgot-link">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="auth-submit-btn">
+              <span>SIGN IN TO BOOKSTORE</span>
+              <span class="material-symbols-outlined">auto_stories</span>
+            </button>
+          </form>
+
+          <p class="auth-switch-text">
+            Don't have a reader account? <a href="signup.html" class="auth-switch-link">Create one free</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alert -->
+  <div id="authToast" class="auth-toast">
+    <span class="material-symbols-outlined" id="authToastIcon" style="color: var(--color-accent-gold);">verified</span>
+    <span id="authToastMsg">Signed in successfully!</span>
+  </div>
+
+  <script>
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    function validatePassword(val) {
+      const reqLen = document.getElementById('req-len');
+      const reqUpper = document.getElementById('req-upper');
+      const reqLower = document.getElementById('req-lower');
+      const reqNum = document.getElementById('req-num');
+
+      setRequirement(reqLen, val.length >= 8);
+      setRequirement(reqUpper, /[A-Z]/.test(val));
+      setRequirement(reqLower, /[a-z]/.test(val));
+      setRequirement(reqNum, /[0-9]/.test(val));
+
+      return val.length >= 8 && /[A-Z]/.test(val) && /[a-z]/.test(val) && /[0-9]/.test(val);
+    }
+
+    function setRequirement(elem, isValid) {
+      if (!elem) return;
+      if (isValid) {
+        elem.classList.add('valid');
+        elem.querySelector('.material-symbols-outlined').textContent = 'check_circle';
+      } else {
+        elem.classList.remove('valid');
+        elem.querySelector('.material-symbols-outlined').textContent = 'radio_button_unchecked';
+      }
+    }
+
+    function showFieldError(fieldId, errorMsg) {
+      const input = document.getElementById(fieldId);
+      const errElem = document.getElementById('err-' + fieldId);
+      if (input) {
+        input.classList.add('is-invalid');
+        input.classList.remove('is-valid');
+      }
+      if (errElem) {
+        if (errorMsg) {
+          errElem.innerHTML = `<span class="material-symbols-outlined" style="font-size: 14px;">error</span> ${errorMsg}`;
+        }
+        errElem.classList.add('visible');
+      }
+    }
+
+    function clearFieldError(fieldId) {
+      const input = document.getElementById(fieldId);
+      const errElem = document.getElementById('err-' + fieldId);
+      if (input) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      }
+      if (errElem) {
+        errElem.classList.remove('visible');
+      }
+    }
+
+    function showAuthToast(msg, isError = false) {
+      const toast = document.getElementById('authToast');
+      const toastMsg = document.getElementById('authToastMsg');
+      const toastIcon = document.getElementById('authToastIcon');
+      toastMsg.textContent = msg;
+      
+      if (isError) {
+        toastIcon.textContent = 'error';
+        toastIcon.style.color = '#ef4444';
+        toast.style.borderColor = '#ef4444';
+      } else {
+        toastIcon.textContent = 'verified';
+        toastIcon.style.color = 'var(--color-accent-gold)';
+        toast.style.borderColor = 'var(--color-accent-gold)';
+      }
+
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    function handleForgotPassword() {
+      window.location.href = '404.html';
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('usernameInput').value.trim();
+      const email = document.getElementById('emailInput').value.trim();
+      const pass = document.getElementById('passwordInput').value;
+      const portal = document.getElementById('portalSelect').value;
+
+      let isValid = true;
+      let firstInvalidInput = null;
+
+      if (!user) {
+        showFieldError('usernameInput', 'Please enter your username or reader ID.');
+        isValid = false;
+        if (!firstInvalidInput) firstInvalidInput = document.getElementById('usernameInput');
+      } else {
+        clearFieldError('usernameInput');
+      }
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!email || !emailRegex.test(email)) {
+        showFieldError('emailInput', 'Please enter a valid email address.');
+        isValid = false;
+        if (!firstInvalidInput) firstInvalidInput = document.getElementById('emailInput');
+      } else {
+        clearFieldError('emailInput');
+      }
+
+      if (!pass || pass.length < 8) {
+        showFieldError('passwordInput', 'Please enter your valid password (min. 8 characters).');
+        isValid = false;
+        if (!firstInvalidInput) firstInvalidInput = document.getElementById('passwordInput');
+      } else {
+        clearFieldError('passwordInput');
+      }
+
+      if (!isValid) {
+        showAuthToast('Please fill all required login credentials.', true);
+        if (firstInvalidInput) firstInvalidInput.focus();
+        return false;
+      }
+
+      showAuthToast('Authenticating with Stackly Books...');
+      
+      try {
+        const userObj = {
+          name: user,
+          email: email,
+          role: portal
+        };
+        localStorage.setItem('stackly_current_user', JSON.stringify(userObj));
+        if (portal === 'admin') {
+          localStorage.setItem('stackly_admin_user', JSON.stringify(userObj));
+        }
+      } catch(e) {}
+
+      setTimeout(() => {
+        if (portal === 'admin') {
+          window.location.href = 'admin-dashboard.html';
+        } else {
+          window.location.href = 'customer-dashboard.html';
+        }
+      }, 700);
+      return false;
+    }
+
+    // Initialize initial validation state on load
+    document.addEventListener('DOMContentLoaded', () => {
+      validatePassword(document.getElementById('passwordInput').value);
+    });
+  </script>
+</body>
+</html>
